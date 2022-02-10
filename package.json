@@ -1,0 +1,10 @@
+{
+  "name": "dragontail",
+  "version": "1.0.0",
+  "description": "A React component library built with TailwindCSS and TypeScript.",
+  "main": "index.js",
+  "repository": "https://github.com/timthedev07/dragontail",
+  "author": "Tim <timpersonal07@gmail.com>",
+  "license": "MIT",
+  "private": false
+}
