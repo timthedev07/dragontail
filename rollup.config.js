@@ -8,7 +8,7 @@ const packageJson = require("./package.json");
 
 export default [
   {
-    input: "src/index.tsx",
+    input: "src/dragontail.tsx",
     output: [
       {
         file: packageJson.main,

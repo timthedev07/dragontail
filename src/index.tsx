@@ -1,3 +1,12 @@
-export * from "./components";
+import React from "react";
+import ReactDOM from "react-dom";
+import { App } from "./App";
+// import "./build.css";
 import "./dragontail.css";
-import "./build.css";
+
+ReactDOM.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+  document.getElementById("root")
+);
