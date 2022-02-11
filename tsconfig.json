@@ -2,14 +2,11 @@
   "compilerOptions": {
     "experimentalDecorators": true,
     "baseUrl": ".",
-    "outDir": "build/dist",
     "module": "esnext",
     "target": "es2017",
     "lib": ["es6", "dom", "esnext.asynciterable", "es2017"],
-    "sourceMap": true,
     "allowJs": true,
     "jsx": "react-jsx",
-    "moduleResolution": "node",
     "rootDir": "src",
     "forceConsistentCasingInFileNames": true,
     "noImplicitReturns": true,
@@ -19,8 +16,14 @@
     "suppressImplicitAnyIndexErrors": true,
     "noUnusedLocals": true,
     "skipLibCheck": true,
+    "removeComments": true,
+    "declaration": true,
+    "declarationDir": "types",
+    "sourceMap": true,
+    "outDir": "dist",
+    "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
-    "removeComments": true
+    "emitDeclarationOnly": true
   },
   "include": ["src"],
   "exclude": [
