@@ -21,6 +21,7 @@
     "@rollup/plugin-node-resolve": "^13.1.3",
     "@rollup/plugin-typescript": "^8.3.0",
     "postcss-cli": "^9.1.0",
+    "react-scripts": "^5.0.0",
     "rollup": "^2.67.2",
     "rollup-plugin-dts": "^4.1.0",
     "rollup-plugin-postcss": "^4.0.2",
@@ -29,12 +30,25 @@
   "scripts": {
     "build:tailwind": "tailwindcss -o src/build.css --minify",
     "build:rollup": "rollup -c",
-    "build": "yarn build:tailwind && yarn build:rollup"
+    "build": "yarn build:tailwind && yarn build:rollup",
+    "dev": "react-scripts start"
   },
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
   "files": [
     "dist"
   ],
-  "types": "dist/index.d.ts"
+  "types": "dist/index.d.ts",
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
 }
