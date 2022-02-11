@@ -1,6 +1,3 @@
-// import { FC } from "react";
+export * from "./components";
 import "./dragontail.css";
-
-export const Index = () => {
-  return <div className="cursor-help"></div>;
-};
+import "./build.css";

@@ -1,12 +1,11 @@
 {
   "name": "dragontail-test",
-  "version": "1.0.0",
+  "version": "1.0.5",
   "description": "A React component library built with TailwindCSS and TypeScript.",
-  "main": "index.js",
   "repository": "https://github.com/timthedev07/dragontail",
   "author": "Tim <timpersonal07@gmail.com>",
   "license": "MIT",
-  "private": true,
+  "private": false,
   "dependencies": {
     "@types/react": "^17.0.39",
     "@types/react-dom": "^17.0.11",
@@ -23,9 +22,19 @@
     "@rollup/plugin-typescript": "^8.3.0",
     "postcss-cli": "^9.1.0",
     "rollup": "^2.67.2",
-    "rollup-plugin-dts": "^4.1.0"
+    "rollup-plugin-dts": "^4.1.0",
+    "rollup-plugin-postcss": "^4.0.2",
+    "tslib": "^2.3.1"
   },
   "scripts": {
-    "build:tailwind": "tailwindcss -o src/build.css --minify"
-  }
+    "build:tailwind": "tailwindcss -o src/build.css --minify",
+    "build:rollup": "rollup -c",
+    "build": "yarn build:tailwind && yarn build:rollup"
+  },
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "files": [
+    "dist"
+  ],
+  "types": "dist/index.d.ts"
 }
