@@ -1,6 +1,6 @@
 import { DetailedHTMLProps, FC, HTMLAttributes } from "react";
 
-interface CustomButtonProps {
+export interface CustomButtonProps {
   color?: "sky" | "teal" | "red" | "orange" | "dark" | "light" | "cyan";
 }
 
@@ -40,7 +40,7 @@ export const Button: FC<
   const colors = colorStates("sky");
   return (
     <button
-      className={`hover:bg-${colors.hover} focus:bg-${colors.click} bg-${colors.normal} text-${colors.text} rounded-md text-center`}
+      className={`w-96 hover:bg-${colors.hover} focus:bg-${colors.click} bg-${colors.normal} text-${colors.text} rounded-md text-center`}
       {...props}
     ></button>
   );

@@ -20,18 +20,27 @@
     "@rollup/plugin-commonjs": "^21.0.1",
     "@rollup/plugin-node-resolve": "^13.1.3",
     "@rollup/plugin-typescript": "^8.3.0",
+    "@storybook/addon-actions": "^6.3.12",
+    "@storybook/addon-essentials": "^6.3.12",
+    "@storybook/addon-links": "^6.3.12",
+    "@storybook/builder-webpack5": "^6.3.12",
+    "@storybook/manager-webpack5": "^6.3.12",
+    "@storybook/react": "^6.3.12",
     "postcss-cli": "^9.1.0",
     "react-scripts": "^5.0.0",
     "rollup": "^2.67.2",
     "rollup-plugin-dts": "^4.1.0",
     "rollup-plugin-postcss": "^4.0.2",
-    "tslib": "^2.3.1"
+    "tslib": "^2.3.1",
+    "webpack": "5"
   },
   "scripts": {
     "build:tailwind": "tailwindcss -o src/build.css --minify",
     "build:rollup": "rollup -c",
     "build": "yarn build:tailwind && yarn build:rollup",
-    "dev": "react-scripts start"
+    "dev": "react-scripts start",
+    "storybook": "start-storybook -p 6006 -s public",
+    "build-storybook": "build-storybook -s public"
   },
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
@@ -49,6 +58,34 @@
       "last 1 chrome version",
       "last 1 firefox version",
       "last 1 safari version"
+    ]
+  },
+  "eslintConfig": {
+    "overrides": [
+      {
+        "files": [
+          "**/*.stories.*"
+        ],
+        "rules": {
+          "import/no-anonymous-default-export": "off"
+        }
+      },
+      {
+        "files": [
+          "**/*.stories.*"
+        ],
+        "rules": {
+          "import/no-anonymous-default-export": "off"
+        }
+      },
+      {
+        "files": [
+          "**/*.stories.*"
+        ],
+        "rules": {
+          "import/no-anonymous-default-export": "off"
+        }
+      }
     ]
   }
 }
