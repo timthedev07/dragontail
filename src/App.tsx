@@ -1,9 +1,7 @@
-import { Button } from "./components";
+import { FC } from "react";
 
-export const App = () => {
-  return (
-    <div>
-      <Button>Hi</Button>
-    </div>
-  );
+interface AppProps {}
+
+export const App: FC<AppProps> = ({}) => {
+  return <div>Hello</div>;
 };
