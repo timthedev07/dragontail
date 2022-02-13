@@ -8,8 +8,8 @@ export default {
 
 const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
 
-export const HelloWorld = Template.bind({});
-HelloWorld.args = {
+export const Example = Template.bind({});
+Example.args = {
   children: "Click me",
   color: "cyan",
 } as CustomButtonProps;
