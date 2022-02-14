@@ -1,4 +1,6 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { RightArrow } from "../../stories-utils/RightArrow";
+import { EmailIcon } from "../../stories-utils/EmailIcon";
 import { Button, CustomButtonProps } from "./Button";
 
 export default {
@@ -12,4 +14,26 @@ export const Example = Template.bind({});
 Example.args = {
   children: "Click me",
   color: "cyan",
+} as CustomButtonProps;
+
+export const EmailMe = Template.bind({});
+EmailMe.args = {
+  children: "Email Me",
+  color: "teal",
+  leftIcon: <EmailIcon />,
+} as CustomButtonProps;
+
+export const GhostButton = Template.bind({});
+GhostButton.args = {
+  color: "cyan",
+  children: "I'm a happy ghost.",
+  variant: "ghost",
+} as CustomButtonProps;
+
+export const ButtonWithArrow = Template.bind({});
+ButtonWithArrow.args = {
+  color: "teal",
+  variant: "ghost",
+  children: "Enter",
+  rightIcon: <RightArrow />,
 } as CustomButtonProps;
