@@ -1,6 +1,7 @@
 import { DetailedHTMLProps, FC, HTMLAttributes } from "react";
-import { CSType } from "src/types/Colors";
-import { ButtonVariants } from "src/types/Variants";
+import { useDragontail } from "../../context/ThemeContext";
+import { CSType } from "../../types/Colors";
+import { ButtonVariants } from "../../types/Variants";
 
 export interface CustomButtonProps {
   color?: CSType;
@@ -65,6 +66,8 @@ export const Button: FC<
     CustomButtonProps
 > = ({ children, leftIcon, rightIcon, variant, color, ...props }) => {
   const chosenColor = color || "teal";
+  const theme = useDragontail();
+  theme;
 
   return (
     <button
