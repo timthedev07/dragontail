@@ -26,7 +26,7 @@ EmailMe.args = {
 export const GhostButton = Template.bind({});
 GhostButton.args = {
   color: "cyan",
-  children: "I'm a happy ghost.",
+  children: "Ghost button",
   variant: "ghost",
 } as CustomButtonProps;
 
