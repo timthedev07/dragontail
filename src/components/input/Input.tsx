@@ -1,7 +1,8 @@
 import { DetailedHTMLProps, FC, HTMLAttributes } from "react";
 import { DragontailThemeType, useDragontail } from "../../context/ThemeContext";
+import { DragontailSizeType } from "../../types/Sizes";
 import { InputVariants } from "../../types/Variants";
-import { INPUT_BASE } from "./Style";
+import { INPUT_BASE, INPUT_SIZES } from "./Style";
 
 export interface CustomInputProps
   extends DetailedHTMLProps<
@@ -12,6 +13,7 @@ export interface CustomInputProps
   rightAddon?: JSX.Element;
   variant?: InputVariants;
   theme?: DragontailThemeType;
+  size?: DragontailSizeType;
 }
 
 export const Input: FC<CustomInputProps> = ({
@@ -21,10 +23,14 @@ export const Input: FC<CustomInputProps> = ({
   variant,
   color,
   theme,
+  size = "md",
   ...props
 }) => {
   const defaultTheme = useDragontail();
   return (
-    <input className={`${INPUT_BASE[theme || defaultTheme]}`} {...props} />
+    <input
+      className={`${INPUT_BASE[theme || defaultTheme]} ${INPUT_SIZES[size]}`}
+      {...props}
+    />
   );
 };

@@ -1,1 +1,1 @@
-export type Size = "lg" | "md" | "sm" | "xl";
+export type DragontailSizeType = "lg" | "md" | "sm" | "xl";

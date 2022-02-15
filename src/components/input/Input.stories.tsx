@@ -5,6 +5,15 @@ import { PasswordInput } from "./PasswordInput";
 export default {
   title: "dragontail/Input",
   component: Input,
+  decorators: [
+    (Story) => {
+      return (
+        <div className="w-80">
+          <Story />
+        </div>
+      );
+    },
+  ],
 } as ComponentMeta<typeof Input>;
 
 const InputTemplate: ComponentStory<typeof Input> = (args) => (
@@ -28,4 +37,5 @@ DarkExample.parameters = { backgrounds: { default: "dark" } };
 export const PWExample = PasswordTemplate.bind({});
 PWExample.args = {
   placeholder: "Password",
+  size: "md",
 } as CustomInputProps;
