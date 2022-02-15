@@ -23,13 +23,16 @@ export const Input: FC<CustomInputProps> = ({
   variant,
   color,
   theme,
+  className,
   size = "md",
   ...props
 }) => {
   const defaultTheme = useDragontail();
   return (
     <input
-      className={`${INPUT_BASE[theme || defaultTheme]} ${INPUT_SIZES[size]}`}
+      className={`${className || ""} ${INPUT_BASE[theme || defaultTheme]} ${
+        INPUT_SIZES[size]
+      }`}
       {...props}
     />
   );

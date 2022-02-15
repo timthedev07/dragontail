@@ -80,7 +80,7 @@ export const Button: FC<
   return (
     <button
       className={`
-      ${className} ${BASE_BUTTON} ${
+      ${className || ""} ${BASE_BUTTON} ${
         variant === "solid" || !variant
           ? ` hey ${COLORS["solid"][chosenColor]} focus:outline-offset-2 focus:outline focus:outline-2 focus:outline-blue-600`
           : variant === "link"
