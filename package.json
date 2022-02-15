@@ -3,6 +3,7 @@
   "version": "1.0.5",
   "description": "A React component library built with TailwindCSS and TypeScript.",
   "repository": "https://github.com/timthedev07/dragontail",
+  "homepage": "http://timthedev07.github.io/dragontail",
   "author": "Tim <timpersonal07@gmail.com>",
   "license": "MIT",
   "private": false,
@@ -47,7 +48,9 @@
     "build:lib": "yarn build:tailwind && yarn build:rollup",
     "dev": "react-scripts start",
     "storybook": "start-storybook -p 6006 -s public",
-    "build-storybook": "build-storybook -s public"
+    "build-storybook": "build-storybook -s public",
+    "predeploy": "npm run build-storybook",
+    "deploy-storybook": "yarn predeploy && gh-pages -d storybook-static"
   },
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
