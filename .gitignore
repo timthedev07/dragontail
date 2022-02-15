@@ -12,6 +12,7 @@ dist
 # production
 /build
 **/build.css
+**/storybook-static
 
 # misc
 .DS_Store
