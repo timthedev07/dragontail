@@ -7,4 +7,5 @@ export type CSType =
   | "light"
   | "cyan"
   | "emerald"
-  | "green";
+  | "green"
+  | "neutral";

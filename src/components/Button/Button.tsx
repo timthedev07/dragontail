@@ -22,6 +22,7 @@ const COLORS: Record<ButtonVariants, Record<CSType, string>> = {
     emerald:
       "bg-emerald-500 hover:bg-emerald-400 focus:bg-emerald-600 text-white",
     green: "bg-green-500 hover:bg-green-400 focus:bg-green-600 text-white",
+    neutral: "bg-slate-500 hover:bg-slate-400 focus:bg-slate-600 text-white",
   },
   link: {
     cyan: "text-cyan-500",
@@ -33,6 +34,7 @@ const COLORS: Record<ButtonVariants, Record<CSType, string>> = {
     teal: "text-teal-500",
     emerald: "text-emerald-500",
     green: "text-green-500",
+    neutral: "text-slate-700",
   },
   ghost: {
     cyan: "text-cyan-500 hover:bg-cyan-200",
@@ -44,6 +46,7 @@ const COLORS: Record<ButtonVariants, Record<CSType, string>> = {
     teal: "text-teal-500 hover:bg-teal-200",
     emerald: "text-emerald-500 hover:bg-emerald-200",
     green: "text-green-500 hover:bg-green-200",
+    neutral: "text-slate-700 hover:bg-slate-400",
   },
   outline: {
     cyan: "outline-cyan-600",
@@ -55,6 +58,7 @@ const COLORS: Record<ButtonVariants, Record<CSType, string>> = {
     teal: "outline-teal-600",
     emerald: "outline-emerald-600",
     green: "outline-green-600",
+    neutral: "outline-slate-400",
   },
 };
 
