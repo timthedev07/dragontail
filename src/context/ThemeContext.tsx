@@ -1,15 +1,15 @@
 import React, { useContext } from "react";
 
-type ThemeType = "light" | "dark";
+export type DragontailThemeType = "light" | "dark";
 
-const DragontailContext = React.createContext<ThemeType>("light");
+const DragontailContext = React.createContext<DragontailThemeType>("light");
 
 export const useDragontail = () => {
   return useContext(DragontailContext);
 };
 
 interface ProviderProps {
-  theme?: ThemeType;
+  theme?: DragontailThemeType;
 }
 
 export const DragontailProvider: React.FC<ProviderProps> = ({
