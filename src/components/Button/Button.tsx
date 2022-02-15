@@ -64,7 +64,15 @@ const BASE_BUTTON =
 export const Button: FC<
   DetailedHTMLProps<HTMLAttributes<HTMLButtonElement>, HTMLButtonElement> &
     CustomButtonProps
-> = ({ children, leftIcon, rightIcon, variant, color, ...props }) => {
+> = ({
+  children,
+  leftIcon,
+  rightIcon,
+  variant,
+  color,
+  className,
+  ...props
+}) => {
   const chosenColor = color || "teal";
   const theme = useDragontail();
   theme;
@@ -72,8 +80,7 @@ export const Button: FC<
   return (
     <button
       className={`
-        ${BASE_BUTTON}
-      ${
+      ${className} ${BASE_BUTTON} ${
         variant === "solid" || !variant
           ? ` hey ${COLORS["solid"][chosenColor]} focus:outline-offset-2 focus:outline focus:outline-2 focus:outline-blue-600`
           : variant === "link"
