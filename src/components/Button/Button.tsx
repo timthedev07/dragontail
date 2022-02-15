@@ -8,6 +8,7 @@ export interface CustomButtonProps {
   leftIcon?: JSX.Element;
   rightIcon?: JSX.Element;
   variant?: ButtonVariants;
+  focusEffect?: boolean;
 }
 
 const COLORS: Record<ButtonVariants, Record<CSType | "neutral-dark", string>> =
@@ -83,6 +84,7 @@ export const Button: FC<
   variant,
   color,
   className,
+  focusEffect = true,
   ...props
 }) => {
   const theme = useDragontail();
@@ -93,7 +95,11 @@ export const Button: FC<
       className={`
       ${className || ""} ${BASE_BUTTON} ${
         variant === "solid" || !variant
-          ? ` hey ${COLORS["solid"][chosenColor]} focus:outline-offset-2 focus:outline focus:outline-2 focus:outline-blue-600`
+          ? ` hey ${COLORS["solid"][chosenColor]} ${
+              focusEffect
+                ? "focus:outline-offset-2 focus:outline focus:outline-2 focus:outline-blue-600"
+                : "focus:outline-none"
+            }`
           : variant === "link"
           ? `${COLORS.link[chosenColor]} hover:underline no-underline bg-transparent border-none outline-none`
           : variant === "ghost"
