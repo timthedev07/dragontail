@@ -71,8 +71,7 @@ const COLORS: Record<ButtonVariants, Record<CSType | "neutral-dark", string>> =
     },
   };
 
-const BASE_BUTTON =
-  "px-4 py-2 rounded-md flex justify-start items-center gap-2";
+const BASE_BUTTON = "px-4 py-2 rounded-md flex items-center gap-2";
 
 export const Button: FC<
   DetailedHTMLProps<HTMLAttributes<HTMLButtonElement>, HTMLButtonElement> &
@@ -93,6 +92,11 @@ export const Button: FC<
   return (
     <button
       className={`
+      ${
+        leftIcon === undefined && rightIcon === undefined
+          ? "justify-center"
+          : "justify-start"
+      }
       ${className || ""} ${BASE_BUTTON} ${
         variant === "solid" || !variant
           ? ` hey ${COLORS["solid"][chosenColor]} ${
