@@ -24,15 +24,15 @@ export const PasswordInput: FC<CustomInputProps> = ({
         {...props}
         className={`${className} ${
           INPUT_BASE[theme || defaultTheme]
-        } relative ${INPUT_SIZES[size]}`}
+        } relative ${INPUT_SIZES[size]} pr-20`}
         type={showPw ? "text" : "password"}
       />
       <div
-        className={`absolute flex justify-center items-center px-2 ${INPUT_SIZES[size]}`}
+        className={`absolute flex justify-center items-center px-2 ${INPUT_SIZES[size]} w-20`}
       >
         <Button
           color="neutral"
-          className="transition h-4/6 px-3"
+          className="transition h-4/6 px-3 w-full"
           onClick={() => {
             setShowPw((prev) => !prev);
           }}
