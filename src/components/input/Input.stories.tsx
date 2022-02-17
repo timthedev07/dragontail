@@ -16,20 +16,28 @@ export default {
   ],
 } as ComponentMeta<typeof Input>;
 
-const InputTemplate: ComponentStory<typeof Input> = (args) => (
-  <Input {...args} />
-);
+const InputsTemplate: ComponentStory<typeof Input> = (args) => {
+  args.className = "m-4";
+  return (
+    <div>
+      <Input variant="solid" {...args} />
+      <Input variant="outline" {...args} />
+      <Input variant="underline" {...args} />
+    </div>
+  );
+};
 const PasswordTemplate: ComponentStory<typeof Input> = (args) => (
   <PasswordInput {...args} />
 );
 
-export const LightExample = InputTemplate.bind({});
+export const LightExample = InputsTemplate.bind({});
 LightExample.args = {
-  placeholder: "Username",
+  placeholder: "Light Input",
 } as CustomInputProps;
-export const DarkExample = InputTemplate.bind({});
+
+export const DarkExample = InputsTemplate.bind({});
 DarkExample.args = {
-  placeholder: "Name",
+  placeholder: "Dark Input",
   theme: "dark",
 } as CustomInputProps;
 DarkExample.parameters = { backgrounds: { default: "dark" } };
