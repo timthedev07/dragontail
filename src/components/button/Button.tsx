@@ -58,17 +58,17 @@ const COLORS: Record<ButtonVariants, Record<CSType | "neutral-dark", string>> =
       "neutral-dark": "text-slate-200 hover:bg-slate-400",
     },
     outline: {
-      cyan: "outline-cyan-600",
-      dark: "outline-slate-900",
-      light: "outline-slate-400",
-      orange: "outline-orange-600",
-      red: "outline-red-600",
-      sky: "outline-sky-600",
-      teal: "outline-teal-600",
-      emerald: "outline-emerald-600",
-      green: "outline-green-600",
-      neutral: "outline-slate-400",
-      "neutral-dark": "outline-slate-500",
+      cyan: "border-cyan-600",
+      dark: "border-slate-900",
+      light: "border-slate-400",
+      orange: "border-orange-600",
+      red: "border-red-600",
+      sky: "border-sky-600",
+      teal: "border-teal-600",
+      emerald: "border-emerald-600",
+      green: "border-green-600",
+      neutral: "border-slate-400",
+      "neutral-dark": "border-slate-500",
     },
   };
 
@@ -112,7 +112,7 @@ export const Button: FC<
           ? `${COLORS.link[chosenColor]} hover:underline no-underline bg-transparent border-none outline-none`
           : variant === "ghost"
           ? `transition duration-200 hover:bg-opacity-50 bg-transparent  ${COLORS.ghost[chosenColor]}`
-          : `transition-colors duration-200 hover:outline hover:outline-2 hover:bg-opacity-50 bg-transparent ${COLORS.ghost[chosenColor]} ${COLORS.outline[chosenColor]}`
+          : `border transition-colors duration-200 hover:outline-none hover:bg-opacity-30 bg-transparent ${COLORS.ghost[chosenColor]} ${COLORS.outline[chosenColor]}`
       }`}
       {...props}
     >

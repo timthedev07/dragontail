@@ -30,6 +30,13 @@ GhostButton.args = {
   variant: "ghost",
 } as CustomButtonProps;
 
+export const OutlineButton = Template.bind({});
+OutlineButton.args = {
+  color: "orange",
+  children: "Outline button",
+  variant: "outline",
+} as CustomButtonProps;
+
 export const ButtonWithArrow = Template.bind({});
 ButtonWithArrow.args = {
   color: "teal",
