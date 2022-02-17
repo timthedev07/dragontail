@@ -1,5 +1,5 @@
 import { DetailedHTMLProps, FC, HTMLAttributes } from "react";
-import { useDragontail } from "../../context/ThemeContext";
+import { DragontailThemeType, useDragontail } from "../../context/ThemeContext";
 import { CSType } from "../../types/Colors";
 import { ButtonVariants } from "../../types/Variants";
 
@@ -9,6 +9,7 @@ export interface CustomButtonProps {
   rightIcon?: JSX.Element;
   variant?: ButtonVariants;
   focusEffect?: boolean;
+  theme?: DragontailThemeType;
 }
 
 const COLORS: Record<ButtonVariants, Record<CSType | "neutral-dark", string>> =
@@ -83,11 +84,14 @@ export const Button: FC<
   variant,
   color,
   className,
+  theme,
   focusEffect = true,
   ...props
 }) => {
-  const theme = useDragontail();
-  const chosenColor = (color || "teal") + (theme === "dark" ? "dark" : "");
+  const defaultTheme = useDragontail();
+  const chosenColor =
+    (color || "teal") +
+    ((theme ? theme : defaultTheme) === "dark" ? "-dark" : "");
 
   return (
     <button
@@ -99,7 +103,7 @@ export const Button: FC<
       }
       ${className || ""} ${BASE_BUTTON} ${
         variant === "solid" || !variant
-          ? ` hey ${COLORS["solid"][chosenColor]} ${
+          ? ` hey ${COLORS.solid[chosenColor]} ${
               focusEffect
                 ? "focus:outline-offset-2 focus:outline focus:outline-2 focus:outline-blue-600"
                 : "focus:outline-none"
@@ -107,7 +111,7 @@ export const Button: FC<
           : variant === "link"
           ? `${COLORS.link[chosenColor]} hover:underline no-underline bg-transparent border-none outline-none`
           : variant === "ghost"
-          ? `transition duration-200 hover:bg-opacity-50 bg-transparent ${COLORS.ghost[chosenColor]}`
+          ? `transition duration-200 hover:bg-opacity-50 bg-transparent  ${COLORS.ghost[chosenColor]}`
           : `transition-colors duration-200 hover:outline hover:outline-2 hover:bg-opacity-50 bg-transparent ${COLORS.ghost[chosenColor]} ${COLORS.outline[chosenColor]}`
       }`}
       {...props}
