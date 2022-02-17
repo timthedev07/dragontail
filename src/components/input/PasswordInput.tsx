@@ -2,7 +2,7 @@ import { FC, useState } from "react";
 import { useDragontail } from "../../context/ThemeContext";
 import { Button } from "../button";
 import { CustomInputProps } from "./Input";
-import { INPUT_BASE, INPUT_SIZES } from "./Style";
+import { INPUT_BASE, INPUT_SIZES } from "./styles";
 
 export const PasswordInput: FC<CustomInputProps> = ({
   children,
@@ -32,6 +32,7 @@ export const PasswordInput: FC<CustomInputProps> = ({
       >
         <Button
           color="neutral"
+          theme={theme}
           className="transition h-4/6 px-3 w-full"
           onClick={() => {
             setShowPw((prev) => !prev);

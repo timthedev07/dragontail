@@ -2,7 +2,7 @@ import { DetailedHTMLProps, FC, HTMLAttributes } from "react";
 import { DragontailThemeType, useDragontail } from "../../context/ThemeContext";
 import { DragontailSizeType } from "../../types/Sizes";
 import { InputVariants } from "../../types/Variants";
-import { INPUT_BASE, INPUT_SIZES } from "./Style";
+import { INPUT_BASE, INPUT_SIZES } from "./styles";
 
 export interface CustomInputProps
   extends DetailedHTMLProps<
