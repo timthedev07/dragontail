@@ -24,5 +24,5 @@ export const INPUT_SIZES: Record<DragontailSizeType, string> = {
 export const INPUT_VARIANTS: Record<InputVariants, string> = {
   outline: "rounded-md border-2",
   solid: "rounded-md border-2 border-gray-500/0",
-  underline: "rounded-none border-b-2",
+  underline: "rounded-t-md border-b-2",
 };
