@@ -2,13 +2,13 @@ import { FC, useState } from "react";
 import { useDragontail } from "../../context/ThemeContext";
 import { Button } from "../button";
 import { CustomInputProps } from "./Input";
-import { INPUT_BASE, INPUT_SIZES } from "./styles";
+import { INPUT_BASE, INPUT_SIZES, INPUT_VARIANTS } from "./styles";
 
 export const PasswordInput: FC<CustomInputProps> = ({
   children,
   leftAddon,
   rightAddon,
-  variant,
+  variant = "solid",
   color,
   theme,
   className,
@@ -24,7 +24,7 @@ export const PasswordInput: FC<CustomInputProps> = ({
         {...props}
         className={`${className} ${
           INPUT_BASE[theme || defaultTheme]
-        } relative ${INPUT_SIZES[size]} pr-20`}
+        } relative ${INPUT_SIZES[size]} pr-20 ${INPUT_VARIANTS[variant]}`}
         type={showPw ? "text" : "password"}
       />
       <div
