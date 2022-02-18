@@ -55,9 +55,17 @@ export const Input: FC<CustomInputProps> = ({
         <div className={`${ELEMENT_CLASS} left-0`}>{leftElement}</div>
       ) : null}
       <input
-        className={`${className || ""} ${INPUT_BASE[theme || defaultTheme]} ${
-          INPUT_SIZES[size]
-        } ${INPUT_VARIANTS[variant]} ${
+        className={`${className || ""} ${
+          leftElement && rightElement
+            ? "px-10"
+            : leftElement
+            ? "pl-10"
+            : rightElement
+            ? "pr-10"
+            : ""
+        } ${INPUT_BASE[theme || defaultTheme]} ${INPUT_SIZES[size]} ${
+          INPUT_VARIANTS[variant]
+        } ${
           INPUT_CORNER_ROUNDING[variant][
             leftAddon && rightAddon
               ? "none"
@@ -67,14 +75,6 @@ export const Input: FC<CustomInputProps> = ({
               ? "left"
               : "all"
           ]
-        } ${
-          leftElement && rightElement
-            ? "px-10"
-            : leftElement
-            ? "pl-10"
-            : rightElement
-            ? "pr-10"
-            : "px-3 py-2"
         }`}
         {...props}
       />
