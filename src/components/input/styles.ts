@@ -23,9 +23,9 @@ export const INPUT_SIZES: Record<DragontailSizeType, string> = {
 };
 
 export const INPUT_VARIANTS: Record<InputVariants, string> = {
-  outline: "rounded-md border-2",
-  solid: "rounded-md border-2 border-gray-500/0",
-  underline: "rounded-t-md border-b-2",
+  outline: "border-2",
+  solid: "border-2 border-gray-500/0",
+  underline: "border-b-2",
 };
 
 const cornerShared = {
@@ -34,6 +34,7 @@ const cornerShared = {
   none: "rounded-none",
   right: "rounded-r-md",
 };
+
 export const INPUT_CORNER_ROUNDING: Record<
   InputVariants,
   Record<CornerRoundingType, string>

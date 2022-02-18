@@ -1,6 +1,5 @@
 import { DetailedHTMLProps, FC, HTMLAttributes, ReactNode } from "react";
 import { DragontailThemeType, useDragontail } from "../../context/ThemeContext";
-import { CornerRoundingType } from "../../types/CornerRounding";
 import { DragontailSizeType } from "../../types/Sizes";
 import { InputVariants } from "../../types/Variants";
 import {
@@ -20,7 +19,6 @@ export interface CustomInputProps
   variant?: InputVariants;
   theme?: DragontailThemeType;
   size?: DragontailSizeType;
-  cornerRounding?: CornerRoundingType;
 }
 
 export const Input: FC<CustomInputProps> = ({
@@ -30,7 +28,6 @@ export const Input: FC<CustomInputProps> = ({
   variant = "solid",
   color,
   theme,
-  cornerRounding = "all",
   className,
   size = "md",
   ...props
@@ -53,7 +50,15 @@ export const Input: FC<CustomInputProps> = ({
         className={`${className || ""} ${INPUT_BASE[theme || defaultTheme]} ${
           INPUT_SIZES[size]
         } ${INPUT_VARIANTS[variant]} ${
-          INPUT_CORNER_ROUNDING[variant][cornerRounding]
+          INPUT_CORNER_ROUNDING[variant][
+            leftAddon && rightAddon
+              ? "none"
+              : leftAddon
+              ? "right"
+              : rightAddon
+              ? "left"
+              : "all"
+          ]
         }`}
         {...props}
       />
