@@ -62,3 +62,10 @@ RightAddonExample.args = {
   placeholder: "Gmail",
   rightAddon: "@gmail.com",
 } as CustomInputProps;
+
+export const WithBothAddons = PlainTemplate.bind({});
+WithBothAddons.args = {
+  placeholder: "your-website",
+  leftAddon: "https://",
+  rightAddon: ".com",
+} as CustomInputProps;
