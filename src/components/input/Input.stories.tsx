@@ -56,3 +56,9 @@ LeftAddonExample.args = {
   placeholder: "Phone number",
   leftAddon: "+86",
 } as CustomInputProps;
+
+export const RightAddonExample = PlainTemplate.bind({});
+RightAddonExample.args = {
+  placeholder: "Gmail",
+  rightAddon: "@gmail.com",
+} as CustomInputProps;
