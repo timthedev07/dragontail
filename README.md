@@ -1,6 +1,6 @@
 # Minimum component library built with TailwindCSS and React
 
-Inspired by ChakraUI
+Heavily inspired by ChakraUI
 
 ## Installation
 
@@ -31,6 +31,7 @@ export default App;
 ### Create React App
 
 ```typescript
+// app.tsx
 import { DragontailProvider } from "dragontail";
 
 export const App = () => {
