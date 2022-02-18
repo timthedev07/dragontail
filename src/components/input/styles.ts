@@ -1,4 +1,5 @@
 import { DragontailThemeType } from "../../context/ThemeContext";
+import { CornerRoundingType } from "../../types/CornerRounding";
 import { DragontailSizeType } from "../../types/Sizes";
 import { InputVariants } from "../../types/Variants";
 
@@ -25,4 +26,24 @@ export const INPUT_VARIANTS: Record<InputVariants, string> = {
   outline: "rounded-md border-2",
   solid: "rounded-md border-2 border-gray-500/0",
   underline: "rounded-t-md border-b-2",
+};
+
+const cornerShared = {
+  all: "rounded-md",
+  left: "rounded-l-md",
+  none: "rounded-none",
+  right: "rounded-r-md",
+};
+export const INPUT_CORNER_ROUNDING: Record<
+  InputVariants,
+  Record<CornerRoundingType, string>
+> = {
+  outline: cornerShared,
+  solid: cornerShared,
+  underline: {
+    all: "rounded-t-md",
+    left: "rounded-tl-md",
+    none: "rounded-none",
+    right: "rounded-tr-md",
+  },
 };
