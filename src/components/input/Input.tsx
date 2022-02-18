@@ -19,6 +19,8 @@ export interface CustomInputProps
   variant?: InputVariants;
   theme?: DragontailThemeType;
   size?: DragontailSizeType;
+  leftElement?: ReactNode;
+  rightElement?: ReactNode;
 }
 
 export const Input: FC<CustomInputProps> = ({
@@ -30,6 +32,8 @@ export const Input: FC<CustomInputProps> = ({
   theme,
   className,
   size = "md",
+  leftElement,
+  rightElement,
   ...props
 }) => {
   const defaultTheme = useDragontail();
@@ -40,11 +44,15 @@ export const Input: FC<CustomInputProps> = ({
       ? "bg-slate-600 text-white"
       : "bg-slate-200 text-slate-700"
   }`;
+  const ELEMENT_CLASS = `absolute ${INPUT_SIZES[size]} w-10 font-sans flex justify-center items-center bg-inherit`;
 
   return (
     <div className="relative flex justify-center items-center">
       {leftAddon ? (
         <div className={`${ADDON_CLASS} rounded-l-md`}>{leftAddon}</div>
+      ) : null}
+      {leftElement ? (
+        <div className={`${ELEMENT_CLASS} left-0`}>{leftElement}</div>
       ) : null}
       <input
         className={`${className || ""} ${INPUT_BASE[theme || defaultTheme]} ${
@@ -59,9 +67,20 @@ export const Input: FC<CustomInputProps> = ({
               ? "left"
               : "all"
           ]
+        } ${
+          leftElement && rightElement
+            ? "px-10"
+            : leftElement
+            ? "pl-10"
+            : rightElement
+            ? "pr-10"
+            : "p-none"
         }`}
         {...props}
       />
+      {rightElement ? (
+        <div className={`${ELEMENT_CLASS} right-0`}>{rightElement}</div>
+      ) : null}
       {rightAddon ? (
         <div className={`${ADDON_CLASS} rounded-r-md`}>{rightAddon}</div>
       ) : null}

@@ -1,4 +1,5 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { CheckIcon } from "../../stories-utils/CheckIcon";
 import { Input, CustomInputProps } from "./Input";
 import { PasswordInput } from "./PasswordInput";
 
@@ -68,4 +69,23 @@ WithBothAddons.args = {
   placeholder: "your-website",
   leftAddon: "https://",
   rightAddon: ".com",
+} as CustomInputProps;
+
+export const LeftElementExample = PlainTemplate.bind({});
+LeftElementExample.args = {
+  placeholder: "Transfer amount",
+  leftElement: "$",
+} as CustomInputProps;
+
+export const RightElementExample = PlainTemplate.bind({});
+RightElementExample.args = {
+  placeholder: "ROCE",
+  rightElement: "%",
+} as CustomInputProps;
+
+export const WithBothElements = PlainTemplate.bind({});
+WithBothElements.args = {
+  placeholder: "username",
+  leftElement: "@",
+  rightElement: <CheckIcon />,
 } as CustomInputProps;
