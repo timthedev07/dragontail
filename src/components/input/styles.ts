@@ -4,7 +4,7 @@ import { DragontailSizeType } from "../../types/Sizes";
 import { InputVariants } from "../../types/Variants";
 
 const BASE =
-  "w-full py-2 px-3 bg-inherit outline-none transition-all duration-300 focus:outline-none placeholder:opacity-100 focus:placeholder:opacity-0";
+  "w-full bg-inherit outline-none transition-all duration-300 focus:outline-none placeholder:opacity-100 focus:placeholder:opacity-0";
 
 export const INPUT_BASE: Record<DragontailThemeType, string> = {
   dark:

@@ -74,7 +74,7 @@ export const Input: FC<CustomInputProps> = ({
             ? "pl-10"
             : rightElement
             ? "pr-10"
-            : "p-none"
+            : "px-3 py-2"
         }`}
         {...props}
       />
