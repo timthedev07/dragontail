@@ -2,7 +2,12 @@ import { FC, useState } from "react";
 import { useDragontail } from "../../context/ThemeContext";
 import { Button } from "../button";
 import { CustomInputProps } from "./Input";
-import { INPUT_BASE, INPUT_SIZES, INPUT_VARIANTS } from "./styles";
+import {
+  INPUT_BASE,
+  INPUT_CORNER_ROUNDING,
+  INPUT_SIZES,
+  INPUT_VARIANTS,
+} from "./styles";
 
 export const PasswordInput: FC<CustomInputProps> = ({
   children,
@@ -22,7 +27,7 @@ export const PasswordInput: FC<CustomInputProps> = ({
     <div className="relative flex justify-end">
       <input
         {...props}
-        className={`${className} ${
+        className={`${className} ${INPUT_CORNER_ROUNDING[variant]["all"]} ${
           INPUT_BASE[theme || defaultTheme]
         } relative ${INPUT_SIZES[size]} pr-20 ${INPUT_VARIANTS[variant]}`}
         type={showPw ? "text" : "password"}
