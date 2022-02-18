@@ -29,6 +29,9 @@ const InputsTemplate: ComponentStory<typeof Input> = (args) => {
 const PasswordTemplate: ComponentStory<typeof Input> = (args) => (
   <PasswordInput {...args} />
 );
+const PlainTemplate: ComponentStory<typeof Input> = (args) => (
+  <Input {...args} />
+);
 
 export const LightExample = InputsTemplate.bind({});
 LightExample.args = {
@@ -42,8 +45,14 @@ DarkExample.args = {
 } as CustomInputProps;
 DarkExample.parameters = { backgrounds: { default: "dark" } };
 
-export const PWExample = PasswordTemplate.bind({});
-PWExample.args = {
+export const PasswordExample = PasswordTemplate.bind({});
+PasswordExample.args = {
   placeholder: "Password",
   size: "md",
+} as CustomInputProps;
+
+export const LeftAddonExample = PlainTemplate.bind({});
+LeftAddonExample.args = {
+  placeholder: "Phone number",
+  leftAddon: "+86",
 } as CustomInputProps;
