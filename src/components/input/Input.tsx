@@ -37,7 +37,7 @@ export const Input: FC<CustomInputProps> = ({
     INPUT_SIZES[size]
   } ${
     (theme ? theme : defaultTheme) === "dark"
-      ? "bg-slate-500 text-white"
+      ? "bg-slate-600 text-white"
       : "bg-slate-200 text-slate-700"
   }`;
 
