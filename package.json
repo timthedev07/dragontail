@@ -50,7 +50,8 @@
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public",
     "predeploy": "npm run build-storybook",
-    "deploy-storybook": "yarn predeploy && gh-pages -d storybook-static"
+    "deploy-storybook": "yarn predeploy && gh-pages -d storybook-static",
+    "cleanup-deployment": "trash storybook-static"
   },
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
