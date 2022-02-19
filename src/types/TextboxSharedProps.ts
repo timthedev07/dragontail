@@ -5,4 +5,5 @@ export interface TextboxSharedProps {
   variant?: InputVariants;
   theme?: DragontailThemeType;
   isDisabled?: boolean;
+  isInvalid?: boolean;
 }
