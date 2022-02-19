@@ -3,6 +3,7 @@ import { useDragontail } from "../../context/ThemeContext";
 import { Button } from "../button";
 import { CustomInputProps } from "./Input";
 import {
+  disabledClasses,
   INPUT_BASE,
   INPUT_CORNER_ROUNDING,
   INPUT_DEFAULT_PADDING,
@@ -18,6 +19,7 @@ export const PasswordInput: FC<CustomInputProps> = ({
   color,
   theme,
   className,
+  isDisabled = false,
   size = "md",
   ...props
 }) => {
@@ -28,11 +30,11 @@ export const PasswordInput: FC<CustomInputProps> = ({
     <div className="relative flex justify-end">
       <input
         {...props}
-        className={`${className} ${INPUT_DEFAULT_PADDING[variant]} ${
-          INPUT_CORNER_ROUNDING[variant]["all"]
-        } ${INPUT_BASE[theme || defaultTheme][variant]} relative ${
-          INPUT_SIZES[size]
-        } pr-20 ${INPUT_VARIANTS[variant]}`}
+        className={`${className} ${disabledClasses(isDisabled)} ${
+          INPUT_DEFAULT_PADDING[variant]
+        } ${INPUT_CORNER_ROUNDING[variant]["all"]} ${
+          INPUT_BASE[theme || defaultTheme][variant]
+        } relative ${INPUT_SIZES[size]} pr-20 ${INPUT_VARIANTS[variant]}`}
         type={showPw ? "text" : "password"}
       />
       <div
