@@ -11,6 +11,12 @@ const DARK_BASE = BASE + " border-gray-500 focus:border-sky-400/100 text-white";
 const LIGHT_BASE =
   BASE + " border-gray-300 focus:border-sky-500/100 text-black";
 
+export const disabledClasses = (isDisabled: boolean) => {
+  return isDisabled
+    ? "pointer-events-none cursor-not-allowed placeholder:opacity-30"
+    : "";
+};
+
 export const INPUT_BASE: Record<
   DragontailThemeType,
   Record<InputVariants, string>

@@ -3,6 +3,7 @@ import { DragontailThemeType, useDragontail } from "../../context/ThemeContext";
 import { DragontailSizeType } from "../../types/Sizes";
 import { InputVariants } from "../../types/Variants";
 import {
+  disabledClasses,
   INPUT_BASE,
   INPUT_CORNER_ROUNDING,
   INPUT_DEFAULT_PADDING,
@@ -22,6 +23,7 @@ export interface CustomInputProps
   size?: DragontailSizeType;
   leftElement?: ReactNode;
   rightElement?: ReactNode;
+  isDisabled?: boolean;
 }
 
 export const Input: FC<CustomInputProps> = ({
@@ -31,6 +33,7 @@ export const Input: FC<CustomInputProps> = ({
   variant = "solid",
   color,
   theme,
+  isDisabled = false,
   className,
   size = "md",
   leftElement,
@@ -56,7 +59,7 @@ export const Input: FC<CustomInputProps> = ({
         <div className={`${ELEMENT_CLASS} left-0`}>{leftElement}</div>
       ) : null}
       <input
-        className={`${className || ""} ${
+        className={`${className || ""} ${disabledClasses(isDisabled)} ${
           leftElement && rightElement
             ? "px-10"
             : leftElement

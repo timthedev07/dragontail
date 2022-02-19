@@ -89,3 +89,9 @@ WithBothElements.args = {
   leftElement: "@",
   rightElement: <CheckIcon />,
 } as CustomInputProps;
+
+export const DisabledExample = PlainTemplate.bind({});
+DisabledExample.args = {
+  placeholder: "Disabled",
+  isDisabled: true,
+} as CustomInputProps;
