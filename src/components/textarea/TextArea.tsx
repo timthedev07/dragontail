@@ -1,7 +1,8 @@
 import { FC, DetailedHTMLProps, HTMLAttributes } from "react";
 import { DragontailThemeType, useDragontail } from "../../context/ThemeContext";
 import { InputVariants } from "../../types/Variants";
-import { TEXTAREA_BASE } from "./styles";
+import { INPUT_CORNER_ROUNDING } from "../input/styles";
+import { TEXTAREA_BASE, TEXTAREA_VARIANTS } from "./styles";
 
 export interface TextAreaProps
   extends DetailedHTMLProps<
@@ -13,7 +14,7 @@ export interface TextAreaProps
 }
 
 export const TextArea: FC<TextAreaProps> = ({
-  variant,
+  variant = "solid",
   className,
   theme,
   ...props
@@ -22,7 +23,9 @@ export const TextArea: FC<TextAreaProps> = ({
   return (
     <textarea
       {...props}
-      className={`${className} ${TEXTAREA_BASE[theme || defaultTheme]}`}
+      className={`${className} ${INPUT_CORNER_ROUNDING[variant]["all"]} ${
+        TEXTAREA_VARIANTS[variant]
+      } ${TEXTAREA_BASE[theme || defaultTheme]}`}
     ></textarea>
   );
 };
