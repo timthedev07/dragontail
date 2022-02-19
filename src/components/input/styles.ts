@@ -6,9 +6,10 @@ import { InputVariants } from "../../types/Variants";
 const BASE =
   "w-full py-2 px-3 focus:bg-inherit bg-inherit outline-none transition-all duration-300 focus:outline-none placeholder:opacity-100 focus:placeholder:opacity-0";
 
-const DARK_BASE = BASE + "border-gray-500 focus:border-sky-400/100 text-white";
+const DARK_BASE = BASE + " border-gray-500 focus:border-sky-400/100 text-white";
 
-const LIGHT_BASE = BASE + "border-gray-300 focus:border-sky-500/100 text-black";
+const LIGHT_BASE =
+  BASE + " border-gray-300 focus:border-sky-500/100 text-black";
 
 const DARK_BG_TOGGLE = "bg-slate-700";
 const LIGHT_BG_TOGGLE = "bg-slate-100";
