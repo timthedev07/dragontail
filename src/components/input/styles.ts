@@ -17,7 +17,7 @@ export const INPUT_BASE: Record<
 > = {
   dark: {
     outline: `${DARK_BASE} bg-inherit`,
-    solid: `${DARK_BASE} bg-slate-700`,
+    solid: `${DARK_BASE} bg-slate-800`,
     underline: `${DARK_BASE} bg-inherit`,
   },
   light: {
