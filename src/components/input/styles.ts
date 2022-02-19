@@ -34,9 +34,15 @@ export const INPUT_SIZES: Record<DragontailSizeType, string> = {
   xl: "h-14 text-lg",
 };
 
+export const INPUT_DEFAULT_PADDING: Record<InputVariants, string> = {
+  outline: "px-3",
+  solid: "px-3",
+  underline: "px-0",
+};
+
 export const INPUT_VARIANTS: Record<InputVariants, string> = {
-  outline: "border-2 px-3",
-  solid: "border-2 border-gray-500/0 px-3",
+  outline: "border-2",
+  solid: "border-2 border-gray-500/0",
   underline: "border-b-2",
 };
 

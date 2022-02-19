@@ -5,6 +5,7 @@ import { InputVariants } from "../../types/Variants";
 import {
   INPUT_BASE,
   INPUT_CORNER_ROUNDING,
+  INPUT_DEFAULT_PADDING,
   INPUT_SIZES,
   INPUT_VARIANTS,
 } from "./styles";
@@ -59,10 +60,10 @@ export const Input: FC<CustomInputProps> = ({
           leftElement && rightElement
             ? "px-10"
             : leftElement
-            ? "pl-10"
+            ? "pl-10 pr-3"
             : rightElement
-            ? "pr-10"
-            : ""
+            ? "pr-10 pl-3"
+            : INPUT_DEFAULT_PADDING[variant]
         } ${INPUT_BASE[theme || defaultTheme][variant]} ${INPUT_SIZES[size]} ${
           INPUT_VARIANTS[variant]
         } ${
