@@ -4,7 +4,7 @@ import { DragontailSizeType } from "../../types/Sizes";
 import { InputVariants } from "../../types/Variants";
 
 const BASE =
-  "w-full py-2 focus:bg-inherit bg-inherit outline-none transition-all duration-300 focus:outline-none placeholder:opacity-100 focus:placeholder:opacity-0";
+  "w-full py-2 focus:bg-inherit outline-none transition-all duration-300 focus:outline-none placeholder:opacity-100 focus:placeholder:opacity-0";
 
 const DARK_BASE = BASE + " border-gray-500 focus:border-sky-400/100 text-white";
 
@@ -17,7 +17,7 @@ export const INPUT_BASE: Record<
 > = {
   dark: {
     outline: `${DARK_BASE} bg-inherit`,
-    solid: `${DARK_BASE} bg-slate-800`,
+    solid: `${DARK_BASE} bg-neutral-50/[.06]`,
     underline: `${DARK_BASE} bg-inherit`,
   },
   light: {
