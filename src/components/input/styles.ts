@@ -4,7 +4,7 @@ import { DragontailSizeType } from "../../types/Sizes";
 import { InputVariants } from "../../types/Variants";
 
 const BASE =
-  "w-full py-2 px-3 focus:bg-inherit bg-inherit outline-none transition-all duration-300 focus:outline-none placeholder:opacity-100 focus:placeholder:opacity-0";
+  "w-full py-2 focus:bg-inherit bg-inherit outline-none transition-all duration-300 focus:outline-none placeholder:opacity-100 focus:placeholder:opacity-0";
 
 const DARK_BASE = BASE + " border-gray-500 focus:border-sky-400/100 text-white";
 
@@ -35,8 +35,8 @@ export const INPUT_SIZES: Record<DragontailSizeType, string> = {
 };
 
 export const INPUT_VARIANTS: Record<InputVariants, string> = {
-  outline: "border-2",
-  solid: "border-2 border-gray-500/0",
+  outline: "border-2 px-3",
+  solid: "border-2 border-gray-500/0 px-3",
   underline: "border-b-2",
 };
 
