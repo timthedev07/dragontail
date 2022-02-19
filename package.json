@@ -1,6 +1,6 @@
 {
   "name": "dragontail-test",
-  "version": "1.0.20",
+  "version": "1.0.30",
   "description": "A React component library built with TailwindCSS and TypeScript.",
   "repository": "https://github.com/timthedev07/dragontail",
   "homepage": "http://timthedev07.github.io/dragontail",
@@ -50,10 +50,10 @@
     "dev": "react-scripts start",
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public",
-    "predeploy": "npm run build-storybook",
+    "predeploy": "yarn build-storybook",
     "deploy-storybook": "yarn predeploy && gh-pages -d storybook-static && yarn cleanup-deployment",
     "cleanup-deployment": "trash storybook-static",
-    "publish": "yarn build:lib && npm publish"
+    "deploy:lib": "yarn build:lib && npm publish"
   },
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
