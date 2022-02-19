@@ -37,11 +37,13 @@ export const Textarea: FC<TextAreaProps> = ({
   return (
     <textarea
       {...props}
-      className={`${className} ${disabledClasses(isDisabled)} ${
-        INPUT_DEFAULT_PADDING[variant]
-      } ${INPUT_CORNER_ROUNDING[variant]["all"]} ${
-        TEXTAREA_VARIANTS[variant]
-      } ${TEXTAREA_BASE[theme || defaultTheme][variant]} ${RESIZE[resize]}`}
+      className={`${className} ${RESIZE[resize]} ${disabledClasses(
+        isDisabled
+      )} ${INPUT_DEFAULT_PADDING[variant]} ${
+        INPUT_CORNER_ROUNDING[variant]["all"]
+      } ${TEXTAREA_VARIANTS[variant]} ${
+        TEXTAREA_BASE[theme || defaultTheme][variant]
+      } ${RESIZE[resize]}`}
     ></textarea>
   );
 };
