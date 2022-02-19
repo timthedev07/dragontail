@@ -28,7 +28,7 @@ export const PasswordInput: FC<CustomInputProps> = ({
       <input
         {...props}
         className={`${className} ${INPUT_CORNER_ROUNDING[variant]["all"]} ${
-          INPUT_BASE[theme || defaultTheme]
+          INPUT_BASE[theme || defaultTheme][variant]
         } relative ${INPUT_SIZES[size]} pr-20 ${INPUT_VARIANTS[variant]}`}
         type={showPw ? "text" : "password"}
       />

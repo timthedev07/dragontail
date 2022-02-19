@@ -4,15 +4,29 @@ import { DragontailSizeType } from "../../types/Sizes";
 import { InputVariants } from "../../types/Variants";
 
 const BASE =
-  "w-full py-2 px-3 bg-inherit outline-none transition-all duration-300 focus:outline-none placeholder:opacity-100 focus:placeholder:opacity-0";
+  "w-full py-2 px-3 focus:bg-inherit bg-inherit outline-none transition-all duration-300 focus:outline-none placeholder:opacity-100 focus:placeholder:opacity-0";
 
-export const INPUT_BASE: Record<DragontailThemeType, string> = {
-  dark:
-    BASE +
-    " focus:bg-inherit bg-slate-700 border-gray-500 focus:border-sky-400/100 text-white",
-  light:
-    BASE +
-    " focus:bg-inherit bg-slate-100 border-gray-300 focus:border-sky-500/100 text-black",
+const DARK_BASE = BASE + "border-gray-500 focus:border-sky-400/100 text-white";
+
+const LIGHT_BASE = BASE + "border-gray-300 focus:border-sky-500/100 text-black";
+
+const DARK_BG_TOGGLE = "bg-slate-700";
+const LIGHT_BG_TOGGLE = "bg-slate-100";
+
+export const INPUT_BASE: Record<
+  DragontailThemeType,
+  Record<InputVariants, string>
+> = {
+  dark: {
+    outline: `${DARK_BASE} bg-inherit`,
+    solid: `${DARK_BASE} ${DARK_BG_TOGGLE}`,
+    underline: `${DARK_BASE} ${DARK_BG_TOGGLE}`,
+  },
+  light: {
+    outline: `${LIGHT_BASE} bg-inherit`,
+    solid: `${LIGHT_BASE} ${LIGHT_BG_TOGGLE}`,
+    underline: `${LIGHT_BASE} ${LIGHT_BG_TOGGLE}`,
+  },
 };
 
 export const INPUT_SIZES: Record<DragontailSizeType, string> = {

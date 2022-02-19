@@ -63,7 +63,7 @@ export const Input: FC<CustomInputProps> = ({
             : rightElement
             ? "pr-10"
             : ""
-        } ${INPUT_BASE[theme || defaultTheme]} ${INPUT_SIZES[size]} ${
+        } ${INPUT_BASE[theme || defaultTheme][variant]} ${INPUT_SIZES[size]} ${
           INPUT_VARIANTS[variant]
         } ${
           INPUT_CORNER_ROUNDING[variant][
