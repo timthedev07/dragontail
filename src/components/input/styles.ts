@@ -11,22 +11,19 @@ const DARK_BASE = BASE + " border-gray-500 focus:border-sky-400/100 text-white";
 const LIGHT_BASE =
   BASE + " border-gray-300 focus:border-sky-500/100 text-black";
 
-const DARK_BG_TOGGLE = "bg-slate-700";
-const LIGHT_BG_TOGGLE = "bg-slate-100";
-
 export const INPUT_BASE: Record<
   DragontailThemeType,
   Record<InputVariants, string>
 > = {
   dark: {
     outline: `${DARK_BASE} bg-inherit`,
-    solid: `${DARK_BASE} ${DARK_BG_TOGGLE}`,
-    underline: `${DARK_BASE} ${DARK_BG_TOGGLE}`,
+    solid: `${DARK_BASE} bg-slate-700`,
+    underline: `${DARK_BASE} bg-inherit`,
   },
   light: {
     outline: `${LIGHT_BASE} bg-inherit`,
-    solid: `${LIGHT_BASE} ${LIGHT_BG_TOGGLE}`,
-    underline: `${LIGHT_BASE} ${LIGHT_BG_TOGGLE}`,
+    solid: `${LIGHT_BASE} bg-slate-100`,
+    underline: `${LIGHT_BASE} bg-inherit`,
   },
 };
 
