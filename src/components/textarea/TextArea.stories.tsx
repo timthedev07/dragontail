@@ -3,7 +3,7 @@ import { CustomInputProps } from "../input/Input";
 import { Textarea } from "./Textarea";
 
 export default {
-  title: "dragontail/TextArea",
+  title: "dragontail/Textarea",
   component: Textarea,
   decorators: [
     (Story) => {
