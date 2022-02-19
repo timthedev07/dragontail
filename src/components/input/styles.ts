@@ -6,13 +6,28 @@ import { InputVariants } from "../../types/Variants";
 const BASE =
   "w-full py-2 focus:bg-inherit outline-none transition-all duration-300 focus:outline-none placeholder:opacity-100 focus:placeholder:opacity-0";
 
-const DARK_BASE = BASE + " border-gray-500 focus:border-sky-400/100 text-white";
+const DARK_BASE = BASE + " focus:border-sky-400/100 text-white";
 
-const LIGHT_BASE =
-  BASE + " border-gray-300 focus:border-sky-500/100 text-black";
+const LIGHT_BASE = BASE + " focus:border-sky-500/100 text-black";
 
 export const disabledClasses = (isDisabled: boolean) => {
   return isDisabled ? "cursor-not-allowed placeholder:opacity-30" : "";
+};
+
+export const invalidClasses = (
+  isInvalid: boolean,
+  theme: DragontailThemeType
+) => {
+  console.log({ isInvalid, theme });
+  if (isInvalid) {
+    return "border-red-600";
+  } else {
+    if (theme === "dark") {
+      return "border-gray-500";
+    } else {
+      return "border-gray-300";
+    }
+  }
 };
 
 export const INPUT_BASE: Record<
@@ -44,7 +59,7 @@ export const INPUT_DEFAULT_PADDING: Record<InputVariants, string> = {
   underline: "px-0",
 };
 
-export const INPUT_VARIANTS: Record<InputVariants, string> = {
+export const INPUT_VARIANTS_BORDER: Record<InputVariants, string> = {
   outline: "border-2",
   solid: "border-2 border-gray-500/0",
   underline: "border-b-2",

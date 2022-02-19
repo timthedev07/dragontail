@@ -8,7 +8,8 @@ import {
   INPUT_CORNER_ROUNDING,
   INPUT_DEFAULT_PADDING,
   INPUT_SIZES,
-  INPUT_VARIANTS,
+  INPUT_VARIANTS_BORDER,
+  invalidClasses,
 } from "./styles";
 
 export const PasswordInput: FC<CustomInputProps> = ({
@@ -18,6 +19,7 @@ export const PasswordInput: FC<CustomInputProps> = ({
   variant = "solid",
   color,
   theme,
+  isInvalid = false,
   className,
   isDisabled = false,
   size = "md",
@@ -30,11 +32,15 @@ export const PasswordInput: FC<CustomInputProps> = ({
     <div className="relative flex justify-end">
       <input
         {...props}
-        className={`${className} ${disabledClasses(isDisabled)} ${
+        className={`${className} ${disabledClasses(
+          isDisabled
+        )} ${invalidClasses(isInvalid, theme || defaultTheme)} ${
           INPUT_DEFAULT_PADDING[variant]
         } ${INPUT_CORNER_ROUNDING[variant]["all"]} ${
           INPUT_BASE[theme || defaultTheme][variant]
-        } relative ${INPUT_SIZES[size]} pr-20 ${INPUT_VARIANTS[variant]}`}
+        } relative ${INPUT_SIZES[size]} pr-20 ${
+          INPUT_VARIANTS_BORDER[variant]
+        }`}
         type={showPw ? "text" : "password"}
         disabled={isDisabled}
       />
