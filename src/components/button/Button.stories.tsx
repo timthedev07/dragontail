@@ -44,3 +44,9 @@ ButtonWithArrow.args = {
   children: "Enter",
   rightIcon: <RightArrow />,
 } as CustomButtonProps;
+
+export const DisabledButton = Template.bind({});
+DisabledButton.args = {
+  isDisabled: true,
+  children: "Disabled",
+} as CustomButtonProps;

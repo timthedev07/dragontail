@@ -10,26 +10,55 @@ export interface CustomButtonProps {
   variant?: ButtonVariants;
   focusEffect?: boolean;
   theme?: DragontailThemeType;
+  isDisabled?: boolean;
 }
+
+const ENABLED_STYLES: Record<
+  "solid" | "ghost",
+  Record<CSType | "neutral-dark", string>
+> = {
+  solid: {
+    cyan: "hover:bg-cyan-300 focus:bg-cyan-500",
+    dark: "hover:bg-slate-700 focus:bg-slate-900",
+    light: "hover:bg-neutral-50 focus:bg-slate-100",
+    orange: "hover:bg-orange-400 focus:bg-orange-600",
+    red: "hover:bg-red-500 focus:bg-red-700",
+    sky: "hover:bg-sky-400 focus:bg-sky-600",
+    teal: "hover:bg-teal-300 focus:bg-teal-500",
+    emerald: "hover:bg-emerald-400 focus:bg-emerald-600",
+    green: "hover:bg-green-400 focus:bg-green-600",
+    neutral: "hover:bg-slate-300 focus:bg-slate-300",
+    "neutral-dark": "hover:bg-slate-400 focus:bg-slate-600",
+  },
+  ghost: {
+    cyan: "hover:bg-cyan-200",
+    dark: "hover:bg-slate-600",
+    light: "hover:bg-slate-200",
+    orange: "hover:bg-orange-200",
+    red: "hover:bg-red-200",
+    sky: "hover:bg-sky-200",
+    teal: "hover:bg-teal-200",
+    emerald: "hover:bg-emerald-200",
+    green: "hover:bg-green-200",
+    neutral: "hover:bg-slate-400",
+    "neutral-dark": "hover:bg-slate-400",
+  },
+};
 
 const COLORS: Record<ButtonVariants, Record<CSType | "neutral-dark", string>> =
   {
     solid: {
-      cyan: "bg-cyan-400 hover:bg-cyan-300 focus:bg-cyan-500 text-white",
-      dark: "bg-slate-800 hover:bg-slate-700 focus:bg-slate-900 text-white",
-      light: "bg-neutral-100 hover:bg-neutral-50 focus:bg-slate-100 text-black",
-      orange:
-        "bg-orange-500 hover:bg-orange-400 focus:bg-orange-600 text-white",
-      red: "bg-red-600 hover:bg-red-500 focus:bg-red-700 text-white",
-      sky: "bg-sky-500 hover:bg-sky-400 focus:bg-sky-600 text-white",
-      teal: "bg-teal-400 hover:bg-teal-300 focus:bg-teal-500 text-white",
-      emerald:
-        "bg-emerald-500 hover:bg-emerald-400 focus:bg-emerald-600 text-white",
-      green: "bg-green-500 hover:bg-green-400 focus:bg-green-600 text-white",
-      neutral:
-        "bg-slate-200 hover:bg-slate-300 focus:bg-slate-300 text-slate-700",
-      "neutral-dark":
-        "bg-slate-500 hover:bg-slate-400 focus:bg-slate-600 text-white",
+      cyan: "bg-cyan-400 text-white",
+      dark: "bg-slate-800 text-white",
+      light: "bg-neutral-100 text-black",
+      orange: "bg-orange-500 text-white",
+      red: "bg-red-600 text-white",
+      sky: "bg-sky-500 text-white",
+      teal: "bg-teal-400 text-white",
+      emerald: "bg-emerald-500 text-white",
+      green: "bg-green-500 text-white",
+      neutral: "bg-slate-200 text-slate-700",
+      "neutral-dark": "bg-slate-500 text-white",
     },
     link: {
       cyan: "text-cyan-500",
@@ -45,17 +74,17 @@ const COLORS: Record<ButtonVariants, Record<CSType | "neutral-dark", string>> =
       "neutral-dark": "text-slate-200",
     },
     ghost: {
-      cyan: "text-cyan-500 hover:bg-cyan-200",
-      dark: "text-slate-900 hover:bg-slate-600",
-      light: "text-slate-900 hover:bg-slate-200",
-      orange: "text-orange-500 hover:bg-orange-200",
-      red: "text-red-500 hover:bg-red-200",
-      sky: "text-sky-500 hover:bg-sky-200",
-      teal: "text-teal-500 hover:bg-teal-200",
-      emerald: "text-emerald-500 hover:bg-emerald-200",
-      green: "text-green-500 hover:bg-green-200",
-      neutral: "text-slate-700 hover:bg-slate-400",
-      "neutral-dark": "text-slate-200 hover:bg-slate-400",
+      cyan: "text-cyan-500",
+      dark: "text-slate-900",
+      light: "text-slate-900",
+      orange: "text-orange-500",
+      red: "text-red-500",
+      sky: "text-sky-500",
+      teal: "text-teal-500",
+      emerald: "text-emerald-500",
+      green: "text-green-500",
+      neutral: "text-slate-700",
+      "neutral-dark": "text-slate-200",
     },
     outline: {
       cyan: "border-cyan-600",
@@ -79,9 +108,10 @@ export const Button: FC<
     CustomButtonProps
 > = ({
   children,
+  isDisabled = false,
   leftIcon,
   rightIcon,
-  variant,
+  variant = "solid",
   color,
   className,
   theme,
@@ -91,29 +121,42 @@ export const Button: FC<
   const defaultTheme = useDragontail();
   const chosenColor =
     (color || "teal") +
-    ((theme ? theme : defaultTheme) === "dark" ? "-dark" : "");
+    ((theme ? theme : defaultTheme) === "dark" && color === "neutral"
+      ? "-dark"
+      : "");
 
   return (
     <button
-      className={`
-      ${
+      className={`${className || ""} ${
+        isDisabled
+          ? `cursor-not-allowed text-opacity-70`
+          : `${
+              variant === "ghost" || variant === "solid"
+                ? ENABLED_STYLES[variant][chosenColor]
+                : variant === "outline"
+                ? ENABLED_STYLES["ghost"][chosenColor]
+                : ""
+            }`
+      } ${
         leftIcon === undefined && rightIcon === undefined
           ? "justify-center"
           : "justify-start"
-      }
-      ${className || ""} ${BASE_BUTTON} ${
-        variant === "solid" || !variant
+      } ${BASE_BUTTON} ${
+        variant === "solid"
           ? ` hey ${COLORS.solid[chosenColor]} ${
               focusEffect
                 ? "focus:outline-offset-2 focus:outline focus:outline-2 focus:outline-blue-600"
                 : "focus:outline-none"
             }`
           : variant === "link"
-          ? `${COLORS.link[chosenColor]} hover:underline no-underline bg-transparent border-none outline-none`
+          ? `${COLORS.link[chosenColor]} ${
+              !isDisabled && "hover:underline"
+            } no-underline bg-transparent border-none outline-none`
           : variant === "ghost"
           ? `transition duration-200 hover:bg-opacity-50 bg-transparent  ${COLORS.ghost[chosenColor]}`
           : `border transition-colors duration-200 hover:outline-none hover:bg-opacity-30 bg-transparent ${COLORS.ghost[chosenColor]} ${COLORS.outline[chosenColor]}`
       }`}
+      disabled={isDisabled}
       {...props}
     >
       {leftIcon ? <div className="w-4 h-4">{leftIcon}</div> : null}
