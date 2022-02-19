@@ -5,6 +5,7 @@ import { CustomInputProps } from "./Input";
 import {
   INPUT_BASE,
   INPUT_CORNER_ROUNDING,
+  INPUT_DEFAULT_PADDING,
   INPUT_SIZES,
   INPUT_VARIANTS,
 } from "./styles";
@@ -27,9 +28,11 @@ export const PasswordInput: FC<CustomInputProps> = ({
     <div className="relative flex justify-end">
       <input
         {...props}
-        className={`${className} ${INPUT_CORNER_ROUNDING[variant]["all"]} ${
-          INPUT_BASE[theme || defaultTheme][variant]
-        } relative ${INPUT_SIZES[size]} pr-20 ${INPUT_VARIANTS[variant]}`}
+        className={`${className} ${INPUT_DEFAULT_PADDING[variant]} ${
+          INPUT_CORNER_ROUNDING[variant]["all"]
+        } ${INPUT_BASE[theme || defaultTheme][variant]} relative ${
+          INPUT_SIZES[size]
+        } pr-20 ${INPUT_VARIANTS[variant]}`}
         type={showPw ? "text" : "password"}
       />
       <div
