@@ -76,6 +76,7 @@ export const Input: FC<CustomInputProps> = ({
           ]
         }`}
         {...props}
+        disabled={isDisabled}
       />
       {rightElement ? (
         <div className={`${ELEMENT_CLASS} right-0`}>{rightElement}</div>

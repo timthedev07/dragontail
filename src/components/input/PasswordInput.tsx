@@ -36,6 +36,7 @@ export const PasswordInput: FC<CustomInputProps> = ({
           INPUT_BASE[theme || defaultTheme][variant]
         } relative ${INPUT_SIZES[size]} pr-20 ${INPUT_VARIANTS[variant]}`}
         type={showPw ? "text" : "password"}
+        disabled={isDisabled}
       />
       <div
         className={`absolute flex justify-center items-center px-2 ${INPUT_SIZES[size]} w-20`}

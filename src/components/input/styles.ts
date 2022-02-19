@@ -12,9 +12,7 @@ const LIGHT_BASE =
   BASE + " border-gray-300 focus:border-sky-500/100 text-black";
 
 export const disabledClasses = (isDisabled: boolean) => {
-  return isDisabled
-    ? "pointer-events-none cursor-not-allowed placeholder:opacity-30"
-    : "";
+  return isDisabled ? "cursor-not-allowed placeholder:opacity-30" : "";
 };
 
 export const INPUT_BASE: Record<
