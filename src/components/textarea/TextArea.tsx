@@ -15,7 +15,7 @@ export interface TextAreaProps
 
 export const TextArea: FC<TextAreaProps> = ({
   variant = "solid",
-  className,
+  className = "",
   theme,
   ...props
 }) => {
@@ -25,7 +25,7 @@ export const TextArea: FC<TextAreaProps> = ({
       {...props}
       className={`${className} ${INPUT_CORNER_ROUNDING[variant]["all"]} ${
         TEXTAREA_VARIANTS[variant]
-      } ${TEXTAREA_BASE[theme || defaultTheme]}`}
+      } ${TEXTAREA_BASE[theme || defaultTheme][variant]}`}
     ></textarea>
   );
 };
