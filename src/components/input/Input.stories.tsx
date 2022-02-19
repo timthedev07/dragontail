@@ -95,3 +95,11 @@ DisabledExample.args = {
   placeholder: "Disabled",
   isDisabled: true,
 } as CustomInputProps;
+
+export const InvalidExamples = InputsTemplate.bind({});
+InvalidExamples.args = {
+  placeholder: "Invalid",
+  theme: "dark",
+  isInvalid: true,
+} as CustomInputProps;
+InvalidExamples.parameters = { backgrounds: { default: "dark" } };

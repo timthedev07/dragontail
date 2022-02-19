@@ -64,9 +64,13 @@ export const Input: FC<CustomInputProps> = ({
             : rightElement
             ? "pr-10 pl-3"
             : INPUT_DEFAULT_PADDING[variant]
-        } ${invalidClasses(isInvalid, theme || defaultTheme)} ${
-          INPUT_BASE[theme || defaultTheme][variant]
-        } ${INPUT_SIZES[size]} ${INPUT_VARIANTS_BORDER[variant]} ${
+        } ${invalidClasses(
+          isInvalid,
+          theme || defaultTheme,
+          variant === "solid"
+        )} ${INPUT_BASE[theme || defaultTheme][variant]} ${INPUT_SIZES[size]} ${
+          INPUT_VARIANTS_BORDER[variant]
+        } ${
           INPUT_CORNER_ROUNDING[variant][
             leftAddon && rightAddon
               ? "none"

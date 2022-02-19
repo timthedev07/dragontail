@@ -16,12 +16,14 @@ export const disabledClasses = (isDisabled: boolean) => {
 
 export const invalidClasses = (
   isInvalid: boolean,
-  theme: DragontailThemeType
+  theme: DragontailThemeType,
+  isVariantSolid?: boolean
 ) => {
   console.log({ isInvalid, theme });
   if (isInvalid) {
     return "border-red-600";
   } else {
+    if (isVariantSolid) return "border-gray-500/0";
     if (theme === "dark") {
       return "border-gray-500";
     } else {
@@ -61,7 +63,7 @@ export const INPUT_DEFAULT_PADDING: Record<InputVariants, string> = {
 
 export const INPUT_VARIANTS_BORDER: Record<InputVariants, string> = {
   outline: "border-2",
-  solid: "border-2 border-gray-500/0",
+  solid: "border-2",
   underline: "border-b-2",
 };
 
