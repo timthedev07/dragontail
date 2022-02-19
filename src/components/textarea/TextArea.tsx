@@ -13,7 +13,7 @@ export interface TextAreaProps
   theme?: DragontailThemeType;
 }
 
-export const TextArea: FC<TextAreaProps> = ({
+export const Textarea: FC<TextAreaProps> = ({
   variant = "solid",
   className = "",
   theme,
