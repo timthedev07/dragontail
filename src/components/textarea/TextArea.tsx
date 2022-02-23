@@ -5,6 +5,7 @@ import {
   disabledClasses,
   INPUT_CORNER_ROUNDING,
   INPUT_DEFAULT_PADDING,
+  invalidClasses,
 } from "../input/styles";
 import { TEXTAREA_BASE, TEXTAREA_VARIANTS } from "./styles";
 
@@ -32,6 +33,7 @@ export const Textarea: FC<TextAreaProps> = ({
   theme,
   isDisabled = false,
   resize = "none",
+  isInvalid = false,
   ...props
 }) => {
   const defaultTheme = useDragontail();
@@ -40,6 +42,10 @@ export const Textarea: FC<TextAreaProps> = ({
       {...props}
       className={`${className} ${RESIZE[resize]} ${disabledClasses(
         isDisabled
+      )} ${invalidClasses(
+        isInvalid,
+        theme || defaultTheme,
+        variant === "solid"
       )} ${INPUT_DEFAULT_PADDING[variant]} ${
         INPUT_CORNER_ROUNDING[variant]["all"]
       } ${TEXTAREA_VARIANTS[variant]} ${
