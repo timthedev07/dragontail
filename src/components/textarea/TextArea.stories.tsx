@@ -31,6 +31,19 @@ const TextareasTemplate: ComponentStory<typeof Textarea> = ({
   </>
 );
 
+const ResizeTemplate: ComponentStory<typeof Textarea> = ({
+  resize,
+  placeholder,
+  ...args
+}) => (
+  <>
+    <Textarea {...args} resize="horizontal" placeholder="Horizontal"></Textarea>
+    <Textarea {...args} resize="vertical" placeholder="Vertical"></Textarea>
+    <Textarea {...args} resize="none" placeholder="None"></Textarea>
+    <Textarea {...args} resize="both" placeholder="Both"></Textarea>
+  </>
+);
+
 export const LightExamples = TextareasTemplate.bind({});
 LightExamples.args = {
   placeholder: "Light Textarea",
@@ -42,3 +55,9 @@ DarkExamples.args = {
   theme: "dark",
 } as CustomInputProps;
 DarkExamples.parameters = { backgrounds: { default: "dark" } };
+
+export const ResizeExamples = ResizeTemplate.bind({});
+ResizeExamples.args = {
+  theme: "dark",
+};
+ResizeExamples.parameters = { backgrounds: { default: "dark" } };
