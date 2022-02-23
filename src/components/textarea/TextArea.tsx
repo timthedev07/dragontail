@@ -8,7 +8,7 @@ import {
 } from "../input/styles";
 import { TEXTAREA_BASE, TEXTAREA_VARIANTS } from "./styles";
 
-export type ResizeType = "horizontal" | "vertical" | "none";
+export type ResizeType = "horizontal" | "vertical" | "none" | "both";
 
 export interface TextAreaProps
   extends DetailedHTMLProps<
@@ -23,6 +23,7 @@ const RESIZE: Record<ResizeType, string> = {
   horizontal: "resize-x",
   vertical: "resize-y",
   none: "resize-none",
+  both: "resize",
 };
 
 export const Textarea: FC<TextAreaProps> = ({
