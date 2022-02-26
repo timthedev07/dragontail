@@ -1,6 +1,10 @@
 export const RightArrow = () => {
   return (
-    <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+    <svg
+      fill="currentColor"
+      viewBox="0 0 32 32"
+      xmlns="http://www.w3.org/2000/svg"
+    >
       <defs>
         <style>{`.cls-1{fill:none;}`}</style>
       </defs>
@@ -10,7 +14,7 @@ export const RightArrow = () => {
         <path d="M28,17H4a1,1,0,0,1,0-2H28a1,1,0,0,1,0,2Z" />
       </g>
       <g id="frame">
-        <rect className="cls-1" height="32" width="32" />
+        <rect className="cls-1" height="32" fill="none" width="32" />
       </g>
     </svg>
   );
