@@ -30,6 +30,14 @@ GhostButton.args = {
   variant: "ghost",
 } as CustomButtonProps;
 
+export const GhostButtonWithIcon = Template.bind({});
+GhostButtonWithIcon.args = {
+  color: "emerald",
+  children: "Email Me",
+  variant: "ghost",
+  leftIcon: <EmailIcon />,
+} as CustomButtonProps;
+
 export const OutlineButton = Template.bind({});
 OutlineButton.args = {
   color: "orange",

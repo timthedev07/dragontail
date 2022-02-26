@@ -45,61 +45,50 @@ const ENABLED_STYLES: Record<
   },
 };
 
-const COLORS: Record<ButtonVariants, Record<CSType | "neutral-dark", string>> =
-  {
-    solid: {
-      cyan: "bg-cyan-400 text-white",
-      dark: "bg-slate-800 text-white",
-      light: "bg-neutral-100 text-black",
-      orange: "bg-orange-500 text-white",
-      red: "bg-red-600 text-white",
-      sky: "bg-sky-500 text-white",
-      teal: "bg-teal-400 text-white",
-      emerald: "bg-emerald-500 text-white",
-      green: "bg-green-500 text-white",
-      neutral: "bg-slate-200 text-slate-700",
-      "neutral-dark": "bg-slate-500 text-white",
-    },
-    link: {
-      cyan: "text-cyan-500",
-      dark: "text-slate-900",
-      light: "text-slate-900",
-      orange: "text-orange-500",
-      red: "text-red-500",
-      sky: "text-sky-500",
-      teal: "text-teal-500",
-      emerald: "text-emerald-500",
-      green: "text-green-500",
-      neutral: "text-slate-700",
-      "neutral-dark": "text-slate-200",
-    },
-    ghost: {
-      cyan: "text-cyan-500",
-      dark: "text-slate-900",
-      light: "text-slate-900",
-      orange: "text-orange-500",
-      red: "text-red-500",
-      sky: "text-sky-500",
-      teal: "text-teal-500",
-      emerald: "text-emerald-500",
-      green: "text-green-500",
-      neutral: "text-slate-700",
-      "neutral-dark": "text-slate-200",
-    },
-    outline: {
-      cyan: "border-cyan-600",
-      dark: "border-slate-900",
-      light: "border-slate-400",
-      orange: "border-orange-600",
-      red: "border-red-600",
-      sky: "border-sky-600",
-      teal: "border-teal-600",
-      emerald: "border-emerald-600",
-      green: "border-green-600",
-      neutral: "border-slate-400",
-      "neutral-dark": "border-slate-500",
-    },
-  };
+const COLORS: Record<
+  Exclude<ButtonVariants, "link">,
+  Record<CSType | "neutral-dark", string>
+> = {
+  solid: {
+    cyan: "bg-cyan-400 text-slate-100",
+    dark: "bg-slate-800 text-slate-100",
+    light: "bg-neutral-100 text-black",
+    orange: "bg-orange-500 text-slate-100",
+    red: "bg-red-600 text-slate-100",
+    sky: "bg-sky-500 text-slate-100",
+    teal: "bg-teal-400 text-slate-100",
+    emerald: "bg-emerald-500 text-slate-100",
+    green: "bg-green-500 text-slate-100",
+    neutral: "bg-slate-200 text-slate-700",
+    "neutral-dark": "bg-slate-500 text-slate-100",
+  },
+  ghost: {
+    cyan: "text-cyan-500",
+    dark: "text-slate-900",
+    light: "text-slate-900",
+    orange: "text-orange-500",
+    red: "text-red-500",
+    sky: "text-sky-500",
+    teal: "text-teal-500",
+    emerald: "text-emerald-500",
+    green: "text-green-500",
+    neutral: "text-slate-700",
+    "neutral-dark": "text-slate-200",
+  },
+  outline: {
+    cyan: "border-cyan-600",
+    dark: "border-slate-900",
+    light: "border-slate-400",
+    orange: "border-orange-600",
+    red: "border-red-600",
+    sky: "border-sky-600",
+    teal: "border-teal-600",
+    emerald: "border-emerald-600",
+    green: "border-green-600",
+    neutral: "border-slate-400",
+    "neutral-dark": "border-slate-500",
+  },
+};
 
 const BASE_BUTTON = "px-4 py-2 rounded-md flex items-center gap-2";
 
@@ -119,15 +108,16 @@ export const Button: FC<
   ...props
 }) => {
   const defaultTheme = useDragontail();
+  const currentTheme = theme ? theme : defaultTheme;
   const chosenColor =
     (color || "teal") +
-    ((theme ? theme : defaultTheme) === "dark" && color === "neutral"
-      ? "-dark"
-      : "");
+    (currentTheme === "dark" && color === "neutral" ? "-dark" : "");
 
   return (
     <button
       className={`${className || ""} ${
+        (theme ? theme : defaultTheme) === "dark" ? "opacity-90" : ""
+      } ${
         isDisabled
           ? `cursor-not-allowed text-opacity-70`
           : `${
@@ -149,19 +139,39 @@ export const Button: FC<
                 : "focus:outline-none"
             }`
           : variant === "link"
-          ? `${COLORS.link[chosenColor]} ${
+          ? `${COLORS.ghost[chosenColor]} ${
               !isDisabled && "hover:underline"
             } no-underline bg-transparent border-none outline-none`
           : variant === "ghost"
-          ? `transition duration-200 hover:bg-opacity-50 bg-transparent  ${COLORS.ghost[chosenColor]}`
+          ? `transition duration-200 ${
+              currentTheme === "dark"
+                ? "hover:bg-opacity-30"
+                : "hover:bg-opacity-50"
+            } bg-transparent  ${COLORS.ghost[chosenColor]}`
           : `border transition-colors duration-200 hover:outline-none hover:bg-opacity-30 bg-transparent ${COLORS.ghost[chosenColor]} ${COLORS.outline[chosenColor]}`
       }`}
       disabled={isDisabled}
       {...props}
     >
-      {leftIcon ? <div className="w-4 h-4">{leftIcon}</div> : null}
+      {leftIcon ? (
+        <div
+          className={`w-4 h-4 ${
+            variant === "solid"
+              ? currentTheme === "dark"
+                ? "text-black"
+                : "text-white"
+              : COLORS.ghost[chosenColor]
+          }`}
+        >
+          {leftIcon}
+        </div>
+      ) : null}
       {children}
-      {rightIcon ? <div className="w-4 h-4">{rightIcon}</div> : null}
+      {rightIcon ? (
+        <div className={`w-4 h-4 ${COLORS.ghost[chosenColor]}`}>
+          {rightIcon}
+        </div>
+      ) : null}
     </button>
   );
 };
