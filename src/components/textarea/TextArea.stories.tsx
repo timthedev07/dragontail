@@ -61,3 +61,9 @@ ResizeExamples.args = {
   theme: "dark",
 };
 ResizeExamples.parameters = { backgrounds: { default: "dark" } };
+
+export const InvalidExamples = TextareasTemplate.bind({});
+InvalidExamples.args = {
+  placeholder: "Invalid text area",
+  isInvalid: true,
+} as CustomInputProps;
