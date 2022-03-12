@@ -22,7 +22,7 @@ export const PasswordInput: FC<CustomInputProps> = ({
   isInvalid = false,
   className,
   isDisabled = false,
-  size = "md",
+  scale: size = "md",
   ...props
 }) => {
   const defaultTheme = useDragontail();

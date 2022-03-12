@@ -49,7 +49,7 @@ DarkExample.parameters = { backgrounds: { default: "dark" } };
 export const PasswordExample = PasswordTemplate.bind({});
 PasswordExample.args = {
   placeholder: "Password",
-  size: "md",
+  scale: "md",
 } as CustomInputProps;
 
 export const LeftAddonExample = PlainTemplate.bind({});

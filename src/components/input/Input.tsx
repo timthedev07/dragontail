@@ -1,4 +1,4 @@
-import { DetailedHTMLProps, FC, HTMLAttributes, ReactNode } from "react";
+import { DetailedHTMLProps, FC, InputHTMLAttributes, ReactNode } from "react";
 import { useDragontail } from "../../context/ThemeContext";
 import { DragontailSizeType } from "../../types/Sizes";
 import { TextboxSharedProps } from "../../types/TextboxSharedProps";
@@ -13,11 +13,14 @@ import {
 } from "./styles";
 
 export interface CustomInputProps
-  extends DetailedHTMLProps<HTMLAttributes<HTMLInputElement>, HTMLInputElement>,
+  extends DetailedHTMLProps<
+      InputHTMLAttributes<HTMLInputElement>,
+      HTMLInputElement
+    >,
     TextboxSharedProps {
   leftAddon?: ReactNode;
   rightAddon?: ReactNode;
-  size?: DragontailSizeType;
+  scale?: DragontailSizeType;
   leftElement?: ReactNode;
   rightElement?: ReactNode;
 }
@@ -31,7 +34,7 @@ export const Input: FC<CustomInputProps> = ({
   theme,
   isDisabled = false,
   className,
-  size = "md",
+  scale: size = "md",
   leftElement,
   rightElement,
   isInvalid = false,
