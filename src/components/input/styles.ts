@@ -19,7 +19,6 @@ export const invalidClasses = (
   theme: DragontailThemeType,
   isVariantSolid?: boolean
 ) => {
-  console.log({ isInvalid, theme });
   if (isInvalid) {
     return "border-red-600";
   } else {
