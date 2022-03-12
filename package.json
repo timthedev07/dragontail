@@ -1,5 +1,5 @@
 {
-  "name": "dragontail-beta",
+  "name": "dragontail-experimental",
   "version": "0.0.1",
   "description": "A React component library built with TailwindCSS and TypeScript.",
   "repository": "https://github.com/timthedev07/dragontail",
