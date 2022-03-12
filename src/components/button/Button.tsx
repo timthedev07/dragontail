@@ -117,7 +117,7 @@ export const Button: FC<
     <button
       className={`${className || ""} ${
         (theme ? theme : defaultTheme) === "dark" && variant === "solid"
-          ? "opacity-90"
+          ? "opacity-90 text-black"
           : ""
       } ${
         isDisabled
