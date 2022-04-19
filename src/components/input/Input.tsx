@@ -1,7 +1,9 @@
 import { DetailedHTMLProps, FC, InputHTMLAttributes, ReactNode } from "react";
 import { useDragontail } from "../../context/ThemeContext";
+import { ComponentRole } from "../../types/ComponentRoleTypes";
 import { DragontailSizeType } from "../../types/Sizes";
 import { TextboxSharedProps } from "../../types/TextboxSharedProps";
+import { useFormControl } from "../form-control/FormControl";
 import {
   disabledClasses,
   INPUT_BASE,
@@ -48,12 +50,13 @@ export const Input: FC<CustomInputProps> = ({
       ? "bg-slate-600 text-white"
       : "bg-slate-200 text-slate-700"
   }`;
+  const {} = useFormControl("");
   const ELEMENT_CLASS = `absolute ${INPUT_SIZES[size]} w-10 font-sans flex justify-center items-center bg-inherit`;
 
   return (
     <div
       className="relative flex justify-center items-center"
-      data-component-role={""}
+      data-component-role={"text-field" as ComponentRole}
     >
       {leftAddon ? (
         <div className={`${ADDON_CLASS} rounded-l-md`}>{leftAddon}</div>

@@ -14,10 +14,6 @@ const Template: ComponentStory<typeof FormControl> = (args) => (
 
 export const Example = Template.bind({});
 Example.args = {
-  children: (
-    <>
-      <Input />
-      <FormLabel />
-    </>
-  ),
+  children: [<Input />, <FormLabel />],
+  data: {},
 } as FormControlProps;
