@@ -51,7 +51,10 @@ export const Input: FC<CustomInputProps> = ({
   const ELEMENT_CLASS = `absolute ${INPUT_SIZES[size]} w-10 font-sans flex justify-center items-center bg-inherit`;
 
   return (
-    <div className="relative flex justify-center items-center">
+    <div
+      className="relative flex justify-center items-center"
+      data-component-role={""}
+    >
       {leftAddon ? (
         <div className={`${ADDON_CLASS} rounded-l-md`}>{leftAddon}</div>
       ) : null}

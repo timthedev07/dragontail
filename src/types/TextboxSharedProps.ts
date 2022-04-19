@@ -6,4 +6,5 @@ export interface TextboxSharedProps {
   theme?: DragontailThemeType;
   isDisabled?: boolean;
   isInvalid?: boolean;
+  isRequired?: boolean;
 }
