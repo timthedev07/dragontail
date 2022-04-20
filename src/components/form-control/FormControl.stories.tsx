@@ -15,10 +15,17 @@ const Template: ComponentStory<typeof FormControl> = (args) => (
 export const Example = Template.bind({});
 Example.args = {
   children: [
-    <Input name="email" type="email" id="email" />,
-    <FormLabel htmlFor="email" />,
+    <FormLabel htmlFor="email">Email</FormLabel>,
+    <Input
+      name="email"
+      type="email"
+      id="email"
+      rightAddon="@gmail.com"
+      placeholder="john.smith"
+    />,
   ],
   roles: ["text-field", "input-label"],
   theme: "dark",
+  className: "w-[400px]",
 } as FormControlProps;
 Example.parameters = { backgrounds: { default: "dark" } };
