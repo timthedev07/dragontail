@@ -116,10 +116,6 @@ export const Button: FC<
   return (
     <button
       className={`${className || ""} ${
-        (theme ? theme : defaultTheme) === "dark" && variant === "solid"
-          ? "opacity-90 text-black"
-          : ""
-      } ${
         isDisabled
           ? `cursor-not-allowed text-opacity-70`
           : `${
