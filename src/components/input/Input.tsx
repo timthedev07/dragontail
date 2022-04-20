@@ -1,5 +1,4 @@
 import { DetailedHTMLProps, FC, InputHTMLAttributes, ReactNode } from "react";
-import { ComponentRole } from "../../types/ComponentRoleTypes";
 import { DragontailSizeType } from "../../types/Sizes";
 import { TextboxSharedProps } from "../../types/TextboxSharedProps";
 import { useFormControl } from "../form-control/FormControl";
@@ -61,10 +60,7 @@ export const Input: FC<CustomInputProps> = ({
   const ELEMENT_CLASS = `absolute ${INPUT_SIZES[size]} w-10 font-sans flex justify-center items-center bg-inherit`;
 
   return (
-    <div
-      className="relative flex justify-center items-center"
-      data-component-role={"text-field" as ComponentRole}
-    >
+    <div className="relative flex justify-center items-center">
       {leftAddon ? (
         <div className={`${ADDON_CLASS} rounded-l-md`}>{leftAddon}</div>
       ) : null}
