@@ -1,7 +1,19 @@
 import { TextboxSharedProps } from "../../types/TextboxSharedProps";
 import React, { useContext } from "react";
 import { ComponentRole } from "../../types/ComponentRoleTypes";
-import { useDragontail } from "../../context/ThemeContext";
+import { DragontailThemeType, useDragontail } from "../../context/ThemeContext";
+
+export const getFormControlContextDefaultProps = (
+  theme: DragontailThemeType
+) => {
+  return {
+    isInvalid: false,
+    isDisabled: false,
+    isRequired: false,
+    theme,
+    variant: "outline",
+  } as FormControlContextProps;
+};
 
 export type FormControlProps = TextboxSharedProps & {
   // maps a role to a component's name prop
@@ -28,14 +40,27 @@ export const useFormControl = (
   componentProps: FormControlContextProps
 ) => {
   const context = useContext(FormControlContext);
+  const theme = useDragontail();
+
+  const defaultProps = getFormControlContextDefaultProps(theme);
+  console.log(defaultProps);
 
   let found = -1;
   context.forEach((obj, index) =>
     obj.componentRole === componentRole ? (found = index) : -1
   );
 
+  // "sanitize" component props => remove undefined properties
+  Object.keys(componentProps).forEach((key) =>
+    componentProps[key] === undefined ? delete componentProps[key] : {}
+  );
+
   if (found === -1) {
-    return componentProps as Required<FormControlContextProps>;
+    return {
+      theme,
+      ...defaultProps,
+      ...componentProps,
+    } as Required<FormControlContextProps>;
   }
 
   return context[found] as Required<FormControlContextProps>;
@@ -52,13 +77,7 @@ export const FormControl: React.FC<FormControlProps> = ({
   ...rest
 }) => {
   const chosenTheme = useDragontail();
-  const defaultProps = {
-    isInvalid: false,
-    isDisabled: false,
-    isRequired: false,
-    theme: chosenTheme,
-    variant: "outline",
-  } as FormControlContextProps;
+  const defaultProps = getFormControlContextDefaultProps(chosenTheme);
 
   const final = [] as FormControlContextProps[];
 
