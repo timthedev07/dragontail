@@ -13,7 +13,10 @@ export const FormHelperText: FC<
   return (
     <span
       {...props}
-      className={theme === "light" ? "text-neutral-800" : "text-neutral-300"}
+      className={
+        (theme === "light" ? "text-neutral-800/60" : "text-neutral-400") +
+        " text-sm"
+      }
     />
   );
 };
