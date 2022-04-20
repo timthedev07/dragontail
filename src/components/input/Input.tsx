@@ -1,5 +1,4 @@
 import { DetailedHTMLProps, FC, InputHTMLAttributes, ReactNode } from "react";
-import { useDragontail } from "../../context/ThemeContext";
 import { ComponentRole } from "../../types/ComponentRoleTypes";
 import { DragontailSizeType } from "../../types/Sizes";
 import { TextboxSharedProps } from "../../types/TextboxSharedProps";
@@ -31,9 +30,9 @@ export const Input: FC<CustomInputProps> = ({
   children,
   leftAddon,
   rightAddon,
-  variant = "solid",
+  variant: propsVariant = "solid",
   color,
-  theme,
+  theme: propsTheme,
   className,
   scale: size = "md",
   leftElement,
@@ -43,23 +42,21 @@ export const Input: FC<CustomInputProps> = ({
   isRequired: required = false,
   ...props
 }) => {
-  const defaultTheme = useDragontail();
-  const ADDON_CLASS = `p-2 flex justify-center items-center ${
-    INPUT_SIZES[size]
-  } ${
-    (theme ? theme : defaultTheme) === "dark"
-      ? "bg-slate-600 text-white"
-      : "bg-slate-200 text-slate-700"
-  }`;
-
-  const { isDisabled = false, isInvalid = false } = useFormControl(
+  const { isDisabled, isInvalid, theme, variant } = useFormControl(
     "text-field",
     {
       isDisabled: disabled,
       isInvalid: invalid,
       isRequired: required,
+      theme: propsTheme,
+      variant: propsVariant,
     }
   );
+  const ADDON_CLASS = `p-2 flex justify-center items-center ${
+    INPUT_SIZES[size]
+  } ${
+    theme === "dark" ? "bg-slate-600 text-white" : "bg-slate-200 text-slate-700"
+  }`;
 
   const ELEMENT_CLASS = `absolute ${INPUT_SIZES[size]} w-10 font-sans flex justify-center items-center bg-inherit`;
 
@@ -83,13 +80,9 @@ export const Input: FC<CustomInputProps> = ({
             : rightElement
             ? "pr-10 pl-3"
             : INPUT_DEFAULT_PADDING[variant]
-        } ${invalidClasses(
-          isInvalid,
-          theme || defaultTheme,
-          variant === "solid"
-        )} ${INPUT_BASE[theme || defaultTheme][variant]} ${INPUT_SIZES[size]} ${
-          INPUT_VARIANTS_BORDER[variant]
-        } ${
+        } ${invalidClasses(isInvalid, theme, variant === "solid")} ${
+          INPUT_BASE[theme][variant]
+        } ${INPUT_SIZES[size]} ${INPUT_VARIANTS_BORDER[variant]} ${
           INPUT_CORNER_ROUNDING[variant][
             leftAddon && rightAddon
               ? "none"
