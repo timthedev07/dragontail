@@ -1,6 +1,6 @@
 import { FC, useState } from "react";
-import { useDragontail } from "../../context/ThemeContext";
 import { Button } from "../button";
+import { useFormControl } from "../form-control/FormControl";
 import { CustomInputProps } from "./Input";
 import {
   disabledClasses,
@@ -16,16 +16,26 @@ export const PasswordInput: FC<CustomInputProps> = ({
   children,
   leftAddon,
   rightAddon,
-  variant = "solid",
   color,
-  theme,
-  isInvalid = false,
+  theme: propsTheme,
+  variant: propsVariant = "solid",
+  isInvalid: invalid = false,
+  isDisabled: disabled = false,
+  isRequired: required = false,
   className,
-  isDisabled = false,
   scale: size = "md",
   ...props
 }) => {
-  const defaultTheme = useDragontail();
+  const { isDisabled, isInvalid, theme, variant } = useFormControl(
+    "text-field",
+    {
+      isDisabled: disabled,
+      isInvalid: invalid,
+      isRequired: required,
+      theme: propsTheme,
+      variant: propsVariant,
+    }
+  );
   const [showPw, setShowPw] = useState<boolean>(false);
 
   return (
@@ -34,10 +44,10 @@ export const PasswordInput: FC<CustomInputProps> = ({
         {...props}
         className={`${className} ${disabledClasses(
           isDisabled
-        )} ${invalidClasses(isInvalid, theme || defaultTheme)} ${
+        )} ${invalidClasses(isInvalid, theme)} ${
           INPUT_DEFAULT_PADDING[variant]
         } ${INPUT_CORNER_ROUNDING[variant]["all"]} ${
-          INPUT_BASE[theme || defaultTheme][variant]
+          INPUT_BASE[theme][variant]
         } relative ${INPUT_SIZES[size]} pr-20 ${
           INPUT_VARIANTS_BORDER[variant]
         }`}
