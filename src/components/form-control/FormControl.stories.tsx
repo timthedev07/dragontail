@@ -1,5 +1,6 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { Input, PasswordInput } from "../input";
+import { Textarea } from "../textarea";
 import { FormControl, FormControlProps } from "./FormControl";
 import { FormErrorMessage } from "./FormErrorMessage";
 import { FormHelperText } from "./FormHelperText";
@@ -113,3 +114,33 @@ DarkDisabled.args = {
   theme: "dark",
 } as FormControlProps;
 DarkDisabled.parameters = { backgrounds: { default: "dark" } };
+
+export const WithTextArea = Template.bind({});
+WithTextArea.args = {
+  children: [
+    <FormLabel htmlFor="opinion">Your Opinion</FormLabel>,
+    <Textarea id="opinion" />,
+    <FormHelperText>What do you think?</FormHelperText>,
+  ],
+  className: "w-[400px]",
+  isDisabled: true,
+  isRequired: true,
+  isInvalid: true,
+  variant: "underline",
+} as FormControlProps;
+
+export const WithTextAreaDark = Template.bind({});
+WithTextAreaDark.args = {
+  children: [
+    <FormLabel htmlFor="opinion">Your Opinion</FormLabel>,
+    <Textarea id="opinion" />,
+    <FormHelperText>What do you think?</FormHelperText>,
+  ],
+  className: "w-[400px]",
+  isDisabled: true,
+  isRequired: true,
+  isInvalid: true,
+  variant: "underline",
+  theme: "dark",
+} as FormControlProps;
+WithTextAreaDark.parameters = { backgrounds: { default: "dark" } };
