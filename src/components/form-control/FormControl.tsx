@@ -16,11 +16,6 @@ export const getFormControlContextDefaultProps = (
 };
 
 export type FormControlProps = TextboxSharedProps & {
-  // maps a role to a component's name prop
-  // e.g. {
-  //   "text-field": "email"   => <Input name="email" />
-  // }
-  roles: Array<ComponentRole>;
   className?: string;
 };
 
@@ -75,11 +70,17 @@ export const setFieldError = (s: string, val: string) => {};
 export const FormControl: React.FC<FormControlProps> = ({
   children,
   className = "",
-  roles = [],
   ...rest
 }) => {
   const chosenTheme = useDragontail();
   const defaultProps = getFormControlContextDefaultProps(chosenTheme);
+
+  const roles: Array<ComponentRole> = [
+    "error-message",
+    "helper-text",
+    "input-label",
+    "text-field",
+  ];
 
   const final = [] as FormControlContextProps[];
 

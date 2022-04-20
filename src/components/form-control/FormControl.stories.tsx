@@ -24,7 +24,6 @@ Example.args = {
       placeholder="john.smith"
     />,
   ],
-  roles: ["text-field", "input-label"],
   theme: "dark",
   className: "w-[400px]",
 } as FormControlProps;

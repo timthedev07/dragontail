@@ -1,9 +1,19 @@
 import { DetailedHTMLProps, FC, LabelHTMLAttributes } from "react";
 import { TextboxSharedProps } from "../../types/TextboxSharedProps";
+import { useFormControl } from "./FormControl";
 
 export const FormHelperText: FC<
   DetailedHTMLProps<LabelHTMLAttributes<HTMLSpanElement>, HTMLSpanElement> &
     TextboxSharedProps
-> = ({}) => {
-  return <div></div>;
+> = ({ theme: propsTheme, ...props }) => {
+  const { theme } = useFormControl("helper-text", {
+    theme: propsTheme,
+  });
+
+  return (
+    <span
+      {...props}
+      className={theme === "light" ? "text-neutral-800" : "text-neutral-300"}
+    />
+  );
 };
