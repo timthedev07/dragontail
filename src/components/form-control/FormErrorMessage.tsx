@@ -1,8 +1,21 @@
-import { FC } from "react";
-import { ComponentRole } from "../../types/ComponentRoleTypes";
+import { DetailedHTMLProps, FC, LabelHTMLAttributes } from "react";
+import { TextboxSharedProps } from "../../types/TextboxSharedProps";
+import { useFormControl } from "./FormControl";
 
-interface FormErrorMessageProps {}
+export const FormErrorMessage: FC<
+  DetailedHTMLProps<LabelHTMLAttributes<HTMLSpanElement>, HTMLSpanElement> &
+    TextboxSharedProps
+> = ({ theme: propsTheme, ...props }) => {
+  const { theme } = useFormControl("helper-text", {
+    theme: propsTheme,
+  });
 
-export const FormErrorMessage: FC<FormErrorMessageProps> = ({}) => {
-  return <div data-component-role={"error-message" as ComponentRole}></div>;
+  return (
+    <span
+      {...props}
+      className={
+        (theme === "light" ? "text-red-500" : "text-red-400") + " text-sm"
+      }
+    />
+  );
 };
