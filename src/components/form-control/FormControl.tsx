@@ -21,6 +21,7 @@ export type FormControlProps = TextboxSharedProps & {
   //   "text-field": "email"   => <Input name="email" />
   // }
   roles: Array<ComponentRole>;
+  className?: string;
 };
 
 export type FormControlContextProps = {
@@ -73,6 +74,7 @@ export const setFieldError = (s: string, val: string) => {};
 
 export const FormControl: React.FC<FormControlProps> = ({
   children,
+  className = "",
   roles = [],
   ...rest
 }) => {
@@ -91,7 +93,7 @@ export const FormControl: React.FC<FormControlProps> = ({
 
   return (
     <FormControlContext.Provider value={final} {...rest}>
-      <div className="flex flex-col gap-3 p-2">{children}</div>
+      <div className={`flex flex-col gap-3 p-2 ${className}`}>{children}</div>
     </FormControlContext.Provider>
   );
 };
