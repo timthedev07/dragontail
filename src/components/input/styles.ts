@@ -11,7 +11,9 @@ const DARK_BASE = BASE + " focus:border-sky-400/100 text-white";
 const LIGHT_BASE = BASE + " focus:border-sky-500/100 text-black";
 
 export const disabledClasses = (isDisabled: boolean) => {
-  return isDisabled ? "cursor-not-allowed placeholder:opacity-30" : "";
+  return isDisabled
+    ? "cursor-not-allowed placeholder:opacity-30 border-opacity-40"
+    : "";
 };
 
 export const invalidClasses = (
