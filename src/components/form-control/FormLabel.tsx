@@ -1,10 +1,19 @@
 import { DetailedHTMLProps, FC, LabelHTMLAttributes } from "react";
-import { ComponentRole } from "../../types/ComponentRoleTypes";
+import { TextboxSharedProps } from "../../types/TextboxSharedProps";
+import { useFormControl } from "./FormControl";
 
 export const FormLabel: FC<
-  DetailedHTMLProps<LabelHTMLAttributes<HTMLLabelElement>, HTMLLabelElement>
-> = (props) => {
+  DetailedHTMLProps<LabelHTMLAttributes<HTMLLabelElement>, HTMLLabelElement> &
+    TextboxSharedProps
+> = ({ theme: propsTheme, ...props }) => {
+  const { theme } = useFormControl("input-label", {
+    theme: propsTheme,
+  });
+
   return (
-    <label {...props} data-component-role={"input-label" as ComponentRole} />
+    <label
+      {...props}
+      className={`${theme === "light" ? "text-black" : "text-neutral-50"}`}
+    />
   );
 };

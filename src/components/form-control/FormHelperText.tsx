@@ -1,8 +1,9 @@
-import { FC } from "react";
-import { ComponentRole } from "../../types/ComponentRoleTypes";
+import { DetailedHTMLProps, FC, LabelHTMLAttributes } from "react";
+import { TextboxSharedProps } from "../../types/TextboxSharedProps";
 
-interface FormHelperTextProps {}
-
-export const FormHelperText: FC<FormHelperTextProps> = ({}) => {
-  return <div data-component-role={"helper-text" as ComponentRole}></div>;
+export const FormHelperText: FC<
+  DetailedHTMLProps<LabelHTMLAttributes<HTMLSpanElement>, HTMLSpanElement> &
+    TextboxSharedProps
+> = ({}) => {
+  return <div></div>;
 };
