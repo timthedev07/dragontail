@@ -34,12 +34,13 @@ export const Input: FC<CustomInputProps> = ({
   variant = "solid",
   color,
   theme,
-  isDisabled = false,
   className,
   scale: size = "md",
   leftElement,
   rightElement,
-  isInvalid = false,
+  isDisabled: disabled = false,
+  isInvalid: invalid = false,
+  isRequired: required = false,
   ...props
 }) => {
   const defaultTheme = useDragontail();
@@ -50,7 +51,16 @@ export const Input: FC<CustomInputProps> = ({
       ? "bg-slate-600 text-white"
       : "bg-slate-200 text-slate-700"
   }`;
-  const {} = useFormControl("");
+
+  const { isDisabled = false, isInvalid = false } = useFormControl(
+    "text-field",
+    {
+      isDisabled: disabled,
+      isInvalid: invalid,
+      isRequired: required,
+    }
+  );
+
   const ELEMENT_CLASS = `absolute ${INPUT_SIZES[size]} w-10 font-sans flex justify-center items-center bg-inherit`;
 
   return (

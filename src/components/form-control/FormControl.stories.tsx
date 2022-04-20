@@ -14,6 +14,13 @@ const Template: ComponentStory<typeof FormControl> = (args) => (
 
 export const Example = Template.bind({});
 Example.args = {
-  children: [<Input />, <FormLabel />],
-  data: {},
+  isInvalid: true,
+  children: [
+    <Input name="email" type="email" id="email" />,
+    <FormLabel htmlFor="email" />,
+  ],
+  roles: {
+    "text-field": "email",
+    "input-label": "",
+  },
 } as FormControlProps;

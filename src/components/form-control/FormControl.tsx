@@ -1,28 +1,45 @@
 import { TextboxSharedProps } from "../../types/TextboxSharedProps";
 import React, { useContext } from "react";
+import { ComponentRole } from "../../types/ComponentRoleTypes";
 
-export type FormControlProps = TextboxSharedProps & {
-  data: {
-    [field: string]: any;
-  };
+type PartialRecord<K extends keyof any, T> = {
+  [P in K]?: T;
 };
 
-export interface FormControlContextProps {
-  isDisabled?: boolean;
-  isInvalid?: boolean;
-  isRequired?: boolean;
+export type FormControlProps = TextboxSharedProps & {
+  // maps a role to a component's name prop
+  // e.g. {
+  //   "text-field": "email"   => <Input name="email" />
+  // }
+  roles: PartialRecord<ComponentRole, string>;
+};
+
+export type FormControlContextProps = {
   val?: string;
-}
+} & TextboxSharedProps;
 
 const FormControlContext = React.createContext<FormControlContextProps[]>([]);
 
-export const useFormControl = (s: string) => {
+/**
+ * Receive appropriate props from form control
+ * @param componentRole the role of the component in the form control
+ * @param componentProps Fallback: returns the component's own props if not wrapped in form control context.
+ * @returns
+ */
+export const useFormControl = (
+  componentRole: ComponentRole,
+  componentProps: TextboxSharedProps
+) => {
   const context = useContext(FormControlContext);
 
   let found = -1;
-  context.forEach((obj, index) => (obj.val === s ? (found = index) : -1));
+  context.forEach((obj, index) =>
+    obj.val === componentRole ? (found = index) : -1
+  );
 
-  if (found === -1) throw new Error("yo this doesn't work");
+  if (found === -1) {
+    return componentProps;
+  }
 
   return context[found];
 };
@@ -34,10 +51,7 @@ export const setFieldError = (s: string, val: string) => {};
 
 export const FormControl: React.FC<FormControlProps> = ({
   children,
-  data = {
-    firstName: "Mark",
-    lastName: "Britton",
-  },
+  roles = {},
   ...rest
 }) => {
   const defaultProps = {
@@ -48,12 +62,15 @@ export const FormControl: React.FC<FormControlProps> = ({
 
   const final = [] as FormControlContextProps[];
 
-  Object.keys(data).map((val) =>
+  Object.keys(roles).map((val) =>
     final.push({
       val,
       ...defaultProps,
+      ...rest,
     })
   ) as FormControlContextProps;
+
+  console.log(rest);
 
   return (
     <FormControlContext.Provider value={final} {...rest}>

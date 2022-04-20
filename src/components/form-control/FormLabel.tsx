@@ -1,12 +1,12 @@
-import { FC } from "react";
+import { DetailedHTMLProps, FC, LabelHTMLAttributes } from "react";
 import { ComponentRole } from "../../types/ComponentRoleTypes";
 
-interface FormLabelProps {}
-
-export const FormLabel: FC<FormLabelProps> = ({}) => {
+export const FormLabel: FC<
+  DetailedHTMLProps<LabelHTMLAttributes<HTMLLabelElement>, HTMLLabelElement>
+> = (props) => {
   return (
     <label
-      htmlFor=""
+      {...props}
       data-component-role={"input-label" as ComponentRole}
     ></label>
   );
