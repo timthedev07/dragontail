@@ -10,6 +10,7 @@ import {
   invalidClasses,
   LIGHT_BASE,
   DARK_BASE,
+  disabledClasses,
 } from "../input/styles";
 
 export interface SelectProps
@@ -37,7 +38,7 @@ const VARIANT_STYLES: Record<
   },
 };
 
-export const Select: FC<SelectProps> = (props) => {
+export const Select: FC<SelectProps> = ({ placeholder, ...props }) => {
   const { isDisabled, isInvalid, variant, theme } = useFormControl(
     "input-field",
     props
@@ -50,10 +51,16 @@ export const Select: FC<SelectProps> = (props) => {
         isInvalid,
         theme,
         variant === "solid"
-      )} ${INPUT_VARIANTS_BORDER[variant]} ${
+      )} ${disabledClasses(isDisabled)} ${INPUT_VARIANTS_BORDER[variant]} ${
         INPUT_CORNER_ROUNDING[variant].all
       } ${INPUT_DEFAULT_PADDING[variant]} ${VARIANT_STYLES[variant][theme]}`}
       disabled={isDisabled}
-    ></select>
+    >
+      {placeholder && (
+        <option disabled selected>
+          {placeholder}
+        </option>
+      )}
+    </select>
   );
 };
