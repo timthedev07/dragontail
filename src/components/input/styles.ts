@@ -82,7 +82,7 @@ export const INPUT_CORNER_ROUNDING: Record<
   outline: cornerShared,
   solid: cornerShared,
   underline: {
-    all: "",
+    all: "rounded-t-md",
     left: "rounded-tl-md",
     none: "rounded-none",
     right: "rounded-tr-md",
