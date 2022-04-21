@@ -1,5 +1,5 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import { Select } from "./Select";
+import { Select, SelectProps } from "./Select";
 
 export default {
   title: "dragontail/Select",
@@ -18,3 +18,21 @@ const SelectTemplate: ComponentStory<typeof Select> = ({
 );
 
 export const Examples = SelectTemplate.bind({});
+Examples.args = {
+  children: [
+    <option>TypeScript</option>,
+    <option>C++</option>,
+    <option>Python</option>,
+  ],
+} as SelectProps;
+
+export const DarkExamples = SelectTemplate.bind({});
+DarkExamples.args = {
+  children: [
+    <option>TypeScript</option>,
+    <option>C++</option>,
+    <option>Python</option>,
+  ],
+  theme: "dark",
+} as SelectProps;
+DarkExamples.parameters = { backgrounds: { default: "dark" } };
