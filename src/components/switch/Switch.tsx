@@ -91,6 +91,11 @@ export const Switch: FC<SwitchProps> = ({
         {...rest}
         checked={checked}
         defaultChecked={defaultChecked}
+        onChange={(e) => {
+          if (onChange) {
+            onChange(e);
+          }
+        }}
         className={`${
           MEASUREMENTS[scale].switchDimensions
         } cursor-pointer rounded-full appearance-none transition-colors duration-200 ${
