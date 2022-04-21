@@ -46,7 +46,7 @@ export const Select: FC<SelectProps> = (props) => {
   return (
     <select
       {...props}
-      className={`appearance-none focus:outline-none ${invalidClasses(
+      className={`appearance-none focus:outline-none text-opacity-60 ${invalidClasses(
         isInvalid,
         theme,
         variant === "solid"
