@@ -40,7 +40,6 @@ export const useFormControl = (
   const theme = useDragontail();
 
   const defaultProps = getFormControlContextDefaultProps(theme);
-  console.log(defaultProps);
 
   let found = -1;
   context.forEach((obj, index) =>
