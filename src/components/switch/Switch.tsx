@@ -99,14 +99,14 @@ export const Switch: FC<SwitchProps> = ({
         className={`${
           MEASUREMENTS[scale].switchDimensions
         } cursor-pointer rounded-full appearance-none transition-colors duration-200 ${
-          theme === "light" ? "bg-neutral-300 border-neutral-400" : ""
+          theme === "light" ? "bg-neutral-300" : "bg-neutral-500/80"
         } ${CHECKED_COLOR_MAP[checkedColor]} flex items-center ${
           MEASUREMENTS[scale].switchPaddings
         } after:content-[""] ${
           MEASUREMENTS[scale].switchButtonDimensions
         } after:rounded-full after:bg-white after:absolute relative after:transform after:transition after:duration-200 after:ease-out ${
           MEASUREMENTS[scale].switchButtonDisplacement
-        }`}
+        } ${isDisabled && "cursor-not-allowed opacity-40"}`}
         type="checkbox"
       />
     </div>
