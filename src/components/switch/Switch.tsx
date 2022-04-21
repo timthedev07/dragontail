@@ -11,7 +11,7 @@ export type SwitchProps = Omit<
     DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>,
   "onChange"
 > & {
-  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
   scale?: DragontailSizeType;
   checkedColor?: SwitchCSType;
 };
@@ -89,7 +89,8 @@ export const Switch: FC<SwitchProps> = ({
       <input
         disabled={isDisabled}
         {...rest}
-        // checked={checked}
+        checked={checked}
+        defaultChecked={defaultChecked}
         className={`${
           MEASUREMENTS[scale].switchDimensions
         } cursor-pointer rounded-full appearance-none transition-colors duration-200 ${
