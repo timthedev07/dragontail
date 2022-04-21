@@ -80,7 +80,7 @@ export const FormControl: React.FC<FormControlProps> = ({
     "error-message",
     "helper-text",
     "input-label",
-    "text-field",
+    "input-field",
   ];
 
   const final = [] as FormControlContextProps[];

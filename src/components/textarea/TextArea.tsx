@@ -38,7 +38,7 @@ export const Textarea: FC<TextAreaProps> = ({
   ...props
 }) => {
   const { isDisabled, isInvalid, theme, variant } = useFormControl(
-    "text-field",
+    "input-field",
     {
       isDisabled: disabled,
       isInvalid: invalid,

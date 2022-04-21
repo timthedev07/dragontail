@@ -1,5 +1,5 @@
 export type ComponentRole =
-  | "text-field"
+  | "input-field"
   | "helper-text"
   | "error-message"
   | "input-label";
