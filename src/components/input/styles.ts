@@ -6,9 +6,9 @@ import { InputVariants } from "../../types/Variants";
 const BASE =
   "w-full py-2 focus:bg-inherit outline-none transition-all duration-300 focus:outline-none placeholder:opacity-100 focus:placeholder:opacity-0";
 
-const DARK_BASE = BASE + " focus:border-sky-400/100 text-white";
+export const DARK_BASE = BASE + " focus:border-sky-400/100 text-white";
 
-const LIGHT_BASE = BASE + " focus:border-sky-500/100 text-black";
+export const LIGHT_BASE = BASE + " focus:border-sky-500/100 text-black";
 
 export const disabledClasses = (isDisabled: boolean) => {
   return isDisabled
