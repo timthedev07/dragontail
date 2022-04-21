@@ -7,6 +7,9 @@ import {
   INPUT_CORNER_ROUNDING,
   INPUT_DEFAULT_PADDING,
   INPUT_VARIANTS_BORDER,
+  invalidClasses,
+  LIGHT_BASE,
+  DARK_BASE,
 } from "../input/styles";
 
 export interface SelectProps
@@ -16,30 +19,21 @@ export interface SelectProps
     >,
     TextboxSharedProps {}
 
-const VARIANT_BASE_STYLES: Record<InputVariants, string> = {
-  outline: "p-2 px-3 bg-inherit",
-  solid: "p-2 px-3 bg-slate-100",
-  underline: "p-2 px-0 bg-inherit",
-};
-
 const VARIANT_STYLES: Record<
   InputVariants,
-  Record<DragontailThemeType | "invalid", string>
+  Record<DragontailThemeType, string>
 > = {
   outline: {
-    dark: "",
-    light: "",
-    invalid: "",
+    dark: DARK_BASE + " bg-inherit",
+    light: LIGHT_BASE + " bg-inherit",
   },
   solid: {
-    dark: "",
-    light: "",
-    invalid: "",
+    dark: DARK_BASE + " bg-neutral-50/[.06]",
+    light: LIGHT_BASE + " bg-slate-100",
   },
   underline: {
-    dark: "",
-    light: "",
-    invalid: "",
+    dark: DARK_BASE + " bg-inherit",
+    light: LIGHT_BASE + " bg-inherit",
   },
 };
 
@@ -52,13 +46,13 @@ export const Select: FC<SelectProps> = (props) => {
   return (
     <select
       {...props}
-      className={`appearance-none focus:outline-none ${
-        INPUT_VARIANTS_BORDER[variant]
-      } ${INPUT_CORNER_ROUNDING[variant].all} ${
-        INPUT_DEFAULT_PADDING[variant]
-      } ${VARIANT_BASE_STYLES[variant]} ${
-        VARIANT_STYLES[variant][isInvalid ? "invalid" : theme]
-      }`}
+      className={`appearance-none focus:outline-none ${invalidClasses(
+        isInvalid,
+        theme,
+        variant === "solid"
+      )} ${INPUT_VARIANTS_BORDER[variant]} ${
+        INPUT_CORNER_ROUNDING[variant].all
+      } ${INPUT_DEFAULT_PADDING[variant]} ${VARIANT_STYLES[variant][theme]}`}
       disabled={isDisabled}
     ></select>
   );
