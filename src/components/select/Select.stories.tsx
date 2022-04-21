@@ -56,3 +56,13 @@ DisabledExamples.args = {
   ],
   isDisabled: true,
 } as SelectProps;
+
+export const ExamplesWithPlaceholders = SelectTemplate.bind({});
+ExamplesWithPlaceholders.args = {
+  children: [
+    <option>TypeScript</option>,
+    <option>C++</option>,
+    <option>Python</option>,
+  ],
+  placeholder: "Choose a language",
+} as SelectProps;

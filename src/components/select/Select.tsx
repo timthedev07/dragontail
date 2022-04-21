@@ -38,7 +38,11 @@ const VARIANT_STYLES: Record<
   },
 };
 
-export const Select: FC<SelectProps> = ({ placeholder, ...props }) => {
+export const Select: FC<SelectProps> = ({
+  placeholder,
+  children,
+  ...props
+}) => {
   const { isDisabled, isInvalid, variant, theme } = useFormControl(
     "input-field",
     props
@@ -55,12 +59,14 @@ export const Select: FC<SelectProps> = ({ placeholder, ...props }) => {
         INPUT_CORNER_ROUNDING[variant].all
       } ${INPUT_DEFAULT_PADDING[variant]} ${VARIANT_STYLES[variant][theme]}`}
       disabled={isDisabled}
+      defaultValue=""
     >
       {placeholder && (
-        <option disabled selected>
+        <option disabled value="">
           {placeholder}
         </option>
       )}
+      {children}
     </select>
   );
 };
