@@ -1,4 +1,5 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { CSTypeValues } from "../../types/Colors";
 import { Switch, SwitchProps } from "./Switch";
 
 export default {
@@ -13,6 +14,19 @@ const Template: ComponentStory<typeof Switch> = ({ scale: _, ...args }) => {
       <Switch {...args} scale="md" />
       <Switch {...args} scale="lg" />
       <Switch {...args} scale="xl" />
+    </div>
+  );
+};
+
+const ColorsTemplate: ComponentStory<typeof Switch> = ({
+  checkedColor: _,
+  ...args
+}) => {
+  return (
+    <div className="flex flex-col gap-3">
+      {CSTypeValues.filter((each) => each !== "neutral").map((each) => (
+        <Switch defaultChecked {...args} checkedColor={each as any} />
+      ))}
     </div>
   );
 };
@@ -38,3 +52,10 @@ Disabled.args = {
   theme: "dark",
 } as SwitchProps;
 Disabled.parameters = { backgrounds: { default: "dark" } };
+
+export const Colors = ColorsTemplate.bind({});
+export const ColorsDarkTheme = ColorsTemplate.bind({});
+ColorsDarkTheme.args = {
+  theme: "dark",
+} as SwitchProps;
+ColorsDarkTheme.parameters = { backgrounds: { default: "dark" } };
