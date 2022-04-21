@@ -36,3 +36,23 @@ DarkExamples.args = {
   theme: "dark",
 } as SelectProps;
 DarkExamples.parameters = { backgrounds: { default: "dark" } };
+
+export const InvalidExamples = SelectTemplate.bind({});
+InvalidExamples.args = {
+  children: [
+    <option>TypeScript</option>,
+    <option>C++</option>,
+    <option>Python</option>,
+  ],
+  isInvalid: true,
+} as SelectProps;
+
+export const DisabledExamples = SelectTemplate.bind({});
+DisabledExamples.args = {
+  children: [
+    <option>TypeScript</option>,
+    <option>C++</option>,
+    <option>Python</option>,
+  ],
+  isDisabled: true,
+} as SelectProps;
