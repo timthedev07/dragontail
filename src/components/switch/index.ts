@@ -1,1 +1,1 @@
-// export {} from "./";
+export { Switch } from "./Switch";
