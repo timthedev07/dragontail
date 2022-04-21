@@ -1,6 +1,6 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { CustomInputProps } from "../input/Input";
-import { Textarea } from "./Textarea";
+import { Textarea } from "./TextArea";
 
 export default {
   title: "dragontail/Textarea",
