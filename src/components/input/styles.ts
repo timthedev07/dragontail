@@ -26,9 +26,9 @@ export const invalidClasses = (
   } else {
     if (isVariantSolid) return "border-gray-500/0";
     if (theme === "dark") {
-      return "border-gray-500";
+      return "border-gray-600/40";
     } else {
-      return "border-gray-300";
+      return "border-gray-300/80";
     }
   }
 };
