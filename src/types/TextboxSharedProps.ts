@@ -7,4 +7,5 @@ export interface TextboxSharedProps {
   isDisabled?: boolean;
   isInvalid?: boolean;
   isRequired?: boolean;
+  defaultChecked?: boolean;
 }

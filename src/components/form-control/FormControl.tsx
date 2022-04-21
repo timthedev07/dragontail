@@ -10,6 +10,7 @@ export const getFormControlContextDefaultProps = (
     isInvalid: false,
     isDisabled: false,
     isRequired: false,
+    defaultChecked: false,
     theme,
     variant: "outline",
   } as FormControlContextProps;
