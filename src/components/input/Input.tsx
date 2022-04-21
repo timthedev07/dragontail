@@ -57,7 +57,11 @@ export const Input: FC<CustomInputProps> = ({
     theme === "dark" ? "bg-slate-600 text-white" : "bg-slate-200 text-slate-700"
   }`;
 
-  const ELEMENT_CLASS = `absolute ${INPUT_SIZES[size]} w-10 font-sans flex justify-center items-center bg-inherit`;
+  const ELEMENT_CLASS = `absolute ${
+    INPUT_SIZES[size]
+  } w-10 font-sans flex justify-center items-center bg-inherit ${
+    theme === "dark" ? "text-white" : "text-slate-700"
+  }`;
 
   return (
     <div className="relative flex justify-center items-center">
