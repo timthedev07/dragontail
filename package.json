@@ -1,6 +1,9 @@
 {
   "name": "dragontail-experimental",
   "version": "0.0.4",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
   "description": "A React component library built with TailwindCSS and TypeScript.",
   "repository": "https://github.com/timthedev07/dragontail",
   "homepage": "http://timthedev07.github.io/dragontail",
