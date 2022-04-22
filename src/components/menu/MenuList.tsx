@@ -21,7 +21,7 @@ export const MenuList: FC<
       } ${
         theme === "dark"
           ? "bg-slate-700 border-neutral-700"
-          : "bg-gray-50 border-neutral-400"
+          : "bg-gray-50 border-neutral-300"
       }`}
     >
       {children}
