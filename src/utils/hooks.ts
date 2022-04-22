@@ -1,7 +1,7 @@
 import { MutableRefObject, useEffect, useRef } from "react";
 
-export const useClickOutside = (
-  ref: MutableRefObject<HTMLElement | null>,
+export const useClickOutside = <T extends HTMLElement>(
+  ref: MutableRefObject<T | null>,
   callback: Function
 ) => {
   useEventListener("click", (e: any) => {
