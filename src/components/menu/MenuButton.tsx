@@ -4,11 +4,9 @@ import { CustomButtonProps } from "../button/Button";
 import { useMenu } from "./Menu";
 
 export const MenuButton: FC<
-  FC<
-    ClassAttributes<HTMLButtonElement> &
-      HTMLAttributes<HTMLButtonElement> &
-      CustomButtonProps
-  >
+  ClassAttributes<HTMLButtonElement> &
+    HTMLAttributes<HTMLButtonElement> &
+    CustomButtonProps
 > = ({}) => {
   const { setIsOpen } = useMenu();
 
