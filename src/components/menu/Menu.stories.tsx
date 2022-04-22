@@ -1,5 +1,5 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import { Menu } from "./Menu";
+import { Menu, MenuContextProps } from "./Menu";
 import { MenuButton } from "./MenuButton";
 
 export default {
@@ -14,4 +14,4 @@ const MenuTemplate: ComponentStory<typeof Menu> = ({ ...args }) => (
 export const Example = MenuTemplate.bind({});
 Example.args = {
   children: [<MenuButton>Hi</MenuButton>],
-};
+} as MenuContextProps;
