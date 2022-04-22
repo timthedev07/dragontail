@@ -1,6 +1,7 @@
 import { DetailedHTMLProps, FC, HTMLAttributes } from "react";
 import { DragontailThemeType, useDragontail } from "../../context/ThemeContext";
 import { CSType } from "../../types/Colors";
+import { DragontailSizeType } from "../../types/Sizes";
 import { ButtonVariants } from "../../types/Variants";
 
 export interface CustomButtonProps {
@@ -10,6 +11,7 @@ export interface CustomButtonProps {
   variant?: ButtonVariants;
   focusEffect?: boolean;
   theme?: DragontailThemeType;
+  scale?: DragontailSizeType;
   isDisabled?: boolean;
 }
 
@@ -90,7 +92,14 @@ const COLORS: Record<
   },
 };
 
-const BASE_BUTTON = "px-4 py-2 rounded-md flex items-center gap-2";
+const SIZES: Record<DragontailSizeType, string> = {
+  lg: "px-5 py-3 gap-2",
+  md: "px-4 py-2 gap-2",
+  sm: "px-2 py-2 gap-1 text-xs",
+  xl: "px-6 py-3 gap-3 text-lg",
+};
+
+const BASE_BUTTON = "rounded-md flex items-center";
 
 export type ButtonProps = DetailedHTMLProps<
   HTMLAttributes<HTMLButtonElement>,
@@ -108,6 +117,7 @@ export const Button: FC<ButtonProps> = ({
   className,
   theme,
   focusEffect = true,
+  scale = "md",
   ...props
 }) => {
   const defaultTheme = useDragontail();
@@ -118,7 +128,7 @@ export const Button: FC<ButtonProps> = ({
 
   return (
     <button
-      className={`${className || ""} min-w-fit ${
+      className={`${className || ""} ${SIZES[scale]} min-w-fit ${
         theme === "dark" && "bg-opacity-75"
       } transition-colors duration-200 ${
         isDisabled
