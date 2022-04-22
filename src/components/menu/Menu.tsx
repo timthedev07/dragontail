@@ -39,7 +39,7 @@ export const Menu: React.FC<MenuContextProps> = ({ children, theme }) => {
 
   return (
     <MenuContext.Provider value={value}>
-      <div ref={menuRef} className="w-min">
+      <div ref={menuRef} className="w-min relative">
         {children}
       </div>
     </MenuContext.Provider>

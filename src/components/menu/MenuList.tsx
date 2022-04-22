@@ -1,4 +1,4 @@
-import { DetailedHTMLProps, FC, HTMLAttributes, useRef } from "react";
+import { DetailedHTMLProps, FC, HTMLAttributes } from "react";
 import { useMenu } from "./Menu";
 
 export type MenuListProps = {};
@@ -11,9 +11,15 @@ export const MenuList: FC<
 > = ({ children }) => {
   const { isOpen } = useMenu();
 
+  const menuListOpenStyles = "block animate-menu-open origin-top-left";
+  const menuListClosedStyles = "hidden";
+
   return (
-    <ul>
-      {isOpen ? "open" : "closed"}
+    <ul
+      className={`absolute ${
+        isOpen ? menuListOpenStyles : menuListClosedStyles
+      }`}
+    >
       {children}
     </ul>
   );
