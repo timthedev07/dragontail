@@ -62,11 +62,6 @@ export const useFormControl = (
   return context[found] as Required<FormControlContextProps>;
 };
 
-// example of helper functions required
-export const updateFieldValue = (s: string, val: string) => {};
-
-export const setFieldError = (s: string, val: string) => {};
-
 export const FormControl: React.FC<FormControlProps> = ({
   children,
   className = "",
