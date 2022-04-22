@@ -16,9 +16,13 @@ export const MenuList: FC<
 
   return (
     <ul
-      className={`mt-3 flex flex-col gap-0 min-w-max ${
+      className={`mt-3 flex flex-col gap-0 py-2 min-w-max rounded-md border ${
         isOpen ? menuListOpenStyles : menuListClosedStyles
-      } ${theme === "dark" ? "" : ""}`}
+      } ${
+        theme === "dark"
+          ? "bg-slate-700 border-neutral-700"
+          : "bg-gray-50 border-neutral-400"
+      }`}
     >
       {children}
     </ul>
