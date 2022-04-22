@@ -18,13 +18,13 @@ const ENABLED_STYLES: Record<
   Record<CSType | "neutral-dark", string>
 > = {
   solid: {
-    cyan: "hover:bg-cyan-300 focus:bg-cyan-500",
+    cyan: "hover:bg-cyan-400 focus:bg-cyan-500",
     dark: "hover:bg-slate-700 focus:bg-slate-900",
     light: "hover:bg-neutral-50 focus:bg-slate-100",
     orange: "hover:bg-orange-400 focus:bg-orange-600",
     red: "hover:bg-red-500 focus:bg-red-700",
     sky: "hover:bg-sky-400 focus:bg-sky-600",
-    teal: "hover:bg-teal-300 focus:bg-teal-500",
+    teal: "hover:bg-teal-400 focus:bg-teal-500",
     emerald: "hover:bg-emerald-400 focus:bg-emerald-600",
     green: "hover:bg-green-400 focus:bg-green-600",
     neutral: "hover:bg-slate-300 focus:bg-slate-300",
@@ -50,13 +50,13 @@ const COLORS: Record<
   Record<CSType | "neutral-dark", string>
 > = {
   solid: {
-    cyan: "bg-cyan-400 text-slate-100",
+    cyan: "bg-cyan-500/90 text-slate-100",
     dark: "bg-slate-800 text-slate-100",
     light: "bg-neutral-100 text-black",
     orange: "bg-orange-500 text-slate-100",
     red: "bg-red-600 text-slate-100",
     sky: "bg-sky-500 text-slate-100",
-    teal: "bg-teal-400 text-slate-100",
+    teal: "bg-teal-500/90 text-slate-100",
     emerald: "bg-emerald-500 text-slate-100",
     green: "bg-green-500 text-slate-100",
     neutral: "bg-slate-200 text-slate-700",
@@ -118,7 +118,7 @@ export const Button: FC<ButtonProps> = ({
 
   return (
     <button
-      className={`${className || ""} ${
+      className={`${className || ""} transition-colors duration-200 ${
         isDisabled
           ? `cursor-not-allowed text-opacity-70`
           : `${
