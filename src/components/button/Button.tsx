@@ -59,7 +59,7 @@ const ENABLED_STYLES: Record<
       emerald: "hover:bg-emerald-400 focus:bg-emerald-400",
       green: "hover:bg-green-400 focus:bg-green-400",
       neutral: "",
-      "neutral-dark": "hover:bg-slate-400 focus:bg-slate-300",
+      "neutral-dark": "hover:bg-slate-400/75 focus:bg-slate-300/60",
     },
     ghost: {
       // need further modification
