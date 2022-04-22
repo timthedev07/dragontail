@@ -16,34 +16,65 @@ export interface CustomButtonProps {
 }
 
 const ENABLED_STYLES: Record<
-  "solid" | "ghost",
-  Record<CSType | "neutral-dark", string>
+  DragontailThemeType,
+  Record<"solid" | "ghost", Record<CSType | "neutral-dark", string>>
 > = {
-  solid: {
-    cyan: "hover:bg-cyan-400 focus:bg-cyan-500",
-    dark: "hover:bg-slate-700 focus:bg-slate-900",
-    light: "hover:bg-neutral-50 focus:bg-slate-100",
-    orange: "hover:bg-orange-400 focus:bg-orange-600",
-    red: "hover:bg-red-500 focus:bg-red-700",
-    sky: "hover:bg-sky-400 focus:bg-sky-600",
-    teal: "hover:bg-teal-400 focus:bg-teal-500",
-    emerald: "hover:bg-emerald-400 focus:bg-emerald-600",
-    green: "hover:bg-green-400 focus:bg-green-600",
-    neutral: "hover:bg-slate-300 focus:bg-slate-300",
-    "neutral-dark": "hover:bg-slate-400 focus:bg-slate-600",
+  light: {
+    solid: {
+      cyan: "hover:bg-cyan-600",
+      dark: "hover:bg-slate-900",
+      light: "hover:bg-neutral-200",
+      orange: "hover:bg-orange-600",
+      red: "hover:bg-red-700",
+      sky: "hover:bg-sky-600",
+      teal: "hover:bg-teal-600",
+      emerald: "hover:bg-emerald-400",
+      green: "hover:bg-green-600",
+      neutral: "hover:bg-slate-300 focus:bg-slate-400",
+      "neutral-dark": "",
+    },
+    ghost: {
+      cyan: "hover:bg-cyan-200",
+      dark: "hover:bg-slate-600",
+      light: "hover:bg-slate-200",
+      orange: "hover:bg-orange-200",
+      red: "hover:bg-red-200",
+      sky: "hover:bg-sky-200",
+      teal: "hover:bg-teal-200",
+      emerald: "hover:bg-emerald-200",
+      green: "hover:bg-green-200",
+      neutral: "hover:bg-slate-400",
+      "neutral-dark": "",
+    },
   },
-  ghost: {
-    cyan: "hover:bg-cyan-200",
-    dark: "hover:bg-slate-600",
-    light: "hover:bg-slate-200",
-    orange: "hover:bg-orange-200",
-    red: "hover:bg-red-200",
-    sky: "hover:bg-sky-200",
-    teal: "hover:bg-teal-200",
-    emerald: "hover:bg-emerald-200",
-    green: "hover:bg-green-200",
-    neutral: "hover:bg-slate-400",
-    "neutral-dark": "hover:bg-slate-400",
+  dark: {
+    solid: {
+      cyan: "hover:bg-cyan-400 focus:bg-cyan-400",
+      dark: "hover:bg-slate-700 focus:bg-slate-700",
+      light: "hover:bg-neutral-50 focus:bg-slate-50",
+      orange: "hover:bg-orange-400 focus:bg-orange-400",
+      red: "hover:bg-red-500 focus:bg-red-500",
+      sky: "hover:bg-sky-400 focus:bg-sky-400",
+      teal: "hover:bg-teal-400 focus:bg-teal-400",
+      emerald: "hover:bg-emerald-400 focus:bg-emerald-400",
+      green: "hover:bg-green-400 focus:bg-green-400",
+      neutral: "",
+      "neutral-dark": "hover:bg-slate-400 focus:bg-slate-300",
+    },
+    ghost: {
+      // need further modification
+      cyan: "hover:bg-cyan-200",
+      dark: "hover:bg-slate-600",
+      light: "hover:bg-slate-200",
+      orange: "hover:bg-orange-200",
+      red: "hover:bg-red-200",
+      sky: "hover:bg-sky-200",
+      teal: "hover:bg-teal-200",
+      emerald: "hover:bg-emerald-200",
+      green: "hover:bg-green-200",
+      neutral: "",
+      "neutral-dark": "hover:bg-slate-400",
+    },
   },
 };
 
@@ -129,15 +160,15 @@ export const Button: FC<ButtonProps> = ({
   return (
     <button
       className={`${className || ""} ${SIZES[scale]} min-w-fit ${
-        theme === "dark" && "bg-opacity-75"
+        theme === "dark" && "bg-opacity-75 hover:bg-opacity-90"
       } transition-colors duration-200 ${
         isDisabled
           ? `cursor-not-allowed text-opacity-70`
           : `${
               variant === "ghost" || variant === "solid"
-                ? ENABLED_STYLES[variant][chosenColor]
+                ? ENABLED_STYLES[currentTheme][variant][chosenColor]
                 : variant === "outline"
-                ? ENABLED_STYLES["ghost"][chosenColor]
+                ? ENABLED_STYLES[currentTheme]["ghost"][chosenColor]
                 : ""
             }`
       } ${
@@ -146,7 +177,7 @@ export const Button: FC<ButtonProps> = ({
           : "justify-start"
       } ${BASE_BUTTON} ${
         variant === "solid"
-          ? ` hey ${COLORS.solid[chosenColor]} ${
+          ? `${COLORS.solid[chosenColor]} ${
               focusEffect
                 ? "focus:outline-offset-2 focus:outline focus:outline-2 focus:outline-blue-600"
                 : "focus:outline-none"
