@@ -2,6 +2,7 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { RightArrow } from "../../stories-utils/RightArrow";
 import { EmailIcon } from "../../stories-utils/EmailIcon";
 import { Button, CustomButtonProps } from "./Button";
+import { CSTypeValues } from "../../types/Colors";
 
 export default {
   title: "dragontail/Button",
@@ -9,6 +10,15 @@ export default {
 } as ComponentMeta<typeof Button>;
 
 const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
+const ColorsTemplate: ComponentStory<typeof Button> = ({ color, ...args }) => (
+  <div className="flex flex-col gap-3 w-14">
+    {CSTypeValues.map((each) => (
+      <Button {...args} color={each}>
+        {each}
+      </Button>
+    ))}
+  </div>
+);
 
 export const Example = Template.bind({});
 Example.args = {
@@ -58,3 +68,10 @@ DisabledButton.args = {
   isDisabled: true,
   children: "Disabled",
 } as CustomButtonProps;
+
+export const AllColors = ColorsTemplate.bind({});
+export const AllColorsInDarkTheme = ColorsTemplate.bind({});
+AllColorsInDarkTheme.args = {
+  theme: "dark",
+};
+AllColorsInDarkTheme.parameters = { backgrounds: { default: "dark" } };
