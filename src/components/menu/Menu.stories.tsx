@@ -1,6 +1,7 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { Menu, MenuContextProps } from "./Menu";
 import { MenuButton } from "./MenuButton";
+import { MenuDivider } from "./MenuDivider";
 import { MenuItem } from "./MenuItem";
 import { MenuList } from "./MenuList";
 
@@ -21,6 +22,7 @@ const BASIC_CHILDREN = [
     <MenuItem>Save</MenuItem>
     <MenuItem>Make a copy</MenuItem>
     <MenuItem>Share</MenuItem>
+    <MenuDivider />
     <MenuItem>
       Destroy this document and corrupt our database with one click!
     </MenuItem>
