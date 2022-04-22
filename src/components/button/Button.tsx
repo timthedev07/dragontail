@@ -118,7 +118,7 @@ export const Button: FC<ButtonProps> = ({
 
   return (
     <button
-      className={`${className || ""} transition-colors duration-200 ${
+      className={`${className || ""} min-w-fit transition-colors duration-200 ${
         isDisabled
           ? `cursor-not-allowed text-opacity-70`
           : `${
