@@ -92,10 +92,13 @@ const COLORS: Record<
 
 const BASE_BUTTON = "px-4 py-2 rounded-md flex items-center gap-2";
 
-export const Button: FC<
-  DetailedHTMLProps<HTMLAttributes<HTMLButtonElement>, HTMLButtonElement> &
-    CustomButtonProps
-> = ({
+export type ButtonProps = DetailedHTMLProps<
+  HTMLAttributes<HTMLButtonElement>,
+  HTMLButtonElement
+> &
+  CustomButtonProps;
+
+export const Button: FC<ButtonProps> = ({
   children,
   isDisabled = false,
   leftIcon,
