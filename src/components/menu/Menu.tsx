@@ -1,5 +1,6 @@
-import React, { Dispatch, useContext, useState } from "react";
+import React, { Dispatch, useContext, useRef, useState } from "react";
 import { DragontailThemeType, useDragontail } from "../../context/ThemeContext";
+import { useClickOutside } from "../../utils/hooks";
 
 export interface MenuContextProps {
   theme?: DragontailThemeType;
@@ -31,5 +32,16 @@ export const Menu: React.FC<MenuContextProps> = ({ children, theme }) => {
     theme: theme || appTheme,
   };
 
-  return <MenuContext.Provider value={value}>{children}</MenuContext.Provider>;
+  const menuRef = useRef<HTMLDivElement | null>(null);
+  useClickOutside(menuRef, (e: MouseEvent) => {
+    setIsOpen(false);
+  });
+
+  return (
+    <MenuContext.Provider value={value}>
+      <div ref={menuRef} className="w-min">
+        {children}
+      </div>
+    </MenuContext.Provider>
+  );
 };
