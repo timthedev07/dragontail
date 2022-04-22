@@ -9,16 +9,16 @@ export type MenuListProps = {};
 export const MenuList: FC<
   DetailedHTMLProps<HTMLAttributes<HTMLUListElement>, HTMLUListElement>
 > = ({ children }) => {
-  const { isOpen } = useMenu();
+  const { isOpen, theme } = useMenu();
 
-  const menuListOpenStyles = "block animate-menu-open origin-top-left";
+  const menuListOpenStyles = "absolute animate-menu-open origin-top-left";
   const menuListClosedStyles = "hidden";
 
   return (
     <ul
-      className={`absolute ${
+      className={`mt-3 flex flex-col gap-0 min-w-max ${
         isOpen ? menuListOpenStyles : menuListClosedStyles
-      }`}
+      } ${theme === "dark" ? "" : ""}`}
     >
       {children}
     </ul>

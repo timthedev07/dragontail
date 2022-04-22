@@ -1,6 +1,14 @@
-import React, { Dispatch, useContext, useRef, useState } from "react";
+import React, {
+  Dispatch,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { DragontailThemeType, useDragontail } from "../../context/ThemeContext";
 import { useClickOutside } from "../../utils/hooks";
+
+type MenuDirection = "upward" | "downward";
 
 export interface MenuContextProps {
   theme?: DragontailThemeType;
@@ -9,6 +17,7 @@ export interface MenuContextProps {
 interface MenuContextType {
   theme: DragontailThemeType;
   isOpen: boolean;
+  menuDirection: MenuDirection;
   setIsOpen: Dispatch<React.SetStateAction<boolean>>;
 }
 
@@ -16,6 +25,7 @@ const MenuContext = React.createContext<MenuContextType>({
   isOpen: false,
   setIsOpen: () => {},
   theme: "light",
+  menuDirection: "downward",
 });
 
 export const useMenu = () => {
@@ -24,15 +34,34 @@ export const useMenu = () => {
 
 export const Menu: React.FC<MenuContextProps> = ({ children, theme }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [menuDirection, setMenuDirection] = useState<MenuDirection>("downward");
   const appTheme = useDragontail();
+  const menuRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const scrollHandler = () => {
+      console.log({
+        windowScroll: window.scrollY,
+        windowHeight: window.outerHeight,
+        menuWrapperClientHeight: menuRef.current?.clientHeight,
+        menuWrapperOffsetHeight: menuRef.current?.offsetHeight,
+        menuWrapperScrollHeight: menuRef.current?.scrollHeight,
+      });
+    };
+    window.addEventListener("scroll", scrollHandler);
+
+    return () => {
+      window.removeEventListener("scroll", scrollHandler);
+    };
+  }, []);
 
   const value: MenuContextType = {
     isOpen,
     setIsOpen,
     theme: theme || appTheme,
+    menuDirection,
   };
 
-  const menuRef = useRef<HTMLDivElement | null>(null);
   useClickOutside(menuRef, (e: MouseEvent) => {
     setIsOpen(false);
   });
