@@ -160,7 +160,7 @@ export const Button: FC<ButtonProps> = ({
         <div
           className={`w-4 h-4 flex justify-center items-center ${
             variant === "solid"
-              ? currentTheme === "dark"
+              ? chosenColor === "light" || chosenColor === "neutral"
                 ? "text-black"
                 : "text-white"
               : COLORS.ghost[chosenColor]
@@ -174,7 +174,7 @@ export const Button: FC<ButtonProps> = ({
         <div
           className={`w-4 h-4 flex justify-center items-center ${
             variant === "solid"
-              ? currentTheme === "dark"
+              ? chosenColor === "light" || chosenColor === "neutral"
                 ? "text-black"
                 : "text-white"
               : COLORS.ghost[chosenColor]
