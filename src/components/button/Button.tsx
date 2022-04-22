@@ -30,7 +30,7 @@ const ENABLED_STYLES: Record<
       teal: "hover:bg-teal-600",
       emerald: "hover:bg-emerald-400",
       green: "hover:bg-green-600",
-      neutral: "hover:bg-slate-300 focus:bg-slate-400",
+      neutral: "hover:bg-slate-300 focus:bg-slate-400/60",
       "neutral-dark": "",
     },
     ghost: {
