@@ -156,7 +156,7 @@ export const Button: FC<ButtonProps> = ({
     >
       {leftIcon ? (
         <div
-          className={`w-4 h-4 ${
+          className={`w-4 h-4 flex justify-center items-center ${
             variant === "solid"
               ? currentTheme === "dark"
                 ? "text-black"
@@ -169,7 +169,15 @@ export const Button: FC<ButtonProps> = ({
       ) : null}
       {children}
       {rightIcon ? (
-        <div className={`w-4 h-4 ${COLORS.ghost[chosenColor]}`}>
+        <div
+          className={`w-4 h-4 flex justify-center items-center ${
+            variant === "solid"
+              ? currentTheme === "dark"
+                ? "text-black"
+                : "text-white"
+              : COLORS.ghost[chosenColor]
+          }`}
+        >
           {rightIcon}
         </div>
       ) : null}
