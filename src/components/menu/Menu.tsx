@@ -56,7 +56,7 @@ export const Menu: React.FC<MenuContextProps> = ({
 }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [menuDirection] = useState<MenuDirection>("downward");
-  const appTheme = useDragontail();
+  const { theme: appTheme } = useDragontail();
   const menuRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {

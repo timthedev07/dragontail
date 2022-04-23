@@ -1,11 +1,10 @@
 import { TextboxSharedProps } from "../../types/TextboxSharedProps";
 import React, { useContext } from "react";
 import { ComponentRole } from "../../types/ComponentRoleTypes";
-import { DragontailThemeType, useDragontail } from "../../context/ThemeContext";
+import { useDragontail } from "../../context/ThemeContext";
 
-export const getFormControlContextDefaultProps = (
-  theme: DragontailThemeType
-) => {
+export const getFormControlContextDefaultProps = () => {
+  const { theme } = useDragontail();
   return {
     isInvalid: false,
     isDisabled: false,
@@ -37,9 +36,8 @@ export const useFormControl = (
   componentProps: FormControlContextProps
 ) => {
   const context = useContext(FormControlContext);
-  const theme = useDragontail();
 
-  const defaultProps = getFormControlContextDefaultProps(theme);
+  const defaultProps = getFormControlContextDefaultProps();
 
   let found = -1;
   context.forEach((obj, index) =>
@@ -53,7 +51,6 @@ export const useFormControl = (
 
   if (found === -1) {
     return {
-      theme,
       ...defaultProps,
       ...componentProps,
     } as Required<FormControlContextProps>;
@@ -67,8 +64,7 @@ export const FormControl: React.FC<FormControlProps> = ({
   className = "",
   ...rest
 }) => {
-  const chosenTheme = useDragontail();
-  const defaultProps = getFormControlContextDefaultProps(chosenTheme);
+  const defaultProps = getFormControlContextDefaultProps();
 
   const roles: Array<ComponentRole> = [
     "error-message",

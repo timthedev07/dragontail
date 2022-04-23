@@ -151,7 +151,7 @@ export const Button: FC<ButtonProps> = ({
   scale = "md",
   ...props
 }) => {
-  const defaultTheme = useDragontail();
+  const { theme: defaultTheme } = useDragontail();
   const currentTheme = theme ? theme : defaultTheme;
   const chosenColor =
     (color || "teal") +
