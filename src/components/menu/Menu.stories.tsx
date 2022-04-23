@@ -54,3 +54,15 @@ WithAccessToIsOpenState.args = {
   theme: "dark",
 } as MenuContextProps;
 WithAccessToIsOpenState.parameters = { backgrounds: { default: "dark" } };
+
+export const LazyMenu = MenuTemplate.bind({});
+LazyMenu.args = {
+  children: [
+    <MenuButton>Menu</MenuButton>,
+    <MenuList>
+      <MenuItem>I won't get rendered until you open the menu</MenuItem>
+      <MenuItem>I won't get rendered until you open the menu</MenuItem>
+    </MenuList>,
+  ],
+  isLazy: true,
+} as MenuContextProps;
