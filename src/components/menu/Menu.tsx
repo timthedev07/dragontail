@@ -7,7 +7,7 @@ import React, {
   useState,
 } from "react";
 import { DragontailThemeType, useDragontail } from "../../context/ThemeContext";
-import { MaybeRenderProp } from "../../types/Children";
+import { MaybeRenderProp, runIfFn } from "../../types/Children";
 import { useClickOutside } from "../../utils/hooks";
 import { placeholderFn } from "../../utils/placeholderFunction";
 
@@ -102,7 +102,9 @@ export const Menu: React.FC<MenuContextProps> = ({
   return (
     <MenuContext.Provider value={value}>
       <div ref={menuRef} className="w-min relative">
-        {children}
+        {runIfFn(children, {
+          isOpen,
+        })}
       </div>
     </MenuContext.Provider>
   );
