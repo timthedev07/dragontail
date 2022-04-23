@@ -24,6 +24,7 @@ export interface MenuContextProps {
   onClose?: Function;
   onOpen?: Function;
   isLazy?: boolean;
+  className?: string;
 }
 
 interface MenuContextType {
@@ -57,6 +58,7 @@ export const Menu: React.FC<MenuContextProps> = ({
   onClose = placeholderFn,
   onOpen = placeholderFn,
   isLazy = false,
+  className = "",
 }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [menuDirection] = useState<MenuDirection>("downward");
@@ -106,7 +108,7 @@ export const Menu: React.FC<MenuContextProps> = ({
 
   return (
     <MenuContext.Provider value={value}>
-      <div ref={menuRef} className="w-min relative">
+      <div ref={menuRef} className={`w-min relative ${className}`}>
         {runIfFn(children, {
           isOpen,
         })}
