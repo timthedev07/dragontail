@@ -9,7 +9,7 @@ export type MenuListProps = {};
 export const MenuList: FC<
   DetailedHTMLProps<HTMLAttributes<HTMLUListElement>, HTMLUListElement>
 > = ({ children }) => {
-  const { isOpen, theme } = useMenu();
+  const { isOpen, theme, isLazy } = useMenu();
 
   const menuListOpenStyles = "absolute animate-menu-open origin-top-left";
   const menuListClosedStyles = "hidden";
@@ -24,7 +24,7 @@ export const MenuList: FC<
           : "bg-gray-50 border-neutral-300"
       }`}
     >
-      {children}
+      {isLazy ? (isOpen ? children : null) : children}
     </ul>
   );
 };
