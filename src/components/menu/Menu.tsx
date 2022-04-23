@@ -142,6 +142,8 @@ export const Menu: React.FC<MenuContextProps> = ({
   const close = () => {
     setIsOpen(false);
     onClose();
+    setCurrSearch({});
+    setSearchResultChildren(null);
   };
 
   const open = () => {
