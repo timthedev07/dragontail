@@ -54,9 +54,9 @@
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public",
     "predeploy": "yarn build-storybook",
-    "deploy-storybook": "yarn predeploy && gh-pages -d storybook-static && yarn cleanup-deployment",
     "cleanup-deployment": "trash storybook-static",
-    "deploy:lib": "yarn build:lib && npm publish"
+    "deploy:lib": "yarn build:lib && npm publish",
+    "deploy:storybook": "yarn predeploy && gh-pages -d storybook-static && yarn cleanup-deployment"
   },
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
