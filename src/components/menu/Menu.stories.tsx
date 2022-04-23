@@ -17,7 +17,7 @@ const MenuTemplate: ComponentStory<typeof Menu> = ({ ...args }) => (
 );
 
 const BASIC_CHILDREN = [
-  <MenuButton>Hi</MenuButton>,
+  <MenuButton>Actions</MenuButton>,
   <MenuList>
     <MenuItem>Save</MenuItem>
     <MenuItem>Make a copy</MenuItem>
@@ -40,3 +40,17 @@ DarkThemeExample.args = {
   theme: "dark",
 } as MenuContextProps;
 DarkThemeExample.parameters = { backgrounds: { default: "dark" } };
+
+export const WithAccessToIsOpenState = MenuTemplate.bind({});
+WithAccessToIsOpenState.args = {
+  children: ({ isOpen }) => {
+    return [
+      <MenuButton>{isOpen ? "open" : "closed"}</MenuButton>,
+      <MenuList>
+        <MenuItem>Nothing here</MenuItem>
+      </MenuList>,
+    ];
+  },
+  theme: "dark",
+} as MenuContextProps;
+WithAccessToIsOpenState.parameters = { backgrounds: { default: "dark" } };
