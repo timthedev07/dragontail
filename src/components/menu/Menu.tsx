@@ -23,6 +23,7 @@ export interface MenuContextProps {
   isOpen?: boolean;
   onClose?: Function;
   onOpen?: Function;
+  isLazy?: boolean;
 }
 
 interface MenuContextType {
@@ -32,6 +33,7 @@ interface MenuContextType {
   open: Function;
   close: Function;
   setIsOpen: Dispatch<SetStateAction<boolean>>;
+  isLazy: boolean;
 }
 
 const MenuContext = React.createContext<MenuContextType>({
@@ -41,6 +43,7 @@ const MenuContext = React.createContext<MenuContextType>({
   close: placeholderFn,
   theme: "light",
   menuDirection: "downward",
+  isLazy: false,
 });
 
 export const useMenu = () => {
@@ -53,6 +56,7 @@ export const Menu: React.FC<MenuContextProps> = ({
   isOpen: propsIsOpen,
   onClose = placeholderFn,
   onOpen = placeholderFn,
+  isLazy = false,
 }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [menuDirection] = useState<MenuDirection>("downward");
@@ -93,6 +97,7 @@ export const Menu: React.FC<MenuContextProps> = ({
     close,
     open,
     setIsOpen,
+    isLazy,
   };
 
   useClickOutside(menuRef, () => {
