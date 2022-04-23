@@ -10,12 +10,15 @@ import { DragontailThemeType, useDragontail } from "../../context/ThemeContext";
 import { MaybeRenderProp, runIfFn } from "../../types/Children";
 import { useClickOutside } from "../../utils/hooks";
 import { placeholderFn } from "../../utils/placeholderFunction";
+import { SearchCandidate } from "./MenuList";
 
 interface SearchCharInfo {
   char?: string;
   /** the index of the item that is to be selected **within the subset filtered based on the char** */
   selectionInd?: number;
 }
+
+type UpdateSearchResult = (searchCandidates: SearchCandidate[]) => void;
 
 type MenuDirection = "upward" | "downward";
 
@@ -43,6 +46,9 @@ interface MenuContextType {
   isLazy: boolean;
   currSearch: SearchCharInfo;
   searchResultChildren: string | null;
+  updateSearchResult: UpdateSearchResult;
+  availableInitials: string[];
+  setAvailableInitials: Dispatch<SetStateAction<string[]>>;
 }
 
 const MenuContext = React.createContext<MenuContextType>({
@@ -55,6 +61,9 @@ const MenuContext = React.createContext<MenuContextType>({
   isLazy: false,
   currSearch: {},
   searchResultChildren: null,
+  updateSearchResult: placeholderFn,
+  availableInitials: [],
+  setAvailableInitials: placeholderFn,
 });
 
 export const useMenu = () => {
@@ -76,19 +85,38 @@ export const Menu: React.FC<MenuContextProps> = ({
   const menuRef = useRef<HTMLDivElement | null>(null);
 
   const [currSearch, setCurrSearch] = useState<SearchCharInfo>({});
+  const [availableInitials, setAvailableInitials] = useState<string[]>([]);
   const [searchResultChildren, setSearchResultChildren] =
     useState<string | null>(null);
+
+  const updateSearchResult: UpdateSearchResult = (
+    searchCandidates: SearchCandidate[]
+  ) => {
+    const { selectionInd } = currSearch;
+    const numCandidates = searchCandidates.length;
+
+    if (selectionInd === undefined || numCandidates < 1) return;
+
+    const candidateInd = selectionInd % numCandidates;
+    setSearchResultChildren(searchCandidates[candidateInd].text);
+  };
 
   useEffect(() => {
     const keyboardHandler = (ev: KeyboardEvent) => {
       const { key } = ev;
       if (key.length === 1) {
         setCurrSearch((prev) => {
-          if (prev.selectionInd && prev.char) {
+          // if the previous searched character is the one that is entered this time
+          if (
+            prev.selectionInd !== undefined &&
+            prev.char &&
+            prev.char === key
+          ) {
             return {
               char: prev.char,
               selectionInd: prev.selectionInd + 1,
             };
+            // new search
           } else {
             return {
               char: key,
@@ -104,10 +132,10 @@ export const Menu: React.FC<MenuContextProps> = ({
       }
     };
 
-    window.addEventListener("keydown", keyboardHandler);
+    window.addEventListener("keyup", keyboardHandler);
 
     return () => {
-      window.removeEventListener("keydown", keyboardHandler);
+      window.removeEventListener("keyup", keyboardHandler);
     };
   }, []);
 
@@ -131,6 +159,9 @@ export const Menu: React.FC<MenuContextProps> = ({
     isLazy,
     currSearch,
     searchResultChildren,
+    updateSearchResult,
+    setAvailableInitials,
+    availableInitials,
   };
 
   useClickOutside(menuRef, () => {

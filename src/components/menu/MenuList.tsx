@@ -10,22 +10,23 @@ import { useMenu } from "./Menu";
 
 export type MenuListProps = {};
 
+export type SearchCandidate = { ind: number; text: string };
+
 /**
  * Wrapper component for MenuItem, it must also be a direct child of Menu.
  */
 export const MenuList: FC<
   DetailedHTMLProps<HTMLAttributes<HTMLUListElement>, HTMLUListElement>
 > = ({ children }) => {
-  const { isOpen, theme, isLazy, currSearch: currSearchLetter } = useMenu();
+  const { isOpen, theme, isLazy, currSearch, updateSearchResult } = useMenu();
 
-  const [searchCandidates, setSearchCandidates] = useState<
-    { ind: number; text: string }[]
-  >([]);
   const menuListOpenStyles = "absolute animate-menu-open origin-top-left";
   const menuListClosedStyles = "hidden";
 
   useEffect(() => {
     const childrenArr = Children.toArray(children);
+
+    const newCandidates: SearchCandidate[] = [];
 
     childrenArr.forEach((each, ind) => {
       // if the current child is a menu item with children
@@ -37,21 +38,27 @@ export const MenuList: FC<
       ) {
         if (
           (each.props.children as string).charAt(0).toLowerCase() ===
-          currSearchLetter.char
+          currSearch.char
         ) {
-          setSearchCandidates((prev) => {
-            return [
-              ...prev,
-              {
-                ind,
-                text: each.props.children,
-              },
-            ];
-          });
+          if (
+            newCandidates.findIndex((val) => {
+              return val.ind === ind;
+            }) > -1
+          ) {
+          } else {
+            newCandidates.push({
+              ind,
+              text: each.props.children,
+            });
+          }
         }
       }
     });
-  }, [children]);
+
+    updateSearchResult(newCandidates);
+  }, [children, currSearch]);
+
+  useEffect(() => {}, [children]);
 
   return (
     <ul
