@@ -4,7 +4,6 @@ import {
   FC,
   HTMLAttributes,
   useEffect,
-  useState,
 } from "react";
 import { useMenu } from "./Menu";
 

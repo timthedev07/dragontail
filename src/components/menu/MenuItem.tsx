@@ -1,4 +1,10 @@
-import { DetailedHTMLProps, FC, LiHTMLAttributes } from "react";
+import {
+  DetailedHTMLProps,
+  FC,
+  LiHTMLAttributes,
+  useEffect,
+  useRef,
+} from "react";
 import { useMenu } from "./Menu";
 
 interface MenuItemProps
@@ -8,16 +14,36 @@ interface MenuItemProps
 
 export const MenuItem: FC<MenuItemProps> = ({
   children,
-  className,
+  className = "",
+  ref: _,
   ...props
 }) => {
   const { theme, searchResultChildren } = useMenu();
+  const liRef = useRef<HTMLLIElement | null>(null);
+
+  const selectedBySearch =
+    typeof children === "string" && searchResultChildren === children;
+
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if (e.key.toLowerCase() === "enter" && selectedBySearch) {
+        console.log("this should work");
+        liRef.current?.click();
+      }
+    };
+    window.addEventListener("keydown", handler);
+
+    return () => {
+      window.removeEventListener("keydown", handler);
+    };
+  }, [selectedBySearch]);
 
   return (
     <li
       {...props}
+      ref={liRef}
       className={`cursor-pointer p-2 px-3 bg-slate-300/0 w-full min-w-[120px] transition duration-100  ${
-        typeof children === "string" && searchResultChildren === children
+        selectedBySearch
           ? theme === "light"
             ? "bg-slate-200/75 text-black/80"
             : "bg-slate-200/10 text-white/80"
