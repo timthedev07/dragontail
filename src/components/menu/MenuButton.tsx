@@ -8,14 +8,18 @@ export const MenuButton: FC<
     HTMLAttributes<HTMLButtonElement> &
     CustomButtonProps
 > = (props) => {
-  const { setIsOpen, theme } = useMenu();
+  const { close, open, isOpen, theme } = useMenu();
 
   return (
     <Button
       color="neutral"
       theme={theme}
       onClick={() => {
-        setIsOpen((prev) => !prev);
+        if (isOpen) {
+          close();
+        } else {
+          open();
+        }
       }}
       {...props}
       rightIcon={
