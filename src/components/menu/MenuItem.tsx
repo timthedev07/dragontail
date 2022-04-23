@@ -12,10 +12,13 @@ export const MenuItem: FC<MenuItemProps> = ({
   ...props
 }) => {
   const { theme } = useMenu();
+  const accessKey =
+    typeof children === "string" ? children.charAt(0).toLowerCase() : "";
 
   return (
     <li
       {...props}
+      accessKey={accessKey}
       className={`cursor-pointer p-2 px-3 bg-slate-300/0 w-full min-w-[120px] transition duration-100 ${
         theme === "light"
           ? "hover:bg-slate-200/75 text-black/60 hover:text-black/80"

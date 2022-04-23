@@ -11,6 +11,12 @@ import { MaybeRenderProp, runIfFn } from "../../types/Children";
 import { useClickOutside } from "../../utils/hooks";
 import { placeholderFn } from "../../utils/placeholderFunction";
 
+interface SearchCharInfo {
+  char?: string;
+  /** the index of the item that is to be selected **within the subset filtered based on the char** */
+  selectionInd?: number;
+}
+
 type MenuDirection = "upward" | "downward";
 
 interface ExposedValues {
@@ -35,6 +41,8 @@ interface MenuContextType {
   close: Function;
   setIsOpen: Dispatch<SetStateAction<boolean>>;
   isLazy: boolean;
+  currSearch: SearchCharInfo;
+  searchResultChildren: string | null;
 }
 
 const MenuContext = React.createContext<MenuContextType>({
@@ -45,6 +53,8 @@ const MenuContext = React.createContext<MenuContextType>({
   theme: "light",
   menuDirection: "downward",
   isLazy: false,
+  currSearch: {},
+  searchResultChildren: null,
 });
 
 export const useMenu = () => {
@@ -65,20 +75,39 @@ export const Menu: React.FC<MenuContextProps> = ({
   const { theme: appTheme } = useDragontail();
   const menuRef = useRef<HTMLDivElement | null>(null);
 
+  const [currSearch, setCurrSearch] = useState<SearchCharInfo>({});
+  const [searchResultChildren, setSearchResultChildren] =
+    useState<string | null>(null);
+
   useEffect(() => {
-    const scrollHandler = () => {
-      console.log({
-        windowScroll: window.scrollY,
-        windowHeight: window.outerHeight,
-        menuWrapperClientHeight: menuRef.current?.clientHeight,
-        menuWrapperOffsetHeight: menuRef.current?.offsetHeight,
-        menuWrapperScrollHeight: menuRef.current?.scrollHeight,
-      });
+    const keyboardHandler = (ev: KeyboardEvent) => {
+      const { key } = ev;
+      if (key.length === 1) {
+        setCurrSearch((prev) => {
+          if (prev.selectionInd && prev.char) {
+            return {
+              char: prev.char,
+              selectionInd: prev.selectionInd + 1,
+            };
+          } else {
+            return {
+              char: key,
+              selectionInd: 0,
+            };
+          }
+        });
+      } else {
+        setCurrSearch({
+          char: undefined,
+          selectionInd: undefined,
+        });
+      }
     };
-    window.addEventListener("scroll", scrollHandler);
+
+    window.addEventListener("keydown", keyboardHandler);
 
     return () => {
-      window.removeEventListener("scroll", scrollHandler);
+      window.removeEventListener("keydown", keyboardHandler);
     };
   }, []);
 
@@ -100,6 +129,8 @@ export const Menu: React.FC<MenuContextProps> = ({
     open,
     setIsOpen,
     isLazy,
+    currSearch,
+    searchResultChildren,
   };
 
   useClickOutside(menuRef, () => {
