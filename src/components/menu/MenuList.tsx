@@ -20,7 +20,7 @@ export const MenuList: FC<
         isOpen ? menuListOpenStyles : menuListClosedStyles
       } ${
         theme === "dark"
-          ? "bg-slate-700 border-neutral-100/20"
+          ? "bg-gray-800 border-neutral-100/20"
           : "bg-gray-50 border-neutral-300"
       }`}
     >
