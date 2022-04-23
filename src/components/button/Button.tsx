@@ -151,7 +151,7 @@ export const Button: FC<ButtonProps> = ({
   scale = "md",
   ...props
 }) => {
-  const { theme: defaultTheme } = useDragontail();
+  const { theme: defaultTheme, disableButtonFocusRing } = useDragontail();
   const currentTheme = theme ? theme : defaultTheme;
   const chosenColor =
     (color || "teal") +
@@ -178,7 +178,7 @@ export const Button: FC<ButtonProps> = ({
       } ${BASE_BUTTON} ${
         variant === "solid"
           ? `${COLORS.solid[chosenColor]} ${
-              focusEffect
+              !disableButtonFocusRing && focusEffect
                 ? "focus:outline-offset-2 focus:outline focus:outline-2 focus:outline-blue-600"
                 : "focus:outline-none"
             }`
