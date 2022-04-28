@@ -1,4 +1,4 @@
-import { FC, DetailedHTMLProps, HTMLAttributes } from "react";
+import { FC, DetailedHTMLProps, TextareaHTMLAttributes } from "react";
 import { TextboxSharedProps } from "../../types/TextboxSharedProps";
 import { useFormControl } from "../form-control/FormControl";
 import {
@@ -13,7 +13,7 @@ export type ResizeType = "horizontal" | "vertical" | "none" | "both";
 
 export interface TextAreaProps
   extends DetailedHTMLProps<
-      HTMLAttributes<HTMLTextAreaElement>,
+      TextareaHTMLAttributes<HTMLTextAreaElement>,
       HTMLTextAreaElement
     >,
     TextboxSharedProps {
