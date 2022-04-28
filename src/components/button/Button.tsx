@@ -1,4 +1,4 @@
-import { DetailedHTMLProps, FC, HTMLAttributes } from "react";
+import { ButtonHTMLAttributes, DetailedHTMLProps, FC } from "react";
 import { DragontailThemeType, useDragontail } from "../../context/ThemeContext";
 import { CSType } from "../../types/Colors";
 import { DragontailSizeType } from "../../types/Sizes";
@@ -133,7 +133,7 @@ const SIZES: Record<DragontailSizeType, string> = {
 const BASE_BUTTON = "rounded-md flex items-center";
 
 export type ButtonProps = DetailedHTMLProps<
-  HTMLAttributes<HTMLButtonElement>,
+  ButtonHTMLAttributes<HTMLButtonElement>,
   HTMLButtonElement
 > &
   CustomButtonProps;
