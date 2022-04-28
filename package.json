@@ -1,6 +1,6 @@
 {
   "name": "dragontail-experimental",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
@@ -49,7 +49,7 @@
     "eject": "react-scripts eject",
     "build:tailwind": "tailwindcss -o src/build.css --minify",
     "build:rollup": "rollup -c",
-    "build:lib": "yarn build:tailwind && yarn build:rollup && cp src/dragontail.css dist",
+    "build:lib": "yarn build:tailwind && yarn build:rollup && cp src/build.css dist",
     "dev": "react-scripts start",
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public",
