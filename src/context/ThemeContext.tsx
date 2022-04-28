@@ -19,6 +19,7 @@ export const useDragontail = () => {
 interface ProviderProps {
   theme?: DragontailThemeType;
   disableButtonFocusRing?: boolean;
+  children?: React.ReactNode;
 }
 
 export const DragontailProvider: React.FC<ProviderProps> = ({

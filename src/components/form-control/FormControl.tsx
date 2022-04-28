@@ -17,6 +17,7 @@ export const getFormControlContextDefaultProps = () => {
 
 export type FormControlProps = TextboxSharedProps & {
   className?: string;
+  children?: React.ReactNode;
 };
 
 export type FormControlContextProps = {
