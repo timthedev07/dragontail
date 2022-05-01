@@ -62,7 +62,7 @@ export const useFormControl = (
 
 export const FormControl: React.FC<FormControlProps> = ({
   children,
-  className = "",
+  className = "gap-3",
   ...rest
 }) => {
   const defaultProps = getFormControlContextDefaultProps();
@@ -86,7 +86,7 @@ export const FormControl: React.FC<FormControlProps> = ({
 
   return (
     <FormControlContext.Provider value={final} {...rest}>
-      <div className={`flex flex-col gap-3 p-2 ${className}`}>{children}</div>
+      <div className={`flex flex-col ${className}`}>{children}</div>
     </FormControlContext.Provider>
   );
 };
