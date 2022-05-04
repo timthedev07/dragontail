@@ -62,11 +62,13 @@ export const Select: FC<SelectProps> = ({
       defaultValue=""
     >
       {placeholder && (
-        <option disabled value="">
+        <option className="text-black/100" disabled value="">
           {placeholder}
         </option>
       )}
-      {children}
+      <div className="text-black/100">
+        {children}
+      </div>
     </select>
   );
 };
