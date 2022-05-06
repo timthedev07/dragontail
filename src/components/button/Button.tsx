@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes, DetailedHTMLProps, FC } from "react";
+import { ButtonHTMLAttributes, DetailedHTMLProps, forwardRef } from "react";
 import { DragontailThemeType, useDragontail } from "../../context/ThemeContext";
 import { CSType } from "../../types/Colors";
 import { DragontailSizeType } from "../../types/Sizes";
@@ -138,92 +138,98 @@ export type ButtonProps = DetailedHTMLProps<
 > &
   CustomButtonProps;
 
-export const Button: FC<ButtonProps> = ({
-  children,
-  isDisabled = false,
-  leftIcon,
-  rightIcon,
-  variant = "solid",
-  color,
-  className,
-  theme,
-  focusEffect = true,
-  scale = "md",
-  ...props
-}) => {
-  const { theme: defaultTheme, disableButtonFocusRing } = useDragontail();
-  const currentTheme = theme ? theme : defaultTheme;
-  const chosenColor =
-    (color || "teal") +
-    (currentTheme === "dark" && color === "neutral" ? "-dark" : "");
+export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+  (
+    {
+      children,
+      isDisabled = false,
+      leftIcon,
+      rightIcon,
+      variant = "solid",
+      color,
+      className,
+      theme,
+      focusEffect = true,
+      scale = "md",
+      ...props
+    },
+    ref
+  ) => {
+    const { theme: defaultTheme, disableButtonFocusRing } = useDragontail();
+    const currentTheme = theme ? theme : defaultTheme;
+    const chosenColor =
+      (color || "teal") +
+      (currentTheme === "dark" && color === "neutral" ? "-dark" : "");
 
-  return (
-    <button
-      className={`${className || ""} ${SIZES[scale]} min-w-fit ${
-        theme === "dark" && "bg-opacity-75 hover:bg-opacity-90"
-      } transition-colors duration-200 ${
-        isDisabled
-          ? `cursor-not-allowed text-opacity-70`
-          : `${
-              variant === "ghost" || variant === "solid"
-                ? ENABLED_STYLES[currentTheme][variant][chosenColor]
-                : variant === "outline"
-                ? ENABLED_STYLES[currentTheme]["ghost"][chosenColor]
-                : ""
-            }`
-      } ${
-        leftIcon === undefined && rightIcon === undefined
-          ? "justify-center"
-          : "justify-start"
-      } ${BASE_BUTTON} ${
-        variant === "solid"
-          ? `${COLORS.solid[chosenColor]} ${
-              !disableButtonFocusRing && focusEffect
-                ? "focus:outline-offset-2 focus:outline focus:outline-2 focus:outline-blue-600"
-                : "focus:outline-none"
-            }`
-          : variant === "link"
-          ? `${COLORS.ghost[chosenColor]} ${
-              !isDisabled && "hover:underline"
-            } no-underline bg-transparent border-none outline-none`
-          : variant === "ghost"
-          ? `transition duration-200 ${
-              currentTheme === "dark"
-                ? "hover:bg-opacity-30"
-                : "hover:bg-opacity-50"
-            } bg-transparent  ${COLORS.ghost[chosenColor]}`
-          : `border transition-colors duration-200 hover:outline-none hover:bg-opacity-30 bg-transparent ${COLORS.ghost[chosenColor]} ${COLORS.outline[chosenColor]}`
-      }`}
-      disabled={isDisabled}
-      {...props}
-    >
-      {leftIcon ? (
-        <div
-          className={`w-4 h-4 flex justify-center items-center ${
-            variant === "solid"
-              ? chosenColor === "light" || chosenColor === "neutral"
-                ? "text-black"
-                : "text-white"
-              : COLORS.ghost[chosenColor]
-          }`}
-        >
-          {leftIcon}
-        </div>
-      ) : null}
-      {children}
-      {rightIcon ? (
-        <div
-          className={`w-4 h-4 flex justify-center items-center ${
-            variant === "solid"
-              ? chosenColor === "light" || chosenColor === "neutral"
-                ? "text-black"
-                : "text-white"
-              : COLORS.ghost[chosenColor]
-          }`}
-        >
-          {rightIcon}
-        </div>
-      ) : null}
-    </button>
-  );
-};
+    return (
+      <button
+        ref={ref}
+        className={`${className || ""} ${SIZES[scale]} min-w-fit ${
+          theme === "dark" && "bg-opacity-75 hover:bg-opacity-90"
+        } transition-colors duration-200 ${
+          isDisabled
+            ? `cursor-not-allowed text-opacity-70`
+            : `${
+                variant === "ghost" || variant === "solid"
+                  ? ENABLED_STYLES[currentTheme][variant][chosenColor]
+                  : variant === "outline"
+                  ? ENABLED_STYLES[currentTheme]["ghost"][chosenColor]
+                  : ""
+              }`
+        } ${
+          leftIcon === undefined && rightIcon === undefined
+            ? "justify-center"
+            : "justify-start"
+        } ${BASE_BUTTON} ${
+          variant === "solid"
+            ? `${COLORS.solid[chosenColor]} ${
+                !disableButtonFocusRing && focusEffect
+                  ? "focus:outline-offset-2 focus:outline focus:outline-2 focus:outline-blue-600"
+                  : "focus:outline-none"
+              }`
+            : variant === "link"
+            ? `${COLORS.ghost[chosenColor]} ${
+                !isDisabled && "hover:underline"
+              } no-underline bg-transparent border-none outline-none`
+            : variant === "ghost"
+            ? `transition duration-200 ${
+                currentTheme === "dark"
+                  ? "hover:bg-opacity-30"
+                  : "hover:bg-opacity-50"
+              } bg-transparent  ${COLORS.ghost[chosenColor]}`
+            : `border transition-colors duration-200 hover:outline-none hover:bg-opacity-30 bg-transparent ${COLORS.ghost[chosenColor]} ${COLORS.outline[chosenColor]}`
+        }`}
+        disabled={isDisabled}
+        {...props}
+      >
+        {leftIcon ? (
+          <div
+            className={`w-4 h-4 flex justify-center items-center ${
+              variant === "solid"
+                ? chosenColor === "light" || chosenColor === "neutral"
+                  ? "text-black"
+                  : "text-white"
+                : COLORS.ghost[chosenColor]
+            }`}
+          >
+            {leftIcon}
+          </div>
+        ) : null}
+        {children}
+        {rightIcon ? (
+          <div
+            className={`w-4 h-4 flex justify-center items-center ${
+              variant === "solid"
+                ? chosenColor === "light" || chosenColor === "neutral"
+                  ? "text-black"
+                  : "text-white"
+                : COLORS.ghost[chosenColor]
+            }`}
+          >
+            {rightIcon}
+          </div>
+        ) : null}
+      </button>
+    );
+  }
+);
