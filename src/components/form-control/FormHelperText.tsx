@@ -1,22 +1,28 @@
-import { DetailedHTMLProps, FC, LabelHTMLAttributes } from "react";
+import { DetailedHTMLProps, forwardRef, LabelHTMLAttributes } from "react";
 import { TextboxSharedProps } from "../../types/TextboxSharedProps";
 import { useFormControl } from "./FormControl";
 
-export const FormHelperText: FC<
-  DetailedHTMLProps<LabelHTMLAttributes<HTMLSpanElement>, HTMLSpanElement> &
-    TextboxSharedProps
-> = ({ theme: propsTheme, ...props }) => {
-  const { theme } = useFormControl("helper-text", {
-    theme: propsTheme,
-  });
+export type FormHelperTextProps = DetailedHTMLProps<
+  LabelHTMLAttributes<HTMLSpanElement>,
+  HTMLSpanElement
+> &
+  TextboxSharedProps;
 
-  return (
-    <span
-      {...props}
-      className={
-        (theme === "light" ? "text-neutral-800/60" : "text-neutral-400") +
-        " text-sm"
-      }
-    />
-  );
-};
+export const FormHelperText = forwardRef<HTMLSpanElement, FormHelperTextProps>(
+  ({ theme: propsTheme, ...props }, ref) => {
+    const { theme } = useFormControl("helper-text", {
+      theme: propsTheme,
+    });
+
+    return (
+      <span
+        ref={ref}
+        {...props}
+        className={
+          (theme === "light" ? "text-neutral-800/60" : "text-neutral-400") +
+          " text-sm"
+        }
+      />
+    );
+  }
+);
