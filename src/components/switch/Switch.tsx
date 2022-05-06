@@ -1,4 +1,9 @@
-import { ChangeEvent, DetailedHTMLProps, FC, InputHTMLAttributes } from "react";
+import {
+  ChangeEvent,
+  DetailedHTMLProps,
+  forwardRef,
+  InputHTMLAttributes,
+} from "react";
 import { CSType } from "../../types/Colors";
 import { DragontailSizeType } from "../../types/Sizes";
 import { TextboxSharedProps } from "../../types/TextboxSharedProps";
@@ -62,31 +67,38 @@ export const MEASUREMENTS: Record<DragontailSizeType, SwitchMeasurements> = {
   },
 };
 
-export const Switch: FC<SwitchProps> = ({
-  defaultChecked: propsDefaultChecked,
-  variant: propsVariant,
-  theme: propsTheme,
-  isDisabled: propsDisabled,
-  isRequired: propsRequired,
-  isInvalid: propsInvalid,
-  scale = "md",
-  onChange,
-  checkedColor = "emerald",
-  checked,
-  ...rest
-}) => {
-  const { defaultChecked, isDisabled, theme } = useFormControl("input-field", {
-    defaultChecked: propsDefaultChecked,
-    variant: propsVariant,
-    theme: propsTheme,
-    isDisabled: propsDisabled,
-    isRequired: propsRequired,
-    isInvalid: propsInvalid,
-  });
+export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
+  (
+    {
+      defaultChecked: propsDefaultChecked,
+      variant: propsVariant,
+      theme: propsTheme,
+      isDisabled: propsDisabled,
+      isRequired: propsRequired,
+      isInvalid: propsInvalid,
+      scale = "md",
+      onChange,
+      checkedColor = "emerald",
+      checked,
+      ...rest
+    },
+    ref
+  ) => {
+    const { defaultChecked, isDisabled, theme } = useFormControl(
+      "input-field",
+      {
+        defaultChecked: propsDefaultChecked,
+        variant: propsVariant,
+        theme: propsTheme,
+        isDisabled: propsDisabled,
+        isRequired: propsRequired,
+        isInvalid: propsInvalid,
+      }
+    );
 
-  return (
-    <div>
+    return (
       <input
+        ref={ref}
         disabled={isDisabled}
         {...rest}
         checked={checked}
@@ -109,6 +121,6 @@ export const Switch: FC<SwitchProps> = ({
         } ${isDisabled ? "cursor-not-allowed opacity-40" : "cursor-pointer"}`}
         type="checkbox"
       />
-    </div>
-  );
-};
+    );
+  }
+);
