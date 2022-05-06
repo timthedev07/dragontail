@@ -1,5 +1,5 @@
 import { TextboxSharedProps } from "../../types/TextboxSharedProps";
-import React, { useContext } from "react";
+import React, { forwardRef, useContext } from "react";
 import { ComponentRole } from "../../types/ComponentRoleTypes";
 import { useDragontail } from "../../context/ThemeContext";
 
@@ -60,33 +60,33 @@ export const useFormControl = (
   return context[found] as Required<FormControlContextProps>;
 };
 
-export const FormControl: React.FC<FormControlProps> = ({
-  children,
-  className = "gap-3",
-  ...rest
-}) => {
-  const defaultProps = getFormControlContextDefaultProps();
+export const FormControl = forwardRef<HTMLDivElement, FormControlProps>(
+  ({ children, className = "gap-3", ...rest }, ref) => {
+    const defaultProps = getFormControlContextDefaultProps();
 
-  const roles: Array<ComponentRole> = [
-    "error-message",
-    "helper-text",
-    "input-label",
-    "input-field",
-  ];
+    const roles: Array<ComponentRole> = [
+      "error-message",
+      "helper-text",
+      "input-label",
+      "input-field",
+    ];
 
-  const final = [] as FormControlContextProps[];
+    const final = [] as FormControlContextProps[];
 
-  roles.map((val) =>
-    final.push({
-      componentRole: val,
-      ...defaultProps,
-      ...rest,
-    })
-  ) as FormControlContextProps;
+    roles.map((val) =>
+      final.push({
+        componentRole: val,
+        ...defaultProps,
+        ...rest,
+      })
+    ) as FormControlContextProps;
 
-  return (
-    <FormControlContext.Provider value={final} {...rest}>
-      <div className={`flex flex-col ${className}`}>{children}</div>
-    </FormControlContext.Provider>
-  );
-};
+    return (
+      <FormControlContext.Provider value={final} {...rest}>
+        <div className={`flex flex-col ${className}`} ref={ref}>
+          {children}
+        </div>
+      </FormControlContext.Provider>
+    );
+  }
+);
