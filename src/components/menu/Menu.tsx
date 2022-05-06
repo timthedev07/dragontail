@@ -1,5 +1,6 @@
 import React, {
   Dispatch,
+  forwardRef,
   SetStateAction,
   useContext,
   useEffect,
@@ -70,113 +71,118 @@ export const useMenu = () => {
   return useContext(MenuContext);
 };
 
-export const Menu: React.FC<MenuContextProps> = ({
-  children,
-  theme,
-  isOpen: propsIsOpen,
-  onClose = placeholderFn,
-  onOpen = placeholderFn,
-  isLazy = false,
-  className = "",
-}) => {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [menuDirection] = useState<MenuDirection>("downward");
-  const { theme: appTheme } = useDragontail();
-  const menuRef = useRef<HTMLDivElement | null>(null);
-
-  const [currSearch, setCurrSearch] = useState<SearchCharInfo>({});
-  const [availableInitials, setAvailableInitials] = useState<string[]>([]);
-  const [searchResultChildren, setSearchResultChildren] =
-    useState<string | null>(null);
-
-  const updateSearchResult: UpdateSearchResult = (
-    searchCandidates: SearchCandidate[]
+export const Menu = forwardRef<HTMLDivElement, MenuContextProps>(
+  (
+    {
+      children,
+      theme,
+      isOpen: _,
+      onClose = placeholderFn,
+      onOpen = placeholderFn,
+      isLazy = false,
+      className = "",
+    },
+    ref
   ) => {
-    const { selectionInd } = currSearch;
-    const numCandidates = searchCandidates.length;
+    const [isOpen, setIsOpen] = useState<boolean>(false);
+    const [menuDirection] = useState<MenuDirection>("downward");
+    const { theme: appTheme } = useDragontail();
+    const menuRef = useRef<HTMLDivElement | null>(ref as any);
 
-    if (selectionInd === undefined || numCandidates < 1) return;
+    const [currSearch, setCurrSearch] = useState<SearchCharInfo>({});
+    const [availableInitials, setAvailableInitials] = useState<string[]>([]);
+    const [searchResultChildren, setSearchResultChildren] =
+      useState<string | null>(null);
 
-    const candidateInd = selectionInd % numCandidates;
-    setSearchResultChildren(searchCandidates[candidateInd].text);
-  };
+    const updateSearchResult: UpdateSearchResult = (
+      searchCandidates: SearchCandidate[]
+    ) => {
+      const { selectionInd } = currSearch;
+      const numCandidates = searchCandidates.length;
 
-  useEffect(() => {
-    const keyboardHandler = (ev: KeyboardEvent) => {
-      const { key } = ev;
-      if (key.length === 1) {
-        setCurrSearch((prev) => {
-          // if the previous searched character is the one that is entered this time
-          if (
-            prev.selectionInd !== undefined &&
-            prev.char &&
-            prev.char === key
-          ) {
-            return {
-              char: prev.char,
-              selectionInd: prev.selectionInd + 1,
-            };
-            // new search
-          } else {
-            return {
-              char: key,
-              selectionInd: 0,
-            };
-          }
-        });
-      } else {
-        setCurrSearch({
-          char: undefined,
-          selectionInd: undefined,
-        });
-      }
+      if (selectionInd === undefined || numCandidates < 1) return;
+
+      const candidateInd = selectionInd % numCandidates;
+      setSearchResultChildren(searchCandidates[candidateInd].text);
     };
 
-    window.addEventListener("keyup", keyboardHandler);
+    useEffect(() => {
+      const keyboardHandler = (ev: KeyboardEvent) => {
+        const { key } = ev;
+        if (key.length === 1) {
+          setCurrSearch((prev) => {
+            // if the previous searched character is the one that is entered this time
+            if (
+              prev.selectionInd !== undefined &&
+              prev.char &&
+              prev.char === key
+            ) {
+              return {
+                char: prev.char,
+                selectionInd: prev.selectionInd + 1,
+              };
+              // new search
+            } else {
+              return {
+                char: key,
+                selectionInd: 0,
+              };
+            }
+          });
+        } else {
+          setCurrSearch({
+            char: undefined,
+            selectionInd: undefined,
+          });
+        }
+      };
 
-    return () => {
-      window.removeEventListener("keyup", keyboardHandler);
+      window.addEventListener("keyup", keyboardHandler);
+
+      return () => {
+        window.removeEventListener("keyup", keyboardHandler);
+      };
+    }, []);
+
+    const close = () => {
+      setIsOpen(false);
+      onClose();
+      setCurrSearch({});
+      setSearchResultChildren(null);
     };
-  }, []);
 
-  const close = () => {
-    setIsOpen(false);
-    onClose();
-    setCurrSearch({});
-    setSearchResultChildren(null);
-  };
+    const open = () => {
+      setIsOpen(true);
+      onOpen();
+    };
 
-  const open = () => {
-    setIsOpen(true);
-    onOpen();
-  };
+    const value: MenuContextType = {
+      isOpen,
+      theme: theme || appTheme,
+      menuDirection,
+      close,
+      open,
+      setIsOpen,
+      isLazy,
+      currSearch,
+      searchResultChildren,
+      updateSearchResult,
+      setAvailableInitials,
+      availableInitials,
+    };
 
-  const value: MenuContextType = {
-    isOpen,
-    theme: theme || appTheme,
-    menuDirection,
-    close,
-    open,
-    setIsOpen,
-    isLazy,
-    currSearch,
-    searchResultChildren,
-    updateSearchResult,
-    setAvailableInitials,
-    availableInitials,
-  };
+    useClickOutside(menuRef, () => {
+      close();
+    });
 
-  useClickOutside(menuRef, () => {
-    close();
-  });
-
-  return (
-    <MenuContext.Provider value={value}>
-      <div ref={menuRef} className={`w-min relative ${className}`}>
-        {runIfFn(children, {
-          isOpen,
-        })}
-      </div>
-    </MenuContext.Provider>
-  );
-};
+    return (
+      <MenuContext.Provider value={value}>
+        <div ref={menuRef} className={`w-min relative ${className}`}>
+          {runIfFn(children, {
+            isOpen,
+          })}
+        </div>
+      </MenuContext.Provider>
+    );
+  }
+);
