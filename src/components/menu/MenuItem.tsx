@@ -1,6 +1,6 @@
 import {
   DetailedHTMLProps,
-  FC,
+  forwardRef,
   LiHTMLAttributes,
   useEffect,
   useRef,
@@ -12,49 +12,45 @@ interface MenuItemProps
   className?: string;
 }
 
-export const MenuItem: FC<MenuItemProps> = ({
-  children,
-  className = "",
-  ref: _,
-  ...props
-}) => {
-  const { theme, searchResultChildren } = useMenu();
-  const liRef = useRef<HTMLLIElement | null>(null);
+export const MenuItem = forwardRef<HTMLLIElement, MenuItemProps>(
+  ({ children, className = "", ref: _, ...props }, ref) => {
+    const { theme, searchResultChildren } = useMenu();
+    const liRef = useRef<HTMLLIElement | null>(ref as any);
 
-  const selectedBySearch =
-    typeof children === "string" && searchResultChildren === children;
+    const selectedBySearch =
+      typeof children === "string" && searchResultChildren === children;
 
-  useEffect(() => {
-    const handler = (e: KeyboardEvent) => {
-      if (e.key.toLowerCase() === "enter" && selectedBySearch) {
-        console.log("this should work");
-        liRef.current?.click();
-      }
-    };
-    window.addEventListener("keydown", handler);
+    useEffect(() => {
+      const handler = (e: KeyboardEvent) => {
+        if (e.key.toLowerCase() === "enter" && selectedBySearch) {
+          liRef.current?.click();
+        }
+      };
+      window.addEventListener("keydown", handler);
 
-    return () => {
-      window.removeEventListener("keydown", handler);
-    };
-  }, [selectedBySearch]);
+      return () => {
+        window.removeEventListener("keydown", handler);
+      };
+    }, [selectedBySearch]);
 
-  return (
-    <li
-      {...props}
-      ref={liRef}
-      className={`cursor-pointer p-2 px-3 bg-slate-300/0 w-full min-w-[120px] transition duration-100  ${
-        selectedBySearch
-          ? theme === "light"
-            ? "bg-slate-200/75 text-black/80"
-            : "bg-slate-200/10 text-white/80"
-          : `bg-inherit ${
-              theme === "light"
-                ? "hover:bg-slate-200/75 text-black/60 hover:text-black/80"
-                : "hover:bg-slate-200/10 text-white/60 hover:text-white/80"
-            }`
-      } ${className}`}
-    >
-      {children}
-    </li>
-  );
-};
+    return (
+      <li
+        {...props}
+        ref={liRef}
+        className={`cursor-pointer p-2 px-3 bg-slate-300/0 w-full min-w-[120px] transition duration-100  ${
+          selectedBySearch
+            ? theme === "light"
+              ? "bg-slate-200/75 text-black/80"
+              : "bg-slate-200/10 text-white/80"
+            : `bg-inherit ${
+                theme === "light"
+                  ? "hover:bg-slate-200/75 text-black/60 hover:text-black/80"
+                  : "hover:bg-slate-200/10 text-white/60 hover:text-white/80"
+              }`
+        } ${className}`}
+      >
+        {children}
+      </li>
+    );
+  }
+);
