@@ -1,10 +1,5 @@
-import {
-  Children,
-  DetailedHTMLProps,
-  forwardRef,
-  HTMLAttributes,
-  useEffect,
-} from "react";
+import { Children, DetailedHTMLProps, HTMLAttributes, useEffect } from "react";
+import { forwardRef } from "../../utils/forwardRef";
 import { useMenu } from "./Menu";
 
 export type MenuListProps = {};

@@ -1,4 +1,5 @@
-import { ClassAttributes, forwardRef, HTMLAttributes } from "react";
+import { ClassAttributes, HTMLAttributes } from "react";
+import { forwardRef } from "../../utils/forwardRef";
 import { Button } from "../button";
 import { CustomButtonProps } from "../button/Button";
 import { useMenu } from "./Menu";

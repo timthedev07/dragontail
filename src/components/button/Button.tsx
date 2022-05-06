@@ -1,8 +1,9 @@
-import { ButtonHTMLAttributes, DetailedHTMLProps, forwardRef } from "react";
+import { ButtonHTMLAttributes, DetailedHTMLProps } from "react";
 import { DragontailThemeType, useDragontail } from "../../context/ThemeContext";
 import { CSType } from "../../types/Colors";
 import { DragontailSizeType } from "../../types/Sizes";
 import { ButtonVariants } from "../../types/Variants";
+import { forwardRef } from "../../utils/forwardRef";
 
 export interface CustomButtonProps {
   color?: CSType;

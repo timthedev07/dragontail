@@ -1,12 +1,8 @@
-import {
-  ChangeEvent,
-  DetailedHTMLProps,
-  forwardRef,
-  InputHTMLAttributes,
-} from "react";
+import { ChangeEvent, DetailedHTMLProps, InputHTMLAttributes } from "react";
 import { CSType } from "../../types/Colors";
 import { DragontailSizeType } from "../../types/Sizes";
 import { TextboxSharedProps } from "../../types/TextboxSharedProps";
+import { forwardRef } from "../../utils/forwardRef";
 import { useFormControl } from "../form-control/FormControl";
 
 export type SwitchCSType = Exclude<CSType, "neutral">;

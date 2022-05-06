@@ -1,7 +1,8 @@
-import { DetailedHTMLProps, forwardRef, SelectHTMLAttributes } from "react";
+import { DetailedHTMLProps, SelectHTMLAttributes } from "react";
 import { DragontailThemeType } from "../../context/ThemeContext";
 import { TextboxSharedProps } from "../../types/TextboxSharedProps";
 import { InputVariants } from "../../types/Variants";
+import { forwardRef } from "../../utils/forwardRef";
 import { useFormControl } from "../form-control/FormControl";
 import {
   INPUT_CORNER_ROUNDING,

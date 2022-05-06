@@ -1,7 +1,8 @@
 import { TextboxSharedProps } from "../../types/TextboxSharedProps";
-import React, { forwardRef, useContext } from "react";
+import React, { useContext } from "react";
 import { ComponentRole } from "../../types/ComponentRoleTypes";
 import { useDragontail } from "../../context/ThemeContext";
+import { forwardRef } from "../../utils/forwardRef";
 
 export const getFormControlContextDefaultProps = () => {
   const { theme } = useDragontail();

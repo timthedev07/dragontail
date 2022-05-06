@@ -1,4 +1,5 @@
-import { DetailedHTMLProps, forwardRef, HTMLAttributes } from "react";
+import { DetailedHTMLProps, HTMLAttributes } from "react";
+import { forwardRef } from "../../utils/forwardRef";
 import { useMenu } from "./Menu";
 
 export type MenuDividerProps = DetailedHTMLProps<

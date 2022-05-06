@@ -1,5 +1,6 @@
-import { DetailedHTMLProps, forwardRef, LabelHTMLAttributes } from "react";
+import { DetailedHTMLProps, LabelHTMLAttributes } from "react";
 import { TextboxSharedProps } from "../../types/TextboxSharedProps";
+import { forwardRef } from "../../utils/forwardRef";
 import { useFormControl } from "./FormControl";
 
 export type FormLabelProps = DetailedHTMLProps<

@@ -1,6 +1,5 @@
 import React, {
   Dispatch,
-  forwardRef,
   SetStateAction,
   useContext,
   useEffect,
@@ -9,6 +8,7 @@ import React, {
 } from "react";
 import { DragontailThemeType, useDragontail } from "../../context/ThemeContext";
 import { MaybeRenderProp, runIfFn } from "../../types/Children";
+import { forwardRef } from "../../utils/forwardRef";
 import { useClickOutside } from "../../utils/hooks";
 import { placeholderFn } from "../../utils/placeholderFunction";
 import { SearchCandidate } from "./MenuList";

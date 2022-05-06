@@ -1,4 +1,5 @@
-import { forwardRef, useState } from "react";
+import { useState } from "react";
+import { forwardRef } from "../../utils/forwardRef";
 import { Button } from "../button";
 import { useFormControl } from "../form-control/FormControl";
 import { CustomInputProps } from "./Input";

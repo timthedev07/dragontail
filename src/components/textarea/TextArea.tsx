@@ -1,5 +1,6 @@
-import { DetailedHTMLProps, TextareaHTMLAttributes, forwardRef } from "react";
+import { DetailedHTMLProps, TextareaHTMLAttributes } from "react";
 import { TextboxSharedProps } from "../../types/TextboxSharedProps";
+import { forwardRef } from "../../utils/forwardRef";
 import { useFormControl } from "../form-control/FormControl";
 import {
   disabledClasses,

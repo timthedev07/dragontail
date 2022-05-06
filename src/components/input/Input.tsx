@@ -1,11 +1,7 @@
-import {
-  DetailedHTMLProps,
-  forwardRef,
-  InputHTMLAttributes,
-  ReactNode,
-} from "react";
+import { DetailedHTMLProps, InputHTMLAttributes, ReactNode } from "react";
 import { DragontailSizeType } from "../../types/Sizes";
 import { TextboxSharedProps } from "../../types/TextboxSharedProps";
+import { forwardRef } from "../../utils/forwardRef";
 import { useFormControl } from "../form-control/FormControl";
 import {
   disabledClasses,

@@ -1,10 +1,5 @@
-import {
-  DetailedHTMLProps,
-  forwardRef,
-  LiHTMLAttributes,
-  useEffect,
-  useRef,
-} from "react";
+import { DetailedHTMLProps, LiHTMLAttributes, useEffect, useRef } from "react";
+import { forwardRef } from "../../utils/forwardRef";
 import { useMenu } from "./Menu";
 
 interface MenuItemProps
