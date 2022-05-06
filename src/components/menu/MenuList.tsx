@@ -1,7 +1,7 @@
 import {
   Children,
   DetailedHTMLProps,
-  FC,
+  forwardRef,
   HTMLAttributes,
   useEffect,
 } from "react";
@@ -14,9 +14,10 @@ export type SearchCandidate = { ind: number; text: string };
 /**
  * Wrapper component for MenuItem, it must also be a direct child of Menu.
  */
-export const MenuList: FC<
+export const MenuList = forwardRef<
+  HTMLUListElement,
   DetailedHTMLProps<HTMLAttributes<HTMLUListElement>, HTMLUListElement>
-> = ({ children }) => {
+>(({ children, className, ...props }, ref) => {
   const { isOpen, theme, isLazy, currSearch, updateSearchResult } = useMenu();
 
   const menuListOpenStyles = "absolute animate-menu-open origin-top-left";
@@ -61,15 +62,17 @@ export const MenuList: FC<
 
   return (
     <ul
+      {...props}
       className={`mt-3 flex flex-col gap-0 py-2 min-w-max rounded-md border ${
         isOpen ? menuListOpenStyles : menuListClosedStyles
       } ${
         theme === "dark"
           ? "bg-gray-800 border-neutral-100/20"
           : "bg-gray-50 border-neutral-300"
-      }`}
+      } ${className}`}
+      ref={ref}
     >
       {isLazy ? (isOpen ? children : null) : children}
     </ul>
   );
-};
+});
