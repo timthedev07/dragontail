@@ -1,16 +1,23 @@
-import { DetailedHTMLProps, FC, HTMLAttributes } from "react";
+import { DetailedHTMLProps, forwardRef, HTMLAttributes } from "react";
 import { useMenu } from "./Menu";
 
-export const MenuDivider: FC<
-  DetailedHTMLProps<HTMLAttributes<HTMLHRElement>, HTMLHRElement>
-> = ({}) => {
-  const { theme } = useMenu();
+export type MenuDividerProps = DetailedHTMLProps<
+  HTMLAttributes<HTMLHRElement>,
+  HTMLHRElement
+>;
 
-  return (
-    <hr
-      className={`border-none h-[1px] my-2 ${
-        theme === "dark" ? "bg-neutral-100 bg-opacity-20" : "bg-neutral-300"
-      }`}
-    />
-  );
-};
+export const MenuDivider = forwardRef<HTMLHRElement, MenuDividerProps>(
+  (props, ref) => {
+    const { theme } = useMenu();
+
+    return (
+      <hr
+        {...props}
+        ref={ref}
+        className={`border-none h-[1px] my-2 ${
+          theme === "dark" ? "bg-neutral-100 bg-opacity-20" : "bg-neutral-300"
+        }`}
+      />
+    );
+  }
+);
