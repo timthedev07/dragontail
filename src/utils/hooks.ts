@@ -4,11 +4,12 @@ export const useClickOutside = <T extends HTMLElement>(
   ref: MutableRefObject<T | null>,
   callback: Function
 ) => {
-  useEventListener("click", (e: any) => {
-    if (ref.current == null || ref.current.contains(e.target)) return;
-    callback(e);
-    document;
-  });
+  if (typeof window !== "undefined")
+    useEventListener("click", (e: any) => {
+      if (ref.current == null || ref.current.contains(e.target)) return;
+      callback(e);
+      document;
+    });
 };
 
 export const useEventListener = (
