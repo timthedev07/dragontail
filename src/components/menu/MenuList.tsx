@@ -53,8 +53,6 @@ export const MenuList = forwardRef<
     updateSearchResult(newCandidates);
   }, [children, currSearch]);
 
-  useEffect(() => {}, [children]);
-
   return (
     <ul
       {...props}

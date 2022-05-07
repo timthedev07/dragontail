@@ -177,7 +177,10 @@ export const Menu = forwardRef<HTMLDivElement, MenuContextProps>(
 
     return (
       <MenuContext.Provider value={value}>
-        <div ref={menuRef} className={`w-min relative ${className}`}>
+        <div
+          ref={menuRef}
+          className={`w-min relative z-[9999999999999] ${className}`}
+        >
           {runIfFn(children, {
             isOpen,
           })}
