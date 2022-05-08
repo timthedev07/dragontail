@@ -35,6 +35,7 @@ export interface MenuContextProps {
   onOpen?: Function;
   isLazy?: boolean;
   className?: string;
+  closeOnItemClick?: boolean;
 }
 
 interface MenuContextType {
@@ -50,6 +51,7 @@ interface MenuContextType {
   updateSearchResult: UpdateSearchResult;
   availableInitials: string[];
   setAvailableInitials: Dispatch<SetStateAction<string[]>>;
+  closeOnItemClick: boolean;
 }
 
 const MenuContext = React.createContext<MenuContextType>({
@@ -65,6 +67,7 @@ const MenuContext = React.createContext<MenuContextType>({
   updateSearchResult: placeholderFn,
   availableInitials: [],
   setAvailableInitials: placeholderFn,
+  closeOnItemClick: true,
 });
 
 export const useMenu = () => {
@@ -81,6 +84,7 @@ export const Menu = forwardRef<HTMLDivElement, MenuContextProps>(
       onOpen = placeholderFn,
       isLazy = false,
       className = "",
+      closeOnItemClick = true,
     },
     ref
   ) => {
@@ -158,6 +162,7 @@ export const Menu = forwardRef<HTMLDivElement, MenuContextProps>(
 
     const value: MenuContextType = {
       isOpen,
+      closeOnItemClick,
       theme: theme || appTheme,
       menuDirection,
       close,

@@ -8,8 +8,8 @@ interface MenuItemProps
 }
 
 export const MenuItem = forwardRef<HTMLLIElement, MenuItemProps>(
-  ({ children, className = "", ref: _, ...props }, ref) => {
-    const { theme, searchResultChildren } = useMenu();
+  ({ children, className = "", ref: _, onClick = () => {}, ...props }, ref) => {
+    const { theme, searchResultChildren, closeOnItemClick, close } = useMenu();
     const liRef = useRef<HTMLLIElement | null>(ref as any);
 
     const selectedBySearch =
@@ -31,6 +31,12 @@ export const MenuItem = forwardRef<HTMLLIElement, MenuItemProps>(
     return (
       <li
         {...props}
+        onClick={(e) => {
+          onClick(e);
+          if (closeOnItemClick) {
+            close();
+          }
+        }}
         ref={liRef}
         className={`cursor-pointer p-2 px-3 bg-slate-300/0 w-full min-w-[120px] transition duration-100  ${
           selectedBySearch
