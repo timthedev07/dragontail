@@ -60,7 +60,7 @@ const ENABLED_STYLES: Record<
       emerald: "hover:bg-emerald-400 focus:bg-emerald-400",
       green: "hover:bg-green-400 focus:bg-green-400",
       neutral: "",
-      "neutral-dark": "hover:bg-slate-400/75 focus:bg-slate-300/60",
+      "neutral-dark": "hover:bg-slate-500/75 focus:bg-slate-400/60",
     },
     ghost: {
       // need further modification
@@ -94,7 +94,7 @@ const COLORS: Record<
     emerald: "bg-emerald-500 text-slate-100",
     green: "bg-green-500 text-slate-100",
     neutral: "bg-slate-200 text-slate-700",
-    "neutral-dark": "bg-slate-500 text-slate-100",
+    "neutral-dark": "bg-slate-500/60 text-slate-100",
   },
   ghost: {
     cyan: "text-cyan-500",
