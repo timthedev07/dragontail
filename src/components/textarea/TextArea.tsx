@@ -55,6 +55,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
 
     return (
       <textarea
+        aria-labelledby={props.name ? props.name : props.placeholder}
         ref={ref}
         {...props}
         disabled={isDisabled}

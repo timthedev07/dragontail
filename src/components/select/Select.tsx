@@ -49,6 +49,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
     return (
       <select
         {...props}
+        aria-labelledby={props.name ? props.name : placeholder}
         ref={ref}
         className={`appearance-none focus:outline-none text-opacity-60 ${invalidClasses(
           isInvalid,

@@ -79,6 +79,7 @@ export const Input = forwardRef<HTMLInputElement, CustomInputProps>(
           <div className={`${ELEMENT_CLASS} left-0`}>{leftElement}</div>
         ) : null}
         <input
+          aria-labelledby={props.name ? props.name : props.placeholder}
           ref={ref}
           className={`${className || ""} ${disabledClasses(isDisabled)} ${
             leftElement && rightElement
