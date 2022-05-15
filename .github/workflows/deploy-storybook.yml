@@ -1,0 +1,16 @@
+name: Deploy Next.js Frontend Web Application
+on:
+  push:
+    branches:
+      - staging
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Install Dependencies
+        run: yarn && yarn add-no-save react react-dom
+      - name: Build & Deploy
+        run: yarn deploy:storybook
