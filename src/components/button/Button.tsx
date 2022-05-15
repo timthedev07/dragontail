@@ -79,49 +79,55 @@ const ENABLED_STYLES: Record<
   },
 };
 
-const COLORS: Record<
-  Exclude<ButtonVariants, "link">,
-  Record<CSType | "neutral-dark", string>
-> = {
-  solid: {
-    cyan: "bg-cyan-500/90 text-slate-100",
-    dark: "bg-slate-800 text-slate-100",
-    light: "bg-neutral-100 text-black",
-    orange: "bg-orange-500 text-slate-100",
-    red: "bg-red-600 text-slate-100",
-    sky: "bg-sky-500 text-slate-100",
-    teal: "bg-teal-500/90 text-slate-100",
-    emerald: "bg-emerald-500 text-slate-100",
-    green: "bg-green-500 text-slate-100",
-    neutral: "bg-slate-200 text-slate-700",
-    "neutral-dark": "bg-slate-500/60 text-slate-100",
-  },
-  ghost: {
-    cyan: "text-cyan-500",
-    dark: "text-slate-900",
-    light: "text-slate-900",
-    orange: "text-orange-500",
-    red: "text-red-500",
-    sky: "text-sky-500",
-    teal: "text-teal-500",
-    emerald: "text-emerald-500",
-    green: "text-green-500",
-    neutral: "text-slate-700",
-    "neutral-dark": "text-slate-200",
-  },
-  outline: {
-    cyan: "border-cyan-600",
-    dark: "border-slate-900",
-    light: "border-slate-400",
-    orange: "border-orange-600",
-    red: "border-red-600",
-    sky: "border-sky-600",
-    teal: "border-teal-600",
-    emerald: "border-emerald-600",
-    green: "border-green-600",
-    neutral: "border-slate-400",
-    "neutral-dark": "border-slate-500",
-  },
+const COLORS = (
+  variant: ButtonVariants,
+  color: CSType,
+  theme: DragontailThemeType
+) => {
+  const TEXT = theme === "dark" ? "text-slate-900" : "text-slate-50";
+
+  const colors = {
+    solid: {
+      cyan: `bg-cyan-500/90 ${TEXT}`,
+      dark: `bg-slate-800 text-slate-50`,
+      light: `bg-neutral-100 text-slate-900`,
+      orange: `bg-orange-500 ${TEXT}`,
+      red: `bg-red-600 ${TEXT}`,
+      sky: `bg-sky-500 ${TEXT}`,
+      teal: `bg-teal-500/90 ${TEXT}`,
+      emerald: `bg-emerald-500 ${TEXT}`,
+      green: `bg-green-500 ${TEXT}`,
+      neutral: `bg-slate-200 text-slate-700`,
+      "neutral-dark": `bg-slate-500/60 text-slate-100`,
+    },
+    ghost: {
+      cyan: "text-cyan-500",
+      dark: "text-slate-900",
+      light: "text-slate-900",
+      orange: "text-orange-500",
+      red: "text-red-500",
+      sky: "text-sky-500",
+      teal: "text-teal-500",
+      emerald: "text-emerald-500",
+      green: "text-green-500",
+      neutral: "text-slate-700",
+      "neutral-dark": "text-slate-200",
+    },
+    outline: {
+      cyan: "border-cyan-600",
+      dark: "border-slate-900",
+      light: "border-slate-400",
+      orange: "border-orange-600",
+      red: "border-red-600",
+      sky: "border-sky-600",
+      teal: "border-teal-600",
+      emerald: "border-emerald-600",
+      green: "border-green-600",
+      neutral: "border-slate-400",
+      "neutral-dark": "border-slate-500",
+    },
+  };
+  return colors[variant][color];
 };
 
 const SIZES: Record<DragontailSizeType, string> = {
@@ -166,7 +172,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       <button
         ref={ref}
         className={`${className || ""} ${SIZES[scale]} min-w-fit ${
-          theme === "dark" && "bg-opacity-75 hover:bg-opacity-90"
+          theme === "dark" ? "brightness-125" : ""
         } transition-colors duration-200 ${
           isDisabled
             ? `cursor-not-allowed text-opacity-70`
@@ -183,13 +189,13 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             : "justify-start"
         } ${BASE_BUTTON} ${
           variant === "solid"
-            ? `${COLORS.solid[chosenColor]} ${
+            ? `${COLORS("solid", chosenColor as any, currentTheme)} ${
                 !disableButtonFocusRing && focusEffect
                   ? "focus:outline-offset-2 focus:outline focus:outline-2 focus:outline-blue-600"
                   : "focus:outline-none"
               }`
             : variant === "link"
-            ? `${COLORS.ghost[chosenColor]} ${
+            ? `${COLORS("ghost", chosenColor as any, currentTheme)} ${
                 !isDisabled && "hover:underline"
               } no-underline bg-transparent border-none outline-none`
             : variant === "ghost"
@@ -197,8 +203,16 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
                 currentTheme === "dark"
                   ? "hover:bg-opacity-30"
                   : "hover:bg-opacity-50"
-              } bg-transparent  ${COLORS.ghost[chosenColor]}`
-            : `border transition-colors duration-200 hover:outline-none hover:bg-opacity-30 bg-transparent ${COLORS.ghost[chosenColor]} ${COLORS.outline[chosenColor]}`
+              } bg-transparent  ${COLORS(
+                "ghost",
+                chosenColor as any,
+                currentTheme
+              )}`
+            : `border transition-colors duration-200 hover:outline-none hover:bg-opacity-30 bg-transparent ${COLORS(
+                "ghost",
+                chosenColor as any,
+                currentTheme
+              )} ${COLORS("outline", chosenColor as any, currentTheme)}`
         }`}
         disabled={isDisabled}
         {...props}
@@ -210,7 +224,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
                 ? chosenColor === "light" || chosenColor === "neutral"
                   ? "text-black"
                   : "text-white"
-                : COLORS.ghost[chosenColor]
+                : COLORS("ghost", chosenColor as any, currentTheme)
             }`}
           >
             {leftIcon}
@@ -224,7 +238,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
                 ? chosenColor === "light" || chosenColor === "neutral"
                   ? "text-black"
                   : "text-white"
-                : COLORS.ghost[chosenColor]
+                : COLORS("ghost", chosenColor as any, currentTheme)
             }`}
           >
             {rightIcon}
