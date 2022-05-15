@@ -93,7 +93,7 @@ const COLORS = (
       dark: `bg-slate-800 text-slate-50`,
       light: `bg-neutral-100 text-slate-900`,
       orange: `bg-orange-500 ${TEXT}`,
-      red: `bg-red-600 ${TEXT}`,
+      red: `bg-red-500 ${TEXT}`,
       sky: `bg-sky-500 ${TEXT}`,
       teal: `bg-teal-500/90 ${TEXT}`,
       emerald: `bg-emerald-500 ${TEXT}`,
