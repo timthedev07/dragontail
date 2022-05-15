@@ -174,9 +174,9 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         className={`${
           className || ""
-        } transition-all duration-200 ease-in-out ${SIZES[scale]} min-w-fit ${
-          theme === "dark" ? "brightness-[1.2]" : ""
-        } ${
+        } font-medium transition-all duration-200 ease-in-out ${
+          SIZES[scale]
+        } min-w-fit ${theme === "dark" ? "brightness-[1.2]" : ""} ${
           isDisabled
             ? `cursor-not-allowed text-opacity-70`
             : `${
