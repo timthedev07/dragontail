@@ -1,4 +1,4 @@
-name: Deploy Next.js Frontend Web Application
+name: Deploy Storybook Demo Site
 on:
   push:
     branches:
