@@ -1,6 +1,9 @@
 name: Publish Package on NPM
 on:
   push:
+    paths:
+      - src/**
+      - package.json
     branches:
       - staging
 

@@ -1,6 +1,8 @@
 name: Deploy Storybook Demo Site
 on:
   push:
+    paths:
+      - src/**
     branches:
       - staging
 
