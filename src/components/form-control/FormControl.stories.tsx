@@ -17,9 +17,10 @@ const Template: ComponentStory<typeof FormControl> = (args) => (
 
 export const LightBasic = Template.bind({});
 LightBasic.args = {
+  label: "password",
   children: [
-    <FormLabel htmlFor="password">Password</FormLabel>,
-    <PasswordInput id="password" />,
+    <FormLabel>Password</FormLabel>,
+    <PasswordInput />,
     <FormHelperText>It is encrypted with Caesar cipher :)</FormHelperText>,
   ],
   className: "w-[400px]",

@@ -11,6 +11,7 @@ export const getFormControlContextDefaultProps = () => {
     isDisabled: false,
     isRequired: false,
     defaultChecked: false,
+    label: "",
     theme,
     variant: "outline",
   } as FormControlContextProps;
@@ -66,6 +67,7 @@ export const useFormControl = (
 export const FormControl = forwardRef<HTMLDivElement, FormControlProps>(
   ({ children, className = "", ...rest }, ref) => {
     const defaultProps = getFormControlContextDefaultProps();
+    console.log("Label passed in: ", rest.label);
 
     const roles: Array<ComponentRole> = [
       "error-message",

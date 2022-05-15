@@ -17,6 +17,7 @@ export const FormLabel = forwardRef<HTMLLabelElement, FormLabelProps>(
         theme: propsTheme,
       }
     );
+    console.log("Label received in the props:", label);
 
     return (
       <label
