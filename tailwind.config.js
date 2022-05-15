@@ -1,4 +1,3 @@
-/** @type {import('tailwindcss/tailwind-config').TailwindConfig} */
 module.exports = {
   mode: "jit",
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
@@ -26,5 +25,11 @@ module.exports = {
       backgroundColor: ["checked"],
     },
   },
-  plugins: [],
+  plugins: [
+    ({ addVariant }) => {
+      addVariant("hocus", ["&:hover", "&:focus"]);
+      addVariant("child-list", "& ol", "& ul");
+      addVariant("child-code", "& pre");
+    },
+  ],
 };

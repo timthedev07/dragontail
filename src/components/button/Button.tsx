@@ -29,7 +29,7 @@ const ENABLED_STYLES: Record<
       red: "hover:bg-red-700",
       sky: "hover:bg-sky-600",
       teal: "hover:bg-teal-600",
-      emerald: "hover:bg-emerald-400",
+      emerald: "hover:bg-emerald-600",
       green: "hover:bg-green-600",
       neutral: "hover:bg-slate-300 focus:bg-slate-400/60",
       "neutral-dark": "",
@@ -50,17 +50,17 @@ const ENABLED_STYLES: Record<
   },
   dark: {
     solid: {
-      cyan: "hover:bg-cyan-400 focus:bg-cyan-400",
-      dark: "hover:bg-slate-700 focus:bg-slate-700",
-      light: "hover:bg-neutral-50 focus:bg-slate-50",
-      orange: "hover:bg-orange-400 focus:bg-orange-400",
-      red: "hover:bg-red-500 focus:bg-red-500",
-      sky: "hover:bg-sky-400 focus:bg-sky-400",
-      teal: "hover:bg-teal-400 focus:bg-teal-400",
-      emerald: "hover:bg-emerald-400 focus:bg-emerald-400",
-      green: "hover:bg-green-400 focus:bg-green-400",
+      cyan: "hocus:bg-cyan-600",
+      dark: "hocus:bg-slate-700",
+      light: "hocus:bg-neutral-50",
+      orange: "hocus:bg-orange-600",
+      red: "hocus:bg-red-600",
+      sky: "hocus:bg-sky-600",
+      teal: "hocus:bg-teal-600",
+      emerald: "hocus:bg-emerald-600",
+      green: "hocus:bg-green-600",
       neutral: "",
-      "neutral-dark": "hover:bg-slate-500/75 focus:bg-slate-400/60",
+      "neutral-dark": "hocus:bg-slate-500/75 focus:bg-slate-400/60",
     },
     ghost: {
       // need further modification
@@ -171,9 +171,11 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     return (
       <button
         ref={ref}
-        className={`${className || ""} ${SIZES[scale]} min-w-fit ${
-          theme === "dark" ? "brightness-125" : ""
-        } transition-colors duration-200 ${
+        className={`${
+          className || ""
+        } transition-all duration-200 ease-in-out ${SIZES[scale]} min-w-fit ${
+          theme === "dark" ? "brightness-[1.2]" : ""
+        } ${
           isDisabled
             ? `cursor-not-allowed text-opacity-70`
             : `${
@@ -199,7 +201,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
                 !isDisabled && "hover:underline"
               } no-underline bg-transparent border-none outline-none`
             : variant === "ghost"
-            ? `transition duration-200 ${
+            ? ` ${
                 currentTheme === "dark"
                   ? "hover:bg-opacity-30"
                   : "hover:bg-opacity-50"
@@ -208,7 +210,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
                 chosenColor as any,
                 currentTheme
               )}`
-            : `border transition-colors duration-200 hover:outline-none hover:bg-opacity-30 bg-transparent ${COLORS(
+            : `border hover:outline-none hover:bg-opacity-30 bg-transparent ${COLORS(
                 "ghost",
                 chosenColor as any,
                 currentTheme
