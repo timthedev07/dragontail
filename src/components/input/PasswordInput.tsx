@@ -31,7 +31,7 @@ export const PasswordInput = forwardRef<HTMLInputElement, CustomInputProps>(
     },
     ref
   ) => {
-    const { isDisabled, isInvalid, theme, variant } = useFormControl(
+    const { isDisabled, isInvalid, theme, variant, label } = useFormControl(
       "input-field",
       {
         isDisabled: disabled,
@@ -46,6 +46,7 @@ export const PasswordInput = forwardRef<HTMLInputElement, CustomInputProps>(
     return (
       <div className="relative flex justify-end">
         <input
+          id={label}
           ref={ref}
           {...props}
           className={`${className} ${disabledClasses(

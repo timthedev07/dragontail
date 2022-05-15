@@ -80,7 +80,7 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
     },
     ref
   ) => {
-    const { defaultChecked, isDisabled, theme } = useFormControl(
+    const { defaultChecked, isDisabled, theme, label } = useFormControl(
       "input-field",
       {
         defaultChecked: propsDefaultChecked,
@@ -94,6 +94,7 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
 
     return (
       <input
+        id={label}
         ref={ref}
         disabled={isDisabled}
         {...rest}

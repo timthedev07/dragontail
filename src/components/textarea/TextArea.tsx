@@ -42,7 +42,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
     },
     ref
   ) => {
-    const { isDisabled, isInvalid, theme, variant } = useFormControl(
+    const { isDisabled, isInvalid, theme, variant, label } = useFormControl(
       "input-field",
       {
         isDisabled: disabled,
@@ -55,6 +55,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
 
     return (
       <textarea
+        id={label}
         aria-labelledby={props.name ? props.name : props.placeholder}
         ref={ref}
         {...props}

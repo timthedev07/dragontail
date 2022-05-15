@@ -41,7 +41,7 @@ const VARIANT_STYLES: Record<
 
 export const Select = forwardRef<HTMLSelectElement, SelectProps>(
   ({ placeholder, children, ...props }, ref) => {
-    const { isDisabled, isInvalid, variant, theme } = useFormControl(
+    const { isDisabled, isInvalid, variant, theme, label } = useFormControl(
       "input-field",
       props
     );
@@ -49,6 +49,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
     return (
       <select
         {...props}
+        id={label}
         aria-labelledby={props.name ? props.name : placeholder}
         ref={ref}
         className={`appearance-none focus:outline-none text-opacity-60 ${invalidClasses(

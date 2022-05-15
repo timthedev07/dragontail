@@ -11,13 +11,17 @@ export type FormLabelProps = DetailedHTMLProps<
 
 export const FormLabel = forwardRef<HTMLLabelElement, FormLabelProps>(
   ({ theme: propsTheme, children, ...props }, ref) => {
-    const { theme, isRequired, isDisabled } = useFormControl("input-label", {
-      theme: propsTheme,
-    });
+    const { theme, isRequired, isDisabled, label } = useFormControl(
+      "input-label",
+      {
+        theme: propsTheme,
+      }
+    );
 
     return (
       <label
         {...props}
+        htmlFor={label}
         ref={ref}
         className={`${
           theme === "light" ? "text-black" : "text-neutral-50"

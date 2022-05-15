@@ -17,12 +17,14 @@ export const getFormControlContextDefaultProps = () => {
 };
 
 export type FormControlProps = TextboxSharedProps & {
+  label?: string;
   className?: string;
   children?: React.ReactNode;
 };
 
 export type FormControlContextProps = {
   componentRole?: string;
+  label?: string;
 } & TextboxSharedProps;
 
 const FormControlContext = React.createContext<FormControlContextProps[]>([]);
@@ -62,7 +64,7 @@ export const useFormControl = (
 };
 
 export const FormControl = forwardRef<HTMLDivElement, FormControlProps>(
-  ({ children, className = "gap-3", ...rest }, ref) => {
+  ({ children, className = "", ...rest }, ref) => {
     const defaultProps = getFormControlContextDefaultProps();
 
     const roles: Array<ComponentRole> = [
@@ -84,7 +86,7 @@ export const FormControl = forwardRef<HTMLDivElement, FormControlProps>(
 
     return (
       <FormControlContext.Provider value={final} {...rest}>
-        <div className={`flex flex-col ${className}`} ref={ref}>
+        <div className={`flex flex-col gap-3 ${className}`} ref={ref}>
           {children}
         </div>
       </FormControlContext.Provider>

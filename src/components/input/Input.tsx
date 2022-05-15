@@ -46,7 +46,7 @@ export const Input = forwardRef<HTMLInputElement, CustomInputProps>(
     },
     ref
   ) => {
-    const { isDisabled, isInvalid, theme, variant } = useFormControl(
+    const { isDisabled, isInvalid, theme, variant, label } = useFormControl(
       "input-field",
       {
         isDisabled: disabled,
@@ -79,6 +79,7 @@ export const Input = forwardRef<HTMLInputElement, CustomInputProps>(
           <div className={`${ELEMENT_CLASS} left-0`}>{leftElement}</div>
         ) : null}
         <input
+          id={label}
           aria-labelledby={props.name ? props.name : props.placeholder}
           ref={ref}
           className={`${className || ""} ${disabledClasses(isDisabled)} ${
