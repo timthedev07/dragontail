@@ -65,7 +65,7 @@ const ENABLED_STYLES: Record<
     ghost: {
       // need further modification
       cyan: "hover:bg-cyan-200",
-      dark: "hover:bg-slate-600",
+      dark: "hover:bg-slate-800",
       light: "hover:bg-slate-200",
       orange: "hover:bg-orange-200",
       red: "hover:bg-red-200",
@@ -85,6 +85,7 @@ const COLORS = (
   theme: DragontailThemeType
 ) => {
   const TEXT = theme === "dark" ? "text-slate-900" : "text-slate-50";
+  const NON_SOLID_TEXT = theme !== "dark" ? "text-slate-900" : "text-slate-50";
 
   const colors = {
     solid: {
@@ -102,8 +103,8 @@ const COLORS = (
     },
     ghost: {
       cyan: "text-cyan-500",
-      dark: "text-slate-900",
-      light: "text-slate-900",
+      dark: NON_SOLID_TEXT,
+      light: NON_SOLID_TEXT,
       orange: "text-orange-500",
       red: "text-red-500",
       sky: "text-sky-500",
@@ -116,7 +117,7 @@ const COLORS = (
     outline: {
       cyan: "border-cyan-600",
       dark: "border-slate-900",
-      light: "border-slate-400",
+      light: "border-slate-50",
       orange: "border-orange-600",
       red: "border-red-600",
       sky: "border-sky-600",

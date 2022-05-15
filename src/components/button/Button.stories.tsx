@@ -3,6 +3,7 @@ import { RightArrow } from "../../stories-utils/RightArrow";
 import { EmailIcon } from "../../stories-utils/EmailIcon";
 import { Button, CustomButtonProps } from "./Button";
 import { CSTypeValues } from "../../types/Colors";
+import { ButtonVariantsValues } from "../../types/Variants";
 
 export default {
   title: "dragontail/Button",
@@ -11,11 +12,15 @@ export default {
 
 const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
 const ColorsTemplate: ComponentStory<typeof Button> = ({ color, ...args }) => (
-  <div className="flex flex-col gap-3 w-14">
-    {CSTypeValues.map((each) => (
-      <Button {...args} color={each}>
-        {each}
-      </Button>
+  <div className="flex w-full justify-evenly flex-wrap">
+    {ButtonVariantsValues.map((variant) => (
+      <div key={variant} className="flex flex-col gap-3 min-w-[120px]">
+        {CSTypeValues.map((each) => (
+          <Button {...args} variant={variant} color={each}>
+            {each}
+          </Button>
+        ))}
+      </div>
     ))}
   </div>
 );
