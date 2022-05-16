@@ -1,4 +1,4 @@
-export type ComponentRole =
+export type FormControlComponentRole =
   | "input-field"
   | "helper-text"
   | "error-message"

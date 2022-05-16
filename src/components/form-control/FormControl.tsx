@@ -1,6 +1,6 @@
 import { TextboxSharedProps } from "../../types/TextboxSharedProps";
 import React, { useContext } from "react";
-import { ComponentRole } from "../../types/ComponentRoleTypes";
+import { FormControlComponentRole } from "../../types/ComponentRoleTypes";
 import { useDragontail } from "../../context/ThemeContext";
 import { forwardRef } from "../../utils/forwardRef";
 
@@ -37,7 +37,7 @@ const FormControlContext = React.createContext<FormControlContextProps[]>([]);
  * @returns
  */
 export const useFormControl = (
-  componentRole: ComponentRole,
+  componentRole: FormControlComponentRole,
   componentProps: FormControlContextProps
 ) => {
   const context = useContext(FormControlContext);
@@ -68,7 +68,7 @@ export const FormControl = forwardRef<HTMLDivElement, FormControlProps>(
   ({ children, className = "", ...rest }, ref) => {
     const defaultProps = getFormControlContextDefaultProps();
 
-    const roles: Array<ComponentRole> = [
+    const roles: Array<FormControlComponentRole> = [
       "error-message",
       "helper-text",
       "input-label",
