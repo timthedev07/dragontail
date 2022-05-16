@@ -3,3 +3,5 @@ export type FormControlComponentRole =
   | "helper-text"
   | "error-message"
   | "input-label";
+
+export type ModalComponentRole = "overlay" | "content" | "header" | "footer" | "body" | "upper-close-button" 
