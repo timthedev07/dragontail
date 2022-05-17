@@ -9,8 +9,7 @@ import {
   INPUT_CORNER_ROUNDING,
   INPUT_DEFAULT_PADDING,
   INPUT_SIZES,
-  INPUT_VARIANTS_BORDER,
-  invalidClasses,
+  toggleBorder,
 } from "./styles";
 
 export const PasswordInput = forwardRef<HTMLInputElement, CustomInputProps>(
@@ -51,13 +50,11 @@ export const PasswordInput = forwardRef<HTMLInputElement, CustomInputProps>(
           {...props}
           className={`${className} ${disabledClasses(
             isDisabled
-          )} ${invalidClasses(isInvalid, theme)} ${
+          )} ${toggleBorder(isInvalid, theme, variant)} ${
             INPUT_DEFAULT_PADDING[variant]
           } ${INPUT_CORNER_ROUNDING[variant]["all"]} ${
             INPUT_BASE[theme][variant]
-          } relative ${INPUT_SIZES[size]} pr-20 ${
-            INPUT_VARIANTS_BORDER[variant]
-          }`}
+          } relative ${INPUT_SIZES[size]} pr-20`}
           type={showPw ? "text" : "password"}
           disabled={isDisabled}
         />
