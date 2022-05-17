@@ -6,9 +6,9 @@ import {
   disabledClasses,
   INPUT_CORNER_ROUNDING,
   INPUT_DEFAULT_PADDING,
+  INPUT_SIZES,
   toggleBorder,
 } from "../input/styles";
-import { TEXTAREA_BASE } from "./styles";
 
 export type ResizeType = "horizontal" | "vertical" | "none" | "both";
 
@@ -65,7 +65,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
         )} ${toggleBorder(isInvalid, theme, variant)} ${
           INPUT_DEFAULT_PADDING[variant]
         } ${INPUT_CORNER_ROUNDING[variant]["all"]} ${
-          TEXTAREA_BASE[theme][variant]
+          INPUT_SIZES[theme][variant]
         } ${RESIZE[resize]}`}
       ></textarea>
     );
