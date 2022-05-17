@@ -7,8 +7,7 @@ import { useFormControl } from "../form-control/FormControl";
 import {
   INPUT_CORNER_ROUNDING,
   INPUT_DEFAULT_PADDING,
-  INPUT_VARIANTS_BORDER,
-  invalidClasses,
+  toggleBorder,
   LIGHT_BASE,
   DARK_BASE,
   disabledClasses,
@@ -52,11 +51,11 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
         id={label}
         aria-labelledby={props.name ? props.name : placeholder}
         ref={ref}
-        className={`appearance-none focus:outline-none text-opacity-60 ${invalidClasses(
+        className={`appearance-none focus:outline-none text-opacity-60 ${toggleBorder(
           isInvalid,
           theme,
-          variant === "solid"
-        )} ${disabledClasses(isDisabled)} ${INPUT_VARIANTS_BORDER[variant]} ${
+          variant
+        )} ${disabledClasses(isDisabled)} ${
           INPUT_CORNER_ROUNDING[variant].all
         } ${INPUT_DEFAULT_PADDING[variant]} ${VARIANT_STYLES[variant][theme]}`}
         disabled={isDisabled}
