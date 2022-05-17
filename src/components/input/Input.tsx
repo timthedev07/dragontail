@@ -9,8 +9,7 @@ import {
   INPUT_CORNER_ROUNDING,
   INPUT_DEFAULT_PADDING,
   INPUT_SIZES,
-  INPUT_VARIANTS_BORDER,
-  invalidClasses,
+  toggleBorder,
 } from "./styles";
 
 export interface CustomInputProps
@@ -90,9 +89,9 @@ export const Input = forwardRef<HTMLInputElement, CustomInputProps>(
               : rightElement
               ? "pr-10 pl-3"
               : INPUT_DEFAULT_PADDING[variant]
-          } ${invalidClasses(isInvalid, theme, variant === "solid")} ${
+          } ${toggleBorder(isInvalid, theme, variant)} ${
             INPUT_BASE[theme][variant]
-          } ${INPUT_SIZES[size]} ${INPUT_VARIANTS_BORDER[variant]} ${
+          } ${INPUT_SIZES[size]} ${
             INPUT_CORNER_ROUNDING[variant][
               leftAddon && rightAddon
                 ? "none"

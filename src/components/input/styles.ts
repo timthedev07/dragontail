@@ -16,20 +16,33 @@ export const disabledClasses = (isDisabled: boolean) => {
     : "";
 };
 
-export const invalidClasses = (
+export const toggleBorder = (
   isInvalid: boolean,
   theme: DragontailThemeType,
-  isVariantSolid?: boolean
+  variant: InputVariants
 ) => {
+  const plainBorderColor =
+    theme === "dark" ? "border-gray-600/40" : "border-gray-300/80";
+  // if (isInvalid) {
+  // } else {
+  //   if (variant === "outline") return "border-gray-500/0";
+  //   if (variant === "underline") {
+  //     if (theme === "dark") {
+  //       return "border-b-gray-600/40";
+  //     } else {
+  //       return "border-b-gray-300/80";
+  //     }
+  //   }
+  //   if (theme === "dark") {
+  //     return "";
+  //   } else {
+  //     return "border-gray-300/80";
+  //   }
+  // }
   if (isInvalid) {
-    return "border-red-600";
+    return INPUT_VARIANTS_BORDER[variant] + " border-red-600";
   } else {
-    if (isVariantSolid) return "border-gray-500/0";
-    if (theme === "dark") {
-      return "border-gray-600/40";
-    } else {
-      return "border-gray-300/80";
-    }
+    return INPUT_VARIANTS_BORDER[variant] + " " + plainBorderColor;
   }
 };
 
