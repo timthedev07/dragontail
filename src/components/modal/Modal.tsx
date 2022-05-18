@@ -6,25 +6,17 @@ import { forwardRef } from "../../utils/forwardRef";
 export const getModalContextDefaultProps = () => {
   const { theme } = useDragontail();
   return {
-    isInvalid: false,
-    isDisabled: false,
-    isRequired: false,
-    defaultChecked: false,
-    label: "",
     theme,
-    variant: "outline",
   } as ModalContextProps;
 };
 
 export type ModalProps = {
-  label?: string;
   className?: string;
   children?: React.ReactNode;
 };
 
 export type ModalContextProps = {
   componentRole?: string;
-  label?: string;
 };
 
 const ModalContext = React.createContext<ModalContextProps[]>([]);
