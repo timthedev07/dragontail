@@ -21,7 +21,7 @@ export type ModalProps = {
 };
 
 export type ModalContextProps = {
-  componentRole?: string;
+  componentRole?: ModalComponentRole;
   isOpen: boolean;
   onClose: Function;
   blockScrollOnOpen: boolean;
@@ -38,7 +38,7 @@ const ModalContext = React.createContext<ModalContextProps[]>([]);
  */
 export const useModal = (
   componentRole: ModalComponentRole,
-  componentProps: ModalContextProps
+  componentProps: Partial<ModalContextProps>,
 ) => {
   const context = useContext(ModalContext);
 
@@ -88,7 +88,7 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>(
 
     return (
       <ModalContext.Provider value={final} {...rest}>
-        <div className={`flex flex-col gap-3 ${className}`} ref={ref}>
+        <div className={`relative flex flex-col gap-3 ${className}`} ref={ref}>
           {children}
         </div>
       </ModalContext.Provider>

@@ -7,13 +7,17 @@ export type ModalOverlayProps = DetailedHTMLProps<HTMLAttributes<HTMLDivElement>
 };
 
 export const ModalOverlay = forwardRef<HTMLDivElement, ModalOverlayProps>(({theme, ...props}, ref) => {
-  const {} = useModal("overlay", {
+  const { onClose } = useModal("overlay", {
     theme,
-    // {...getModalContextDefaultProps()}
+    ...getModalContextDefaultProps(),
+    componentRole: "overlay"
   });
-  return (
-    <div>
 
+  return (
+    <div {...props} onClick={() => {
+      onClose();
+    }} className="absolute w-screen h-screen z-[100000] bg-red-100">
+      
     </div>
   )
 })

@@ -2,15 +2,16 @@
 
 import { Button } from '../button';
 
-import { Modal } from './Modal';
+import { Modal, ModalProps } from './Modal';
 import { useModalDisclosure } from './modalDisclosure';
+import { ModalOverlay } from './ModalOverlay';
 
 export default {
-  title: 'Modal',
+  title: "dragontail/Modal",
   component: Modal,
 };
 
-const Template = () => {
+const Template = (args: ModalProps) => {
   const { isOpen, onOpen, onClose } = useModalDisclosure();
 
   return (
@@ -18,15 +19,11 @@ const Template = () => {
       <Button onClick={onOpen}>
         Open
       </Button>
-      <Modal onClose={onClose} isOpen={isOpen}>
-        
+      <Modal {...args} onClose={onClose} isOpen={isOpen}>
+        <ModalOverlay />
       </Modal>
     </>
   );
 };
 
-export const Primary = Template.bind({});
-Primary.args = {
-   primary: true,
-   label: 'Button',
-};
+export const BasicLight = Template.bind({});
