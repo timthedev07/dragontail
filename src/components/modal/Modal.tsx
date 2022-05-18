@@ -1,22 +1,31 @@
 import React, { useContext } from "react";
 import { ModalComponentRole } from "src/types/ComponentRoleTypes";
-import { useDragontail } from "../../context/ThemeContext";
+import { DragontailThemeType, useDragontail } from "../../context/ThemeContext";
 import { forwardRef } from "../../utils/forwardRef";
 
 export const getModalContextDefaultProps = () => {
   const { theme } = useDragontail();
   return {
     theme,
+    isOpen: false,
+    onClose: () => {},
+    blockScrollOnOpen: true,
   } as ModalContextProps;
 };
 
 export type ModalProps = {
   className?: string;
   children?: React.ReactNode;
+  isOpen: boolean;
+  onClose: Function;
 };
 
 export type ModalContextProps = {
   componentRole?: string;
+  isOpen: boolean;
+  onClose: Function;
+  blockScrollOnOpen: boolean;
+  theme?: DragontailThemeType;
 };
 
 const ModalContext = React.createContext<ModalContextProps[]>([]);
@@ -70,13 +79,12 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>(
 
     const final = [] as ModalContextProps[];
 
-    roles.map((val) =>
-      final.push({
-        componentRole: val,
-        ...defaultProps,
-        ...rest,
-      })
-    ) as ModalContextProps;
+    roles.map((val) => final.push({
+      componentRole: val,
+      ...defaultProps,
+      ...rest,
+    })
+    ) as unknown as ModalContextProps;
 
     return (
       <ModalContext.Provider value={final} {...rest}>

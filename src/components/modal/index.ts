@@ -5,3 +5,4 @@ export {} from "./ModalContent";
 export {} from "./ModalFooter";
 export {} from "./ModalHeader";
 export {} from "./ModalOverlay";
+export {useModalDisclosure} from "./modalDisclosure";
