@@ -59,7 +59,9 @@ export const Drawer = forwardRef<HTMLDivElement, DrawerProps>(
         >
           {drawerLabel}
           <ArrowSVG
-            className={`transition duration-300 ${open ? "" : ""} w-4 h-4`}
+            className={`transition-transform transform duration-300 ${
+              open ? "rotate-180" : ""
+            } w-4 h-4`}
             theme={t}
           />
         </button>
