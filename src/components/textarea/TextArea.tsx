@@ -1,4 +1,5 @@
 import { DetailedHTMLProps, TextareaHTMLAttributes } from "react";
+import { DragontailSizeType } from "../../types/Sizes";
 import { TextboxSharedProps } from "../../types/TextboxSharedProps";
 import { forwardRef } from "../../utils/forwardRef";
 import { useFormControl } from "../form-control/FormControl";
@@ -19,6 +20,7 @@ export interface TextAreaProps
     >,
     TextboxSharedProps {
   resize?: ResizeType;
+  scale?: DragontailSizeType;
 }
 
 const RESIZE: Record<ResizeType, string> = {
@@ -38,6 +40,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
       isInvalid: invalid = false,
       isRequired: required = false,
       resize = "none",
+      scale,
       ...props
     },
     ref
@@ -65,7 +68,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
         )} ${toggleBorder(isInvalid, theme, variant)} ${
           INPUT_DEFAULT_PADDING[variant]
         } ${INPUT_CORNER_ROUNDING[variant]["all"]} ${
-          INPUT_SIZES[theme][variant]
+          INPUT_SIZES[scale || "md"]
         } ${RESIZE[resize]}`}
       ></textarea>
     );
