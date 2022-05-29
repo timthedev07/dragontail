@@ -1,30 +1,31 @@
 import React, { useContext } from "react";
 import { ModalComponentRole } from "src/types/ComponentRoleTypes";
-import { useDragontail } from "../../context/ThemeContext";
+import { DragontailThemeType, useDragontail } from "../../context/ThemeContext";
 import { forwardRef } from "../../utils/forwardRef";
 
 export const getModalContextDefaultProps = () => {
   const { theme } = useDragontail();
   return {
-    isInvalid: false,
-    isDisabled: false,
-    isRequired: false,
-    defaultChecked: false,
-    label: "",
     theme,
-    variant: "outline",
+    isOpen: false,
+    onClose: () => {},
+    blockScrollOnOpen: true,
   } as ModalContextProps;
 };
 
 export type ModalProps = {
-  label?: string;
   className?: string;
   children?: React.ReactNode;
+  isOpen: boolean;
+  onClose: Function;
 };
 
 export type ModalContextProps = {
-  componentRole?: string;
-  label?: string;
+  componentRole?: ModalComponentRole;
+  isOpen: boolean;
+  onClose: Function;
+  blockScrollOnOpen: boolean;
+  theme?: DragontailThemeType;
 };
 
 const ModalContext = React.createContext<ModalContextProps[]>([]);
@@ -37,7 +38,7 @@ const ModalContext = React.createContext<ModalContextProps[]>([]);
  */
 export const useModal = (
   componentRole: ModalComponentRole,
-  componentProps: ModalContextProps
+  componentProps: Partial<ModalContextProps>,
 ) => {
   const context = useContext(ModalContext);
 
@@ -78,17 +79,16 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>(
 
     const final = [] as ModalContextProps[];
 
-    roles.map((val) =>
-      final.push({
-        componentRole: val,
-        ...defaultProps,
-        ...rest,
-      })
-    ) as ModalContextProps;
+    roles.map((val) => final.push({
+      componentRole: val,
+      ...defaultProps,
+      ...rest,
+    })
+    ) as unknown as ModalContextProps;
 
     return (
       <ModalContext.Provider value={final} {...rest}>
-        <div className={`flex flex-col gap-3 ${className}`} ref={ref}>
+        <div className={`relative flex flex-col gap-3 ${className}`} ref={ref}>
           {children}
         </div>
       </ModalContext.Provider>
