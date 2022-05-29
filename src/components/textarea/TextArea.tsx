@@ -5,9 +5,10 @@ import { forwardRef } from "../../utils/forwardRef";
 import { useFormControl } from "../form-control/FormControl";
 import {
   disabledClasses,
+  INPUT_BASE,
   INPUT_CORNER_ROUNDING,
   INPUT_DEFAULT_PADDING,
-  INPUT_SIZES,
+  INPUT_VARIANTS_BORDER,
   toggleBorder,
 } from "../input/styles";
 
@@ -68,8 +69,8 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
         )} ${toggleBorder(isInvalid, theme, variant)} ${
           INPUT_DEFAULT_PADDING[variant]
         } ${INPUT_CORNER_ROUNDING[variant]["all"]} ${
-          INPUT_SIZES[scale || "md"]
-        } ${RESIZE[resize]}`}
+          INPUT_VARIANTS_BORDER[variant]
+        } ${INPUT_BASE[theme][variant]} ${RESIZE[resize]}`}
       ></textarea>
     );
   }
