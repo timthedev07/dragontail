@@ -5,3 +5,4 @@ export * from "./form-control";
 export * from "./switch";
 export * from "./menu";
 export * from "./drawer";
+export * from "./select"
