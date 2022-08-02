@@ -23,6 +23,8 @@ export interface CustomInputProps
   scale?: DragontailSizeType;
   leftElement?: ReactNode;
   rightElement?: ReactNode;
+  leftElementWidth?: string;
+  rightElementWidth?: string;
   // used to style the container of <input />
   containerClassName?: string;
 }
@@ -44,6 +46,8 @@ export const Input = forwardRef<HTMLInputElement, CustomInputProps>(
       isInvalid: invalid = false,
       isRequired: required = false,
       containerClassName = "",
+      leftElementWidth,
+      rightElementWidth,
       ...props
     },
     ref
@@ -68,7 +72,7 @@ export const Input = forwardRef<HTMLInputElement, CustomInputProps>(
 
     const ELEMENT_CLASS = `absolute ${
       INPUT_SIZES[size]
-    } w-10 font-sans flex justify-center items-center bg-inherit ${
+    } font-sans flex justify-center items-center bg-inherit ${
       theme === "dark" ? "text-white" : "text-slate-700"
     }`;
 
@@ -80,7 +84,11 @@ export const Input = forwardRef<HTMLInputElement, CustomInputProps>(
           <div className={`${ADDON_CLASS} rounded-l-md`}>{leftAddon}</div>
         ) : null}
         {leftElement ? (
-          <div className={`${ELEMENT_CLASS} left-0`}>{leftElement}</div>
+          <div
+            className={`${ELEMENT_CLASS} left-0 ${leftElementWidth || "w-10"}`}
+          >
+            {leftElement}
+          </div>
         ) : null}
         <input
           id={label}
@@ -111,7 +119,13 @@ export const Input = forwardRef<HTMLInputElement, CustomInputProps>(
           disabled={isDisabled}
         />
         {rightElement ? (
-          <div className={`${ELEMENT_CLASS} right-0`}>{rightElement}</div>
+          <div
+            className={`${ELEMENT_CLASS} ${
+              rightElementWidth || "w-10"
+            } right-0`}
+          >
+            {rightElement}
+          </div>
         ) : null}
         {rightAddon ? (
           <div className={`${ADDON_CLASS} rounded-r-md`}>{rightAddon}</div>
