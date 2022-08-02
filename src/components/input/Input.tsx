@@ -23,6 +23,8 @@ export interface CustomInputProps
   scale?: DragontailSizeType;
   leftElement?: ReactNode;
   rightElement?: ReactNode;
+  // used to style the container of <input />
+  containerClassName?: string;
 }
 
 export const Input = forwardRef<HTMLInputElement, CustomInputProps>(
@@ -41,6 +43,7 @@ export const Input = forwardRef<HTMLInputElement, CustomInputProps>(
       isDisabled: disabled = false,
       isInvalid: invalid = false,
       isRequired: required = false,
+      containerClassName = "",
       ...props
     },
     ref
@@ -70,7 +73,9 @@ export const Input = forwardRef<HTMLInputElement, CustomInputProps>(
     }`;
 
     return (
-      <div className="relative flex justify-center items-center">
+      <div
+        className={`relative flex justify-center items-center ${containerClassName}`}
+      >
         {leftAddon ? (
           <div className={`${ADDON_CLASS} rounded-l-md`}>{leftAddon}</div>
         ) : null}
