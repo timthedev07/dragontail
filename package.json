@@ -27,7 +27,7 @@
     "@types/react": "^18.0.8",
     "@types/react-dom": "^18.0.0",
     "autoprefixer": "^10.4.2",
-    "gh-pages": "^3.2.3",
+    "gh-pages": "^4.0.0",
     "postcss": "^8.4.6",
     "postcss-cli": "^9.1.0",
     "postcss-loader": "^4.1.0",
@@ -104,5 +104,8 @@
         }
       }
     ]
+  },
+  "dependencies": {
+    "react": "^18.2.0"
   }
 }
