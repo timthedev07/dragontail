@@ -8,11 +8,12 @@ import {
 } from "react";
 import { DragontailThemeType, useDragontail } from "../../context/ThemeContext";
 
-export type DrawerProps = {
-  drawerLabel: string;
+export type HideableProps = {
+  hideableLabel: string;
   theme?: DragontailThemeType;
   className?: string;
   content: ReactNode;
+  rounded?: boolean;
 } & DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
 
 export const ArrowSVG = forwardRef<
@@ -36,28 +37,31 @@ export const ArrowSVG = forwardRef<
 
 ArrowSVG.displayName = "DrawerArrow";
 
-export const Drawer = forwardRef<HTMLDivElement, DrawerProps>(
-  ({ drawerLabel, theme: pt, content, className = "" }, ref) => {
+export const Hideable = forwardRef<HTMLDivElement, HideableProps>(
+  ({ hideableLabel, theme: pt, content, className = "", rounded = false }, ref) => {
     const { theme } = useDragontail();
     const [open, setOpen] = useState<boolean>(false);
     const t = pt || theme;
 
+    const topRounding = rounded ? "rounded-t-md" : "";
+    const bottomRounding = rounded ? "rounded-b-md" : "";
+
     return (
       <div
-        className={`${className} ${t === "dark" ? "text-white" : "text-black"}`}
+        className={`${topRounding} ${className} ${t === "dark" ? "text-white" : "text-black"}`}
         ref={ref}
       >
         <button
-          className={`w-full flex items-center justify-between py-2 px-4 border-b-2 border-b-slate-500/50 transition duration-200 ${
+          className={`w-full flex ${topRounding} items-center justify-between py-2 px-4 border-b-2 border-b-slate-500/50 transition duration-200 ${
             t === "dark"
               ? "text-white hover:bg-slate-500/30"
               : "text-black hover:bg-slate-600/20"
-          }`}
+          } font-semibold`}
           onClick={() => {
             setOpen((prev) => !prev);
           }}
         >
-          {drawerLabel}
+          {hideableLabel}
           <ArrowSVG
             className={`transition-transform transform duration-300 ${
               open ? "rotate-180" : ""
@@ -69,8 +73,8 @@ export const Drawer = forwardRef<HTMLDivElement, DrawerProps>(
           className={`px-4 py-3 transition-transform duration-300 bg-inherit ${
             open ? "block translate-y-0" : "hidden -translate-y-8"
           } ${
-            t === "dark" ? "text-white/80" : "text-black/80"
-          } border-x-2 border-slate-500/50 border-b-2`}
+            t === "dark" ? "text-white/80" : "text-black/90"
+          } ${bottomRounding} border-x-2 border-slate-500/50 border-b-2`}
         >
           {content}
         </div>
