@@ -1,4 +1,4 @@
-# Minimum component library built with TailwindCSS and React
+# Minimal component library built with TailwindCSS and React
 
 Heavily inspired by ChakraUI
 
