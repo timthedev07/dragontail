@@ -5,7 +5,7 @@ Heavily inspired by ChakraUI
 ## Installation
 
 ```bash
-yarn add dragontail
+yarn add dragontail-experimental
 ```
 
 ## Get Started
@@ -15,7 +15,7 @@ yarn add dragontail
 ```typescript
 // pages/_app.tsx
 import type { AppProps } from "next/app";
-import { DragontailProvider } from "dragontail";
+import { DragontailProvider } from "dragontail-experimental";
 
 // uncomment the following line for non-tailwind projects
 // import "dragontail/dist/build.css"
@@ -35,7 +35,7 @@ export default App;
 
 ```typescript
 // app.tsx
-import { DragontailProvider } from "dragontail";
+import { DragontailProvider } from "dragontail-experimental";
 // uncomment the following line for non-tailwind projects
 // import "dragontail/dist/build.css"
 
@@ -49,12 +49,14 @@ export const App = () => {
 ```
 
 ### TailwindCSS Config
+
 For react projects already using TailwindCSS, add the following content to your TailwindCSS configuration file:
+
 ```
 module.exports = {
   content: [
      ...
-    "node_modules/dragontail/dist/cjs/index.js"
+    "node_modules/dragontail-experimental/dist/cjs/index.js"
   ]
 };
 ```
