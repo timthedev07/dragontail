@@ -11,12 +11,12 @@
   .toast-dark-base {
     backdrop-filter: blur(6.9px);
     -webkit-backdrop-filter: blur(6.9px);
-    @apply text-white bg-slate-950/80;
+    @apply text-white bg-slate-950/80 hover:bg-slate-950/[.95];
   }
   .toast-light-base {
     backdrop-filter: blur(9px);
     -webkit-backdrop-filter: blur(9px);
-    @apply text-black bg-slate-100/90;
+    @apply text-black bg-slate-100/90 hover:bg-slate-100;
   }
 
   .toast-base {

@@ -6,7 +6,7 @@ import { DangerSVG, InfoSVG, SuccessSVG, WarningSVG } from "./Icons";
 
 export interface ToastProps {
   data: ToastData;
-  toasts: ToastData[];
+  removeToast: (id: number) => void;
   theme?: DragontailThemeType;
 }
 
@@ -50,7 +50,9 @@ export const Toast: FC<ToastProps> = forwardRef<HTMLDivElement, ToastProps>(
           theme === "dark"
             ? "toast-dark-base border-slate-600/50"
             : "toast-light-base border-slate-300/60"
-        } toast-base border flex justify-between items-center ${animation}`}
+        } toast-base border flex justify-between items-center ${animation} cursor-pointer transition duration-200 ${
+          theme === "dark" ? "hover:bg-slate-900/80" : "hover:bg-slate-50/80"
+        }`}
       >
         <div className="flex flex-col">
           <span className="font-semibold"> {finalTitle}</span>
