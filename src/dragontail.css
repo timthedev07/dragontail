@@ -8,7 +8,20 @@
 }
 
 @layer component {
+  .toast-dark-base {
+    backdrop-filter: blur(6.9px);
+    -webkit-backdrop-filter: blur(6.9px);
+    @apply text-white bg-slate-950/80;
+  }
+  .toast-light-base {
+    backdrop-filter: blur(9px);
+    -webkit-backdrop-filter: blur(9px);
+    @apply text-black bg-slate-100/90;
+  }
+
   .toast-base {
-    transition: transform .6s ease-in-out;
+    transition: transform 0.6s ease-in-out;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    @apply px-6 py-3 rounded-md my-4;
   }
 }
