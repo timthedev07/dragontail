@@ -3,6 +3,7 @@ import { Toast } from "./Toast";
 
 interface ToastContextType {
   addToast: (data: ToastData) => void;
+  removeToast: (id: number) => void;
 }
 
 export type ToastType = "info" | "warning" | "success" | "danger";
@@ -16,7 +17,7 @@ export enum ToastPosition {
 export interface ToastData {
   id: number;
   type: ToastType;
-  title: string;
+  title?: string;
   description?: string;
   duration: number; // duration in milliseconds
   position: ToastPosition;
@@ -24,6 +25,7 @@ export interface ToastData {
 
 const ToastContext = React.createContext<ToastContextType>({
   addToast: () => {},
+  removeToast: () => {},
 });
 
 export const useToast = () => {
@@ -42,13 +44,23 @@ export const ToastProvider: React.FC<{ children?: ReactNode }> = ({
     });
   };
 
-  const value: ToastContextType = { addToast };
+  const removeToast = (id: number) => {
+    setToasts((prev) => {
+      prev.splice(
+        prev.findIndex((val) => val.id === id),
+        1
+      );
+      return prev;
+    });
+  };
+
+  const value: ToastContextType = { addToast, removeToast };
   return (
     <ToastContext.Provider value={value}>
       {children}
 
       {toasts.map((each) => (
-        <Toast toasts={toasts} data={each} key={each.id} />
+        <Toast removeToast={removeToast} data={each} key={each.id} />
       ))}
     </ToastContext.Provider>
   );
