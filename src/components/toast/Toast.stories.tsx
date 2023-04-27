@@ -20,27 +20,27 @@ const Template: ComponentStory<typeof Toast> = ({ theme }) => {
   const toasts: ToastData[] = [
     {
       id: 0,
-      duration: 300,
+      duration: 3000,
       position: ToastPosition.bottomRight,
       description: "File saved.",
       type: "success",
     },
     {
       id: 1,
-      duration: 300,
+      duration: 3000,
       position: ToastPosition.bottomRight,
       type: "danger",
     },
     {
       id: 2,
-      duration: 300,
+      duration: 3000,
       position: ToastPosition.bottomRight,
       type: "info",
       description: "The app will be updated in 10 days.",
     },
     {
       id: 3,
-      duration: 300,
+      duration: 3000,
       position: ToastPosition.bottomRight,
       title: "Profile incomplete!",
       type: "warning",
@@ -49,7 +49,12 @@ const Template: ComponentStory<typeof Toast> = ({ theme }) => {
   return (
     <div>
       {toasts.map((each) => (
-        <Toast theme={theme} data={each} key={each.id} toasts={toasts} />
+        <Toast
+          theme={theme}
+          data={each}
+          key={each.id}
+          removeToast={(id) => {}}
+        />
       ))}
     </div>
   );
