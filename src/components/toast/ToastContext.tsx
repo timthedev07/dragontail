@@ -45,11 +45,9 @@ export const ToastProvider: React.FC<{ children?: ReactNode }> = ({
     <ToastContext.Provider value={value}>
       {children}
 
-      <div className="" id="toast-container">
         {toasts.map((each) => (
           <Toast toasts={toasts} data={each} key={each.id} />
         ))}
-      </div>
     </ToastContext.Provider>
   );
 };

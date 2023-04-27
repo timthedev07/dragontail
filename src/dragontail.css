@@ -6,3 +6,9 @@
   transition-property: color, background-color, border-color,
     text-decoration-color, fill, stroke, opacity !important;
 }
+
+@layer component {
+  .toast-base {
+    transition: transform .6s ease-in-out;
+  }
+}
