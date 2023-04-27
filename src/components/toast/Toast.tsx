@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { ToastData, ToastType } from "./ToastContext";
+import { ToastData, ToastPosition, ToastType } from "./ToastContext";
 import { DragontailThemeType, useDragontail } from "../../context/ThemeContext";
 import { forwardRef } from "../../utils/forwardRef";
 import { DangerSVG, InfoSVG, SuccessSVG, WarningSVG } from "./Icons";
@@ -37,6 +37,11 @@ export const Toast: FC<ToastProps> = forwardRef<HTMLDivElement, ToastProps>(
     const Icon = ICON_MAP[data.type];
 
     const finalTitle = data.title || genDefaultToastTitle(data.type);
+    const animation =
+      data.position === ToastPosition.bottomLeft ||
+      data.position === ToastPosition.bottomRight
+        ? "animate-toast-up" // is at bottom
+        : "animate-toast-down";
 
     return (
       <div
@@ -45,7 +50,7 @@ export const Toast: FC<ToastProps> = forwardRef<HTMLDivElement, ToastProps>(
           theme === "dark"
             ? "toast-dark-base border-slate-600/50"
             : "toast-light-base border-slate-300/60"
-        } toast-base border flex justify-between items-center`}
+        } toast-base border flex justify-between items-center ${animation}`}
       >
         <div className="flex flex-col">
           <span className="font-semibold"> {finalTitle}</span>
