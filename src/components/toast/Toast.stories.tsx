@@ -1,5 +1,6 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { Toast } from "./Toast";
+import { ToastData, ToastPosition } from "./ToastContext";
 
 export default {
   title: "dragontail/Toast",
@@ -15,14 +16,47 @@ export default {
   ],
 } as ComponentMeta<typeof Toast>;
 
-const Template: ComponentStory<typeof Toast> = (args) => {
-  return <div></div>;
+const Template: ComponentStory<typeof Toast> = ({ theme }) => {
+  const toasts: ToastData[] = [
+    {
+      id: 0,
+      duration: 300,
+      position: ToastPosition.bottomRight,
+      description: "File saved.",
+      type: "success",
+    },
+    {
+      id: 1,
+      duration: 300,
+      position: ToastPosition.bottomRight,
+      type: "danger",
+    },
+    {
+      id: 2,
+      duration: 300,
+      position: ToastPosition.bottomRight,
+      type: "info",
+      description: "The app will be updated in 10 days.",
+    },
+    {
+      id: 3,
+      duration: 300,
+      position: ToastPosition.bottomRight,
+      title: "Profile incomplete!",
+      type: "warning",
+    },
+  ];
+  return (
+    <div>
+      {toasts.map((each) => (
+        <Toast theme={theme} data={each} key={each.id} toasts={toasts} />
+      ))}
+    </div>
+  );
 };
 
 export const ToastAppearance = Template.bind({});
-ToastAppearance.args = {
-  placeholder: "Invalid",
-  theme: "dark",
-  isInvalid: true,
-};
-ToastAppearance.parameters = { backgrounds: { default: "dark" } };
+
+export const DarkToastAppearance = Template.bind({});
+DarkToastAppearance.args = { theme: "dark" };
+DarkToastAppearance.parameters = { backgrounds: { default: "dark" } };
