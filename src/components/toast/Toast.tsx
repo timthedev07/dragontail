@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { ToastData } from "./ToastContext";
 
-interface ToastProps {
+export interface ToastProps {
   data: ToastData;
   toasts: ToastData[];
 }

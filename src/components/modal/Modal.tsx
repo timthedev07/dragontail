@@ -38,7 +38,7 @@ const ModalContext = React.createContext<ModalContextProps[]>([]);
  */
 export const useModal = (
   componentRole: ModalComponentRole,
-  componentProps: Partial<ModalContextProps>,
+  componentProps: Partial<ModalContextProps>
 ) => {
   const context = useContext(ModalContext);
 
@@ -51,7 +51,9 @@ export const useModal = (
 
   // "sanitize" component props => remove undefined properties
   Object.keys(componentProps).forEach((key) =>
-    componentProps[key] === undefined ? delete componentProps[key] : {}
+    componentProps[key as keyof typeof componentProps] === undefined
+      ? delete componentProps[key as keyof typeof componentProps]
+      : {}
   );
 
   if (found === -1) {
@@ -79,11 +81,12 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>(
 
     const final = [] as ModalContextProps[];
 
-    roles.map((val) => final.push({
-      componentRole: val,
-      ...defaultProps,
-      ...rest,
-    })
+    roles.map((val) =>
+      final.push({
+        componentRole: val,
+        ...defaultProps,
+        ...rest,
+      })
     ) as unknown as ModalContextProps;
 
     return (

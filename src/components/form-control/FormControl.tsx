@@ -51,7 +51,9 @@ export const useFormControl = (
 
   // "sanitize" component props => remove undefined properties
   Object.keys(componentProps).forEach((key) =>
-    componentProps[key] === undefined ? delete componentProps[key] : {}
+    componentProps[key as keyof typeof componentProps] === undefined
+      ? delete componentProps[key as keyof typeof componentProps]
+      : {}
   );
 
   if (found === -1) {

@@ -2,7 +2,7 @@ import React, { useContext, ReactNode, useState } from "react";
 import { Toast } from "./Toast";
 
 interface ToastContextType {
-  children?: ReactNode;
+  addToast: (data: ToastData) => void;
 }
 
 export type ToastType = "info" | "warning" | "success" | "danger";
@@ -22,7 +22,9 @@ export interface ToastData {
   position: ToastPosition;
 }
 
-const ToastContext = React.createContext<ToastContextType>({});
+const ToastContext = React.createContext<ToastContextType>({
+  addToast: () => {},
+});
 
 export const useToast = () => {
   return useContext(ToastContext);
@@ -40,14 +42,14 @@ export const ToastProvider: React.FC<{ children?: ReactNode }> = ({
     });
   };
 
-  const value: ToastContextType = {};
+  const value: ToastContextType = { addToast };
   return (
     <ToastContext.Provider value={value}>
       {children}
 
-        {toasts.map((each) => (
-          <Toast toasts={toasts} data={each} key={each.id} />
-        ))}
+      {toasts.map((each) => (
+        <Toast toasts={toasts} data={each} key={each.id} />
+      ))}
     </ToastContext.Provider>
   );
 };

@@ -63,7 +63,6 @@ const ENABLED_STYLES: Record<
       "neutral-dark": "hocus:bg-slate-500/75 focus:bg-slate-400/60",
     },
     ghost: {
-      // need further modification
       cyan: "hover:bg-cyan-200",
       dark: "hover:bg-slate-800",
       light: "hover:bg-slate-200",
@@ -86,7 +85,19 @@ const COLORS = (
 ) => {
   const TEXT = theme === "dark" ? "text-slate-900" : "text-slate-50";
   const NON_SOLID_TEXT = theme !== "dark" ? "text-slate-900" : "text-slate-50";
-
+  const ghostOrLink = {
+    cyan: "text-cyan-500",
+    dark: NON_SOLID_TEXT,
+    light: NON_SOLID_TEXT,
+    orange: "text-orange-500",
+    red: "text-red-500",
+    sky: "text-sky-500",
+    teal: "text-teal-500",
+    emerald: "text-emerald-500",
+    green: "text-green-500",
+    neutral: "text-slate-700",
+    "neutral-dark": "text-slate-200",
+  };
   const colors = {
     solid: {
       cyan: `bg-cyan-500/90 ${TEXT}`,
@@ -101,19 +112,7 @@ const COLORS = (
       neutral: `bg-slate-200 text-slate-700`,
       "neutral-dark": `bg-slate-500/60 text-slate-100`,
     },
-    ghost: {
-      cyan: "text-cyan-500",
-      dark: NON_SOLID_TEXT,
-      light: NON_SOLID_TEXT,
-      orange: "text-orange-500",
-      red: "text-red-500",
-      sky: "text-sky-500",
-      teal: "text-teal-500",
-      emerald: "text-emerald-500",
-      green: "text-green-500",
-      neutral: "text-slate-700",
-      "neutral-dark": "text-slate-200",
-    },
+    ghost: ghostOrLink,
     outline: {
       cyan: "border-cyan-600",
       dark: "border-slate-900",
@@ -127,6 +126,7 @@ const COLORS = (
       neutral: "border-slate-400",
       "neutral-dark": "border-slate-500",
     },
+    link: ghostOrLink,
   };
   return colors[variant][color];
 };
@@ -181,9 +181,9 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             ? `cursor-not-allowed text-opacity-70`
             : `${
                 variant === "ghost" || variant === "solid"
-                  ? ENABLED_STYLES[currentTheme][variant][chosenColor]
+                  ? ENABLED_STYLES[currentTheme][variant][chosenColor as CSType]
                   : variant === "outline"
-                  ? ENABLED_STYLES[currentTheme]["ghost"][chosenColor]
+                  ? ENABLED_STYLES[currentTheme]["ghost"][chosenColor as CSType]
                   : ""
               }`
         } ${
