@@ -2,7 +2,7 @@ import React, { useContext, ReactNode, useState } from "react";
 import { POSITION_STYLES, Toast } from "./Toast";
 
 interface ToastContextType {
-  addToast: (data: ToastData) => void;
+  addToast: (data: Omit<ToastData, "id">) => void;
   removeToast: (id: number) => void;
 }
 
