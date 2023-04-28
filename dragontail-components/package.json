@@ -9,7 +9,6 @@
   "homepage": "http://timthedev07.github.io/dragontail",
   "author": "Tim <timpersonal07@gmail.com>",
   "license": "MIT",
-  "private": false,
   "peerDependencies": {
     "react": "^18.1.0",
     "react-dom": "^18.1.0"
