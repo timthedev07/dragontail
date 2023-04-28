@@ -1,6 +1,6 @@
 {
   "name": "dragontail-experimental",
-  "version": "0.0.64",
+  "version": "0.0.65",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
@@ -58,7 +58,8 @@
     "predeploy": "yarn build-storybook",
     "cleanup-deployment": "trash storybook-static",
     "deploy:lib": "yarn build:lib && npm publish",
-    "deploy:storybook": "yarn predeploy && gh-pages -d storybook-static && yarn cleanup-deployment"
+    "deploy:storybook": "yarn predeploy && gh-pages -d storybook-static && yarn cleanup-deployment",
+    "sync-staing": "git checkout staging && git merge dev && git push origin staging && git checkout dev"
   },
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
