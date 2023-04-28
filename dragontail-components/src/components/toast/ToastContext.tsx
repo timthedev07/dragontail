@@ -74,6 +74,12 @@ export const ToastProvider: React.FC<{ children?: ReactNode }> = ({
 
   useEffect(() => {
     console.log("Toasts:", toasts);
+    Object.values(ToastPositionArr).forEach((position) => {
+      console.log(
+        `  Hey (${position}):`,
+        toasts.filter((each) => each.position === position)
+      );
+    });
   }, [toasts]);
 
   const value: ToastContextType = { addToast, removeToast };

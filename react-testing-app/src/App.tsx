@@ -1,8 +1,9 @@
 import "./App.css";
-import { Button, ToastPosition, useToast } from "dragontail-experimental";
+import { Button, useToast } from "dragontail-experimental";
 
 function App() {
   const { addToast } = useToast();
+
   return (
     <div style={{ padding: "20px" }}>
       <Button

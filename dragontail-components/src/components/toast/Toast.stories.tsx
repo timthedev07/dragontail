@@ -1,6 +1,6 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { Toast } from "./Toast";
-import { ToastData, ToastPosition } from "./ToastContext";
+import { ToastData } from "./ToastContext";
 
 export default {
   title: "dragontail/Toast",
@@ -21,27 +21,27 @@ const Template: ComponentStory<typeof Toast> = ({ theme }) => {
     {
       id: 0,
       duration: 3000,
-      position: ToastPosition.BottomRight,
+      position: "bottom-right",
       description: "File saved.",
       type: "success",
     },
     {
       id: 1,
       duration: 3000,
-      position: ToastPosition.BottomRight,
+      position: "bottom-right",
       type: "danger",
     },
     {
       id: 2,
       duration: 3000,
-      position: ToastPosition.BottomRight,
+      position: "bottom-right",
       type: "info",
       description: "The app will be updated in 10 days.",
     },
     {
       id: 3,
       duration: 3000,
-      position: ToastPosition.BottomRight,
+      position: "bottom-right",
       title: "Profile incomplete!",
       type: "warning",
     },
