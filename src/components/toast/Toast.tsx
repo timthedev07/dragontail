@@ -17,6 +17,13 @@ const ICON_MAP: Record<ToastType, typeof DangerSVG> = {
   warning: WarningSVG,
 };
 
+export const POSITION_STYLES: Record<ToastPosition, string> = {
+  "0": "top-5 left-5",
+  "1": "top-5 right-5",
+  "2": "bottom-5 left-5",
+  "3": "bottom-5 right-5",
+};
+
 export const genDefaultToastTitle = (toastType: ToastType) => {
   switch (toastType) {
     case "danger":
@@ -38,8 +45,8 @@ export const Toast: FC<ToastProps> = forwardRef<HTMLDivElement, ToastProps>(
 
     const finalTitle = data.title || genDefaultToastTitle(data.type);
     const animation =
-      data.position === ToastPosition.bottomLeft ||
-      data.position === ToastPosition.bottomRight
+      data.position === ToastPosition.BottomLeft ||
+      data.position === ToastPosition.BottomRight
         ? "animate-toast-up" // is at bottom
         : "animate-toast-down";
 
@@ -65,7 +72,7 @@ export const Toast: FC<ToastProps> = forwardRef<HTMLDivElement, ToastProps>(
             : "toast-light-base border-slate-300/60"
         } toast-base border flex justify-between items-center ${animation} cursor-pointer transition duration-200 ${
           theme === "dark" ? "hover:bg-slate-900/80" : "hover:bg-slate-50/80"
-        }`}
+        } ${POSITION_STYLES[data.position]}`}
       >
         <div className="flex flex-col">
           <span className="font-semibold"> {finalTitle}</span>
