@@ -5300,9 +5300,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"dragontail-experimental@link:../dragontail-components/::locator=react-testing-app%40workspace%3A.":
+"dragontail-experimental@portal:../dragontail-components/::locator=react-testing-app%40workspace%3A.":
   version: 0.0.0-use.local
-  resolution: "dragontail-experimental@link:../dragontail-components/::locator=react-testing-app%40workspace%3A."
+  resolution: "dragontail-experimental@portal:../dragontail-components/::locator=react-testing-app%40workspace%3A."
+  peerDependencies:
+    react: ^18.1.0
+    react-dom: ^18.1.0
   languageName: node
   linkType: soft
 
@@ -10711,7 +10714,7 @@ __metadata:
     "@types/node": ^16.7.13
     "@types/react": ^18.0.0
     "@types/react-dom": ^18.0.0
-    dragontail-experimental: "link:../dragontail-components/"
+    dragontail-experimental: "portal:../dragontail-components/"
     react: ^18.2.0
     react-dom: ^18.2.0
     react-scripts: 5.0.1

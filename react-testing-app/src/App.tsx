@@ -1,24 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { Button, ToastPosition, useToast } from "dragontail-experimental";
 
 function App() {
+  const { addToast } = useToast();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={{ padding: "20px" }}>
+      <Button
+        onClick={() => {
+          addToast({
+            duration: 1000000,
+            type: "info",
+            position: "bottom-right",
+          });
+        }}
+      >
+        Hi
+      </Button>
     </div>
   );
 }
