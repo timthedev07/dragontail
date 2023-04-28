@@ -50,9 +50,9 @@ export const ToastProvider: React.FC<{ children?: ReactNode }> = ({
 }) => {
   const [toasts, setToasts] = useState<ToastData[]>([]);
 
-  const addToast = (data: ToastData) => {
+  const addToast = (data: Omit<ToastData, "id">) => {
     setToasts((prev) => {
-      prev.push(data);
+      prev.push({ id: prev.length, ...data });
       return prev;
     });
   };
