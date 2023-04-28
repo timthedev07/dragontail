@@ -18,10 +18,10 @@ const ICON_MAP: Record<ToastType, typeof DangerSVG> = {
 };
 
 export const POSITION_STYLES: Record<ToastPosition, string> = {
-  "0": "top-5 left-5",
-  "1": "top-5 right-5",
-  "2": "bottom-5 left-5",
-  "3": "bottom-5 right-5",
+  "top-left": "top-5 left-5",
+  "top-right": "top-5 right-5",
+  "bottom-left": "bottom-5 left-5",
+  "bottom-right": "bottom-5 right-5",
 };
 
 export const genDefaultToastTitle = (toastType: ToastType) => {
@@ -45,8 +45,7 @@ export const Toast: FC<ToastProps> = forwardRef<HTMLDivElement, ToastProps>(
 
     const finalTitle = data.title || genDefaultToastTitle(data.type);
     const animation =
-      data.position === ToastPosition.BottomLeft ||
-      data.position === ToastPosition.BottomRight
+      data.position === "bottom-left" || data.position === "bottom-right"
         ? "animate-toast-up" // is at bottom
         : "animate-toast-down";
 

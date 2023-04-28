@@ -1,4 +1,5 @@
 import React, { useContext, ReactNode, useState } from "react";
+import { useEffect } from "react";
 import { POSITION_STYLES, Toast } from "./Toast";
 
 interface ToastContextType {
@@ -7,12 +8,13 @@ interface ToastContextType {
 }
 
 export type ToastType = "info" | "warning" | "success" | "danger";
-export enum ToastPosition {
-  TopLeft,
-  TopRight,
-  BottomLeft,
-  BottomRight,
-}
+const ToastPositionArr = [
+  "top-left",
+  "top-right",
+  "bottom-left",
+  "bottom-right",
+] as const;
+export type ToastPosition = typeof ToastPositionArr[number];
 
 export interface ToastData {
   id: number;
@@ -51,8 +53,10 @@ export const ToastProvider: React.FC<{ children?: ReactNode }> = ({
   const [toasts, setToasts] = useState<ToastData[]>([]);
 
   const addToast = (data: Omit<ToastData, "id">) => {
+    console.log(data);
     setToasts((prev) => {
       prev.push({ id: prev.length, ...data });
+      console.log("Now: ", prev);
       return prev;
     });
   };
@@ -65,16 +69,21 @@ export const ToastProvider: React.FC<{ children?: ReactNode }> = ({
       );
       return prev;
     });
+    console.log("Toast removed");
   };
+
+  useEffect(() => {
+    console.log("Toasts:", toasts);
+  }, [toasts]);
 
   const value: ToastContextType = { addToast, removeToast };
   return (
     <ToastContext.Provider value={value}>
       {children}
 
-      {Object.values(ToastPosition).map((position) => {
+      {Object.values(ToastPositionArr).map((position) => {
         return (
-          <ToastContainer position={position as any} key={position}>
+          <ToastContainer position={position} key={position}>
             {toasts
               .filter((each) => each.position === position)
               .map((each) => (

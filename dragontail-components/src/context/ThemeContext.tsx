@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import { ToastProvider } from "../components";
 
 export type DragontailThemeType = "light" | "dark";
 
@@ -35,7 +34,7 @@ export const DragontailProvider: React.FC<ProviderProps> = ({
         disableButtonFocusRing,
       }}
     >
-      <ToastProvider>{children}</ToastProvider>
+      {children}
     </DragontailContext.Provider>
   );
 };
