@@ -6,3 +6,4 @@ export * from "./switch";
 export * from "./menu";
 export * from "./hideable";
 export * from "./select"
+export * from "./toast"
