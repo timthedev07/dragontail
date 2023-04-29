@@ -1,6 +1,6 @@
 {
   "name": "dragontail-experimental",
-  "version": "0.0.71",
+  "version": "0.0.72",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
@@ -48,7 +48,9 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "dev-react": "yarn add-no-save react react-dom",
-    "build:tailwind": "tailwindcss -i src/dragontail.css -o src/build.css --minify",
+    "build:tailwind": "yarn build:tailwind-ts-source && yarn build:tailwind-standalone",
+    "build:tailwind-ts-source": "tailwindcss -i src/dragontail.css -o src/build.css --minify",
+    "build:tailwind-standalone": "tailwindcss -i src/dragontail.css -o src/base.css -c tailwind-standalone.config.js --minify",
     "build:rollup": "rollup -c",
     "build:lib": "yarn build:tailwind && yarn build:rollup && cp src/build.css dist",
     "dev": "react-scripts start",
