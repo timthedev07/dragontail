@@ -48,7 +48,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "dev-react": "yarn add-no-save react react-dom",
-    "build:tailwind": "tailwindcss -o src/build.css --minify",
+    "build:tailwind": "tailwindcss -i src/dragontail.css -o src/build.css --minify",
     "build:rollup": "rollup -c",
     "build:lib": "yarn build:tailwind && yarn build:rollup && cp src/build.css dist",
     "dev": "react-scripts start",
