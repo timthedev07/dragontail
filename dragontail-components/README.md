@@ -43,8 +43,9 @@ import {
 import type { AppProps } from "next/app";
 import { DragontailProvider } from "dragontail-experimental";
 
-// uncomment the following line for non-tailwind projects
-// import "dragontail/dist/build.css"
+import "dragontail/dist/build.css"; // for non-tailwind projects
+// OR
+import "dragontail/dist/base.css"; // for tailwind projects
 
 const App = ({ Component, pageProps }: AppProps) => {
   return (
@@ -62,8 +63,10 @@ export default App;
 ```typescript
 // app.tsx
 import { DragontailProvider } from "dragontail-experimental";
-// uncomment the following line for non-tailwind projects
-// import "dragontail/dist/build.css"
+
+import "dragontail/dist/build.css"; // for non-tailwind projects
+// OR
+import "dragontail/dist/base.css"; // for tailwind projects
 
 export const App = () => {
   return (
