@@ -10,8 +10,8 @@
   "author": "Tim <timpersonal07@gmail.com>",
   "license": "MIT",
   "peerDependencies": {
-    "react": "^18.1.0",
-    "react-dom": "^18.1.0"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^21.0.1",
