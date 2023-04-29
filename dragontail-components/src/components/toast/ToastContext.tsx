@@ -1,4 +1,4 @@
-import React, { useContext, ReactNode, useState, useEffect } from "react";
+import React, { useContext, ReactNode, useState } from "react";
 import { POSITION_STYLES, Toast } from "./Toast";
 
 interface ToastContextType {
@@ -59,12 +59,7 @@ export const ToastProvider: React.FC<{ children?: ReactNode }> = ({
     setToasts((prev) => {
       return prev.filter((each) => each.id !== id);
     });
-    console.log("Toast removed");
   };
-
-  useEffect(() => {
-    console.log("Now: ", toasts);
-  }, [toasts]);
 
   const value: ToastContextType = { addToast, removeToast };
   return (
