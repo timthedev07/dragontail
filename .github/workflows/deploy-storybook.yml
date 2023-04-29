@@ -3,6 +3,7 @@ on:
   push:
     paths:
       - dragontail-components/src/**
+      - .github/**
     branches:
       - staging
 

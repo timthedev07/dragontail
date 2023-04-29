@@ -4,6 +4,7 @@ on:
     paths:
       - dragontail-components/src/**
       - dragontail-components/package.json
+      - .github/**
     branches:
       - staging
 
