@@ -4,7 +4,6 @@ on:
     paths:
       - dragontail-components/src/**
       - dragontail-components/package.json
-      - .github/**
       - .github/workflows/deploy-lib.yml
     branches:
       - staging
