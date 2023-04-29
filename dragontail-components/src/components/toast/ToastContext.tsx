@@ -1,4 +1,4 @@
-import React, { useContext, ReactNode, useState } from "react";
+import React, { useContext, ReactNode, useState, useEffect } from "react";
 import { POSITION_STYLES, Toast } from "./Toast";
 
 interface ToastContextType {
@@ -38,7 +38,7 @@ const ToastContainer: React.FC<{
   position: ToastPosition;
 }> = ({ children, position }) => {
   return (
-    <div className={`fixed flex flex-col gap-2 ${POSITION_STYLES[position]}`}>
+    <div className={`fixed flex flex-col gap-4 ${POSITION_STYLES[position]}`}>
       {children}
     </div>
   );
@@ -51,27 +51,20 @@ export const ToastProvider: React.FC<{ children?: ReactNode }> = ({
 
   const addToast = (data: Omit<ToastData, "id">) => {
     setToasts((prev) => {
-      console.log("Toasts:", prev);
-      Object.values(ToastPositionArr).forEach((position) => {
-        console.log(
-          `  Hey (${position}):`,
-          prev.filter((each) => each.position === position)
-        );
-      });
       return [...prev, { id: prev.length, ...data }];
     });
   };
 
   const removeToast = (id: number) => {
     setToasts((prev) => {
-      prev.splice(
-        prev.findIndex((val) => val.id === id),
-        1
-      );
-      return prev;
+      return prev.filter((each) => each.id !== id);
     });
     console.log("Toast removed");
   };
+
+  useEffect(() => {
+    console.log("Now: ", toasts);
+  }, [toasts]);
 
   const value: ToastContextType = { addToast, removeToast };
   return (
