@@ -3,7 +3,7 @@ on:
   push:
     paths:
       - dragontail-components/src/**
-      - .github/**
+      - .github/workflows/deploy-storybook.yml
     branches:
       - staging
 
@@ -23,7 +23,6 @@ jobs:
         working-directory: ./dragontail-components
         run: yarn predeploy
       - name: Deploy to GitHub Pages
-        working-directory: ./dragontail-components
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
