@@ -6,11 +6,11 @@ import {
   SVGProps,
   useState,
 } from "react";
-import { DragontailThemeType, useTheme } from "../../context/ThemeContext";
+import { ThemeType, useTheme } from "../../context/ThemeContext";
 
 export type HideableProps = {
   hideableLabel: string;
-  theme?: DragontailThemeType;
+  theme?: ThemeType;
   className?: string;
   content: ReactNode;
   rounded?: boolean;
@@ -18,7 +18,7 @@ export type HideableProps = {
 
 export const ArrowSVG = forwardRef<
   SVGSVGElement,
-  SVGProps<SVGSVGElement> & { theme: DragontailThemeType }
+  SVGProps<SVGSVGElement> & { theme: ThemeType }
 >(({ theme, ...props }, ref) => {
   return (
     <svg

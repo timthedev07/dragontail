@@ -1,5 +1,5 @@
 import { DetailedHTMLProps, SelectHTMLAttributes } from "react";
-import { DragontailThemeType } from "../../context/ThemeContext";
+import { ThemeType } from "../../context/ThemeContext";
 import { TextboxSharedProps } from "../../types/TextboxSharedProps";
 import { InputVariants } from "../../types/Variants";
 import { forwardRef } from "../../utils/forwardRef";
@@ -20,10 +20,7 @@ export interface SelectProps
     >,
     TextboxSharedProps {}
 
-const VARIANT_STYLES: Record<
-  InputVariants,
-  Record<DragontailThemeType, string>
-> = {
+const VARIANT_STYLES: Record<InputVariants, Record<ThemeType, string>> = {
   outline: {
     dark: DARK_BASE + " bg-inherit",
     light: LIGHT_BASE + " bg-inherit",

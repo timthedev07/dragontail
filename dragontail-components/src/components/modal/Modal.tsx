@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { ModalComponentRole } from "src/types/ComponentRoleTypes";
-import { DragontailThemeType, useTheme } from "../../context/ThemeContext";
+import { ThemeType, useTheme } from "../../context/ThemeContext";
 import { forwardRef } from "../../utils/forwardRef";
 
 export const getModalContextDefaultProps = () => {
@@ -25,7 +25,7 @@ export type ModalContextProps = {
   isOpen: boolean;
   onClose: Function;
   blockScrollOnOpen: boolean;
-  theme?: DragontailThemeType;
+  theme?: ThemeType;
 };
 
 const ModalContext = React.createContext<ModalContextProps[]>([]);

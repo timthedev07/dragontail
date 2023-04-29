@@ -1,40 +1,40 @@
 import React, { useContext } from "react";
 
-export type DragontailThemeType = "light" | "dark";
+export type ThemeType = "light" | "dark";
 
-export interface ThemeContext {
+export interface ThemeContextType {
   disableButtonFocusRing?: boolean;
-  theme: DragontailThemeType;
+  theme: ThemeType;
 }
 
-const DragontailContext = React.createContext<ThemeContext>({
+const ThemeContext = React.createContext<ThemeContextType>({
   theme: "light",
   disableButtonFocusRing: false,
 });
 
 export const useTheme = () => {
-  return useContext(DragontailContext);
+  return useContext(ThemeContext);
 };
 
 export interface ProviderProps {
-  theme?: DragontailThemeType;
+  theme?: ThemeType;
   disableButtonFocusRing?: boolean;
   children?: React.ReactNode;
 }
 
-export const DragontailProvider: React.FC<ProviderProps> = ({
+export const ThemeProvider: React.FC<ProviderProps> = ({
   children,
   theme = "light",
   disableButtonFocusRing = false,
 }) => {
   return (
-    <DragontailContext.Provider
+    <ThemeContext.Provider
       value={{
         theme,
         disableButtonFocusRing,
       }}
     >
       {children}
-    </DragontailContext.Provider>
+    </ThemeContext.Provider>
   );
 };

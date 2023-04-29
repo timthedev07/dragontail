@@ -1,4 +1,4 @@
-import { DragontailThemeType } from "../../context/ThemeContext";
+import { ThemeType } from "../../context/ThemeContext";
 import { CornerRoundingType } from "../../types/CornerRounding";
 import { DragontailSizeType } from "../../types/Sizes";
 import { InputVariants } from "../../types/Variants";
@@ -18,7 +18,7 @@ export const disabledClasses = (isDisabled: boolean) => {
 
 export const toggleBorder = (
   isInvalid: boolean,
-  theme: DragontailThemeType,
+  theme: ThemeType,
   variant: InputVariants
 ) => {
   const plainBorderColor =
@@ -46,10 +46,7 @@ export const toggleBorder = (
   }
 };
 
-export const INPUT_BASE: Record<
-  DragontailThemeType,
-  Record<InputVariants, string>
-> = {
+export const INPUT_BASE: Record<ThemeType, Record<InputVariants, string>> = {
   dark: {
     outline: `${DARK_BASE} bg-inherit`,
     solid: `${DARK_BASE} bg-neutral-50/[.06]`,

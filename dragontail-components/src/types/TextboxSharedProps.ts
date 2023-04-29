@@ -1,9 +1,9 @@
-import { DragontailThemeType } from "../context/ThemeContext";
+import { ThemeType } from "../context/ThemeContext";
 import { InputVariants } from "./Variants";
 
 export interface TextboxSharedProps {
   variant?: InputVariants;
-  theme?: DragontailThemeType;
+  theme?: ThemeType;
   isDisabled?: boolean;
   isInvalid?: boolean;
   isRequired?: boolean;

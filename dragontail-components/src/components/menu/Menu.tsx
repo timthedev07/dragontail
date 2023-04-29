@@ -6,7 +6,7 @@ import React, {
   useRef,
   useState,
 } from "react";
-import { DragontailThemeType, useTheme } from "../../context/ThemeContext";
+import { ThemeType, useTheme } from "../../context/ThemeContext";
 import { MaybeRenderProp, runIfFn } from "../../types/Children";
 import { forwardRef } from "../../utils/forwardRef";
 import { useClickOutside } from "../../utils/hooks";
@@ -28,7 +28,7 @@ interface ExposedValues {
 }
 
 export interface MenuContextProps {
-  theme?: DragontailThemeType;
+  theme?: ThemeType;
   children?: MaybeRenderProp<ExposedValues>;
   isOpen?: boolean;
   onClose?: Function;
@@ -39,7 +39,7 @@ export interface MenuContextProps {
 }
 
 interface MenuContextType {
-  theme: DragontailThemeType;
+  theme: ThemeType;
   isOpen: boolean;
   menuDirection: MenuDirection;
   open: Function;

@@ -1,5 +1,5 @@
 import { ButtonHTMLAttributes, DetailedHTMLProps } from "react";
-import { DragontailThemeType, useTheme } from "../../context/ThemeContext";
+import { ThemeType, useTheme } from "../../context/ThemeContext";
 import { CSType } from "../../types/Colors";
 import { DragontailSizeType } from "../../types/Sizes";
 import { ButtonVariants } from "../../types/Variants";
@@ -11,13 +11,13 @@ export interface CustomButtonProps {
   rightIcon?: JSX.Element;
   variant?: ButtonVariants;
   focusEffect?: boolean;
-  theme?: DragontailThemeType;
+  theme?: ThemeType;
   scale?: DragontailSizeType;
   isDisabled?: boolean;
 }
 
 const ENABLED_STYLES: Record<
-  DragontailThemeType,
+  ThemeType,
   Record<"solid" | "ghost", Record<CSType | "neutral-dark", string>>
 > = {
   light: {
@@ -78,11 +78,7 @@ const ENABLED_STYLES: Record<
   },
 };
 
-const COLORS = (
-  variant: ButtonVariants,
-  color: CSType,
-  theme: DragontailThemeType
-) => {
+const COLORS = (variant: ButtonVariants, color: CSType, theme: ThemeType) => {
   const TEXT = theme === "dark" ? "text-slate-900" : "text-slate-50";
   const NON_SOLID_TEXT = theme !== "dark" ? "text-slate-900" : "text-slate-50";
   const ghostOrLink = {

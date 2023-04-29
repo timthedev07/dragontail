@@ -1,6 +1,6 @@
-import { FC, useEffect } from "react";
+import { FC, useEffect, useState } from "react";
 import { ToastData, ToastPosition, ToastType } from "./ToastContext";
-import { DragontailThemeType, useTheme } from "../../context/ThemeContext";
+import { ThemeType, useTheme } from "../../context/ThemeContext";
 import { forwardRef } from "../../utils/forwardRef";
 import { DangerSVG, InfoSVG, SuccessSVG, WarningSVG } from "./Icons";
 
@@ -9,7 +9,7 @@ type Size = "large" | "normal" | "small";
 export interface ToastProps {
   data: ToastData;
   removeToast: (id: number) => void;
-  theme?: DragontailThemeType;
+  theme?: ThemeType;
   size?: Size;
 }
 
@@ -67,9 +67,12 @@ const ICON_SIZE: Record<Size, string> = {
   large: "w-9 h-9",
 };
 
+const ANIMATION_DURATION = 500;
+
 export const Toast: FC<ToastProps> = forwardRef<HTMLDivElement, ToastProps>(
   ({ data, theme: customTheme, removeToast, size = "normal" }, ref) => {
     const { theme: appTheme } = useTheme();
+    const [shouldFade, setShouldFade] = useState<boolean>(false);
     const theme = customTheme ? customTheme : appTheme;
     const Icon = ICON_MAP[data.type];
 
@@ -80,12 +83,17 @@ export const Toast: FC<ToastProps> = forwardRef<HTMLDivElement, ToastProps>(
         : "animate-toast-down";
 
     useEffect(() => {
-      const time = setTimeout(() => {
-        removeToast(data.id);
+      const time1 = setTimeout(() => {
+        setShouldFade(true);
       }, data.duration);
 
+      const time2 = setTimeout(() => {
+        removeToast(data.id);
+      }, data.duration + ANIMATION_DURATION);
+
       return () => {
-        clearTimeout(time);
+        clearTimeout(time1);
+        clearTimeout(time2);
       };
     }, []);
 
@@ -101,9 +109,11 @@ export const Toast: FC<ToastProps> = forwardRef<HTMLDivElement, ToastProps>(
             : "toast-light-base border-slate-300/60"
         } toast-base border ${
           SIZE[size]
-        } flex justify-between items-center ${animation} cursor-pointer transition duration-200 ${
+        } flex justify-between items-center cursor-pointer transition duration-200 ${
           theme === "dark" ? "hover:bg-slate-900/80" : "hover:bg-slate-50/80"
-        } ${POSITION_STYLES[data.position]}`}
+        } ${POSITION_STYLES[data.position]} ${
+          shouldFade ? "animate-toast-fade" : animation
+        }`}
       >
         <div className="flex flex-col w-[85%]">
           <span className={`font-semibold ${TEXT[size]["title"]}`}>
