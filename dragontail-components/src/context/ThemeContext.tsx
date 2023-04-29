@@ -7,13 +7,13 @@ export interface ThemeContext {
   theme: DragontailThemeType;
 }
 
-const ThemeContext = React.createContext<ThemeContext>({
+const DragontailContext = React.createContext<ThemeContext>({
   theme: "light",
   disableButtonFocusRing: false,
 });
 
 export const useTheme = () => {
-  return useContext(ThemeContext);
+  return useContext(DragontailContext);
 };
 
 export interface ProviderProps {
@@ -22,19 +22,19 @@ export interface ProviderProps {
   children?: React.ReactNode;
 }
 
-export const ThemeProvider: React.FC<ProviderProps> = ({
+export const DragontailProvider: React.FC<ProviderProps> = ({
   children,
   theme = "light",
   disableButtonFocusRing = false,
 }) => {
   return (
-    <ThemeContext.Provider
+    <DragontailContext.Provider
       value={{
         theme,
         disableButtonFocusRing,
       }}
     >
       {children}
-    </ThemeContext.Provider>
+    </DragontailContext.Provider>
   );
 };

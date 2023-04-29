@@ -1,2 +1,2 @@
 export * from "./components";
-export { DragontailProvider } from "./context/LibContext";
+export { DragontailProvider } from "./context/ThemeContext";
