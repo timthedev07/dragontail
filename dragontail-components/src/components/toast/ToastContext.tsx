@@ -38,9 +38,7 @@ const ToastContainer: React.FC<{
   position: ToastPosition;
 }> = ({ children, position }) => {
   return (
-    <div
-      className={`fixed flex flex-col gap-2 h-screen ${POSITION_STYLES[position]}`}
-    >
+    <div className={`fixed flex flex-col gap-2 ${POSITION_STYLES[position]}`}>
       {children}
     </div>
   );
@@ -80,7 +78,6 @@ export const ToastProvider: React.FC<{ children?: ReactNode }> = ({
     <ToastContext.Provider value={value}>
       {children}
 
-      {toasts.length}
       <ToastContainer position={"bottom-left"}>
         {toasts
           .filter((each) => each.position === "bottom-left")
@@ -90,13 +87,11 @@ export const ToastProvider: React.FC<{ children?: ReactNode }> = ({
       </ToastContainer>
 
       <ToastContainer position={"bottom-right"}>
-        <>
-          {toasts
-            // .filter((each) => each.position === "bottom-right")
-            .map((each) => (
-              <Toast removeToast={removeToast} data={each} key={each.id} />
-            ))}
-        </>
+        {toasts
+          .filter((each) => each.position === "bottom-right")
+          .map((each) => (
+            <Toast removeToast={removeToast} data={each} key={each.id} />
+          ))}
       </ToastContainer>
 
       <ToastContainer position={"top-left"}>

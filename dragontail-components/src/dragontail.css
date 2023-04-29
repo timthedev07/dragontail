@@ -22,6 +22,6 @@
   .toast-base {
     transition: transform 0.6s ease-in-out;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    @apply px-6 py-3 rounded-md my-4;
+    @apply rounded-md my-4;
   }
 }

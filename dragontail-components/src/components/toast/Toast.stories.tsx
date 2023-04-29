@@ -29,6 +29,8 @@ const Template: ComponentStory<typeof Toast> = ({ theme }) => {
       id: 1,
       duration: 3000,
       position: "bottom-right",
+      description:
+        "This is a super long description just to test if the text is wrapped so that it doesn't overflow the container.",
       type: "danger",
     },
     {
@@ -60,8 +62,37 @@ const Template: ComponentStory<typeof Toast> = ({ theme }) => {
   );
 };
 
+const SizesTemplate: ComponentStory<typeof Toast> = ({ theme }) => {
+  const toasts: ToastData = {
+    id: 0,
+    duration: 3000,
+    position: "bottom-right",
+    description: "File saved.",
+    type: "success",
+  };
+
+  return (
+    <div>
+      {["small", "normal", "large"].map((each) => {
+        return (
+          <Toast
+            theme={theme}
+            data={toasts}
+            removeToast={() => {}}
+            size={each as any}
+          />
+        );
+      })}
+    </div>
+  );
+};
+
 export const ToastAppearance = Template.bind({});
 
 export const DarkToastAppearance = Template.bind({});
 DarkToastAppearance.args = { theme: "dark" };
 DarkToastAppearance.parameters = { backgrounds: { default: "dark" } };
+
+export const DarkSizes = SizesTemplate.bind({});
+DarkSizes.args = { theme: "dark" };
+DarkSizes.parameters = { backgrounds: { default: "dark" } };

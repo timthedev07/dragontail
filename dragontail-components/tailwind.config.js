@@ -5,6 +5,9 @@ module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
+      fontSize: {
+        xxs: ["0.6rem", "0.95rem"],
+      },
       keyframes: {
         "menu-open": {
           "0%": {
