@@ -1,6 +1,6 @@
-import { FC, useEffect } from "react";
+import { FC } from "react";
 import { ToastData, ToastPosition, ToastType } from "./ToastContext";
-import { DragontailThemeType, useDragontail } from "../../context/ThemeContext";
+import { DragontailThemeType, useTheme } from "../../context/ThemeContext";
 import { forwardRef } from "../../utils/forwardRef";
 import { DangerSVG, InfoSVG, SuccessSVG, WarningSVG } from "./Icons";
 
@@ -39,7 +39,7 @@ export const genDefaultToastTitle = (toastType: ToastType) => {
 
 export const Toast: FC<ToastProps> = forwardRef<HTMLDivElement, ToastProps>(
   ({ data, theme: customTheme, removeToast }, ref) => {
-    const { theme: appTheme } = useDragontail();
+    const { theme: appTheme } = useTheme();
     const theme = customTheme ? customTheme : appTheme;
     const Icon = ICON_MAP[data.type];
 
@@ -49,21 +49,21 @@ export const Toast: FC<ToastProps> = forwardRef<HTMLDivElement, ToastProps>(
         ? "animate-toast-up" // is at bottom
         : "animate-toast-down";
 
-    useEffect(() => {
-      const time = setTimeout(() => {
-        removeToast(data.id);
-      }, data.duration);
+    // useEffect(() => {
+    //   const time = setTimeout(() => {
+    //     removeToast(data.id);
+    //   }, data.duration);
 
-      return () => {
-        clearTimeout(time);
-      };
-    }, []);
+    //   return () => {
+    //     clearTimeout(time);
+    //   };
+    // }, []);
 
     return (
       <div
-        onClick={() => {
-          removeToast(data.id);
-        }}
+        // onClick={() => {
+        //   removeToast(data.id);
+        // }}
         ref={ref}
         className={`${
           theme === "dark"

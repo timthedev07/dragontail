@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
 import { ModalComponentRole } from "src/types/ComponentRoleTypes";
-import { DragontailThemeType, useDragontail } from "../../context/ThemeContext";
+import { DragontailThemeType, useTheme } from "../../context/ThemeContext";
 import { forwardRef } from "../../utils/forwardRef";
 
 export const getModalContextDefaultProps = () => {
-  const { theme } = useDragontail();
+  const { theme } = useTheme();
   return {
     theme,
     isOpen: false,

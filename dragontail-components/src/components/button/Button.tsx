@@ -1,5 +1,5 @@
 import { ButtonHTMLAttributes, DetailedHTMLProps } from "react";
-import { DragontailThemeType, useDragontail } from "../../context/ThemeContext";
+import { DragontailThemeType, useTheme } from "../../context/ThemeContext";
 import { CSType } from "../../types/Colors";
 import { DragontailSizeType } from "../../types/Sizes";
 import { ButtonVariants } from "../../types/Variants";
@@ -163,7 +163,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     },
     ref
   ) => {
-    const { theme: defaultTheme, disableButtonFocusRing } = useDragontail();
+    const { theme: defaultTheme, disableButtonFocusRing } = useTheme();
     const currentTheme = theme ? theme : defaultTheme;
     const chosenColor =
       (color || "teal") +

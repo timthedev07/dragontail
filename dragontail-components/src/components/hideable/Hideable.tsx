@@ -6,7 +6,7 @@ import {
   SVGProps,
   useState,
 } from "react";
-import { DragontailThemeType, useDragontail } from "../../context/ThemeContext";
+import { DragontailThemeType, useTheme } from "../../context/ThemeContext";
 
 export type HideableProps = {
   hideableLabel: string;
@@ -38,8 +38,11 @@ export const ArrowSVG = forwardRef<
 ArrowSVG.displayName = "DrawerArrow";
 
 export const Hideable = forwardRef<HTMLDivElement, HideableProps>(
-  ({ hideableLabel, theme: pt, content, className = "", rounded = false }, ref) => {
-    const { theme } = useDragontail();
+  (
+    { hideableLabel, theme: pt, content, className = "", rounded = false },
+    ref
+  ) => {
+    const { theme } = useTheme();
     const [open, setOpen] = useState<boolean>(false);
     const t = pt || theme;
 
@@ -48,7 +51,9 @@ export const Hideable = forwardRef<HTMLDivElement, HideableProps>(
 
     return (
       <div
-        className={`${topRounding} ${className} ${t === "dark" ? "text-white" : "text-black"}`}
+        className={`${topRounding} ${className} ${
+          t === "dark" ? "text-white" : "text-black"
+        }`}
         ref={ref}
       >
         <button

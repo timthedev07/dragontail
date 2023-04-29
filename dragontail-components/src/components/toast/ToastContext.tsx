@@ -1,5 +1,4 @@
 import React, { useContext, ReactNode, useState } from "react";
-import { useEffect } from "react";
 import { POSITION_STYLES, Toast } from "./Toast";
 
 interface ToastContextType {
@@ -53,11 +52,15 @@ export const ToastProvider: React.FC<{ children?: ReactNode }> = ({
   const [toasts, setToasts] = useState<ToastData[]>([]);
 
   const addToast = (data: Omit<ToastData, "id">) => {
-    console.log(data);
     setToasts((prev) => {
-      prev.push({ id: prev.length, ...data });
-      console.log("Now: ", prev);
-      return prev;
+      console.log("Toasts:", prev);
+      Object.values(ToastPositionArr).forEach((position) => {
+        console.log(
+          `  Hey (${position}):`,
+          prev.filter((each) => each.position === position)
+        );
+      });
+      return [...prev, { id: prev.length, ...data }];
     });
   };
 
@@ -72,32 +75,45 @@ export const ToastProvider: React.FC<{ children?: ReactNode }> = ({
     console.log("Toast removed");
   };
 
-  useEffect(() => {
-    console.log("Toasts:", toasts);
-    Object.values(ToastPositionArr).forEach((position) => {
-      console.log(
-        `  Hey (${position}):`,
-        toasts.filter((each) => each.position === position)
-      );
-    });
-  }, [toasts]);
-
   const value: ToastContextType = { addToast, removeToast };
   return (
     <ToastContext.Provider value={value}>
       {children}
 
-      {Object.values(ToastPositionArr).map((position) => {
-        return (
-          <ToastContainer position={position} key={position}>
-            {toasts
-              .filter((each) => each.position === position)
-              .map((each) => (
-                <Toast removeToast={removeToast} data={each} key={each.id} />
-              ))}
-          </ToastContainer>
-        );
-      })}
+      {toasts.length}
+      <ToastContainer position={"bottom-left"}>
+        {toasts
+          .filter((each) => each.position === "bottom-left")
+          .map((each) => (
+            <Toast removeToast={removeToast} data={each} key={each.id} />
+          ))}
+      </ToastContainer>
+
+      <ToastContainer position={"bottom-right"}>
+        <>
+          {toasts
+            // .filter((each) => each.position === "bottom-right")
+            .map((each) => (
+              <Toast removeToast={removeToast} data={each} key={each.id} />
+            ))}
+        </>
+      </ToastContainer>
+
+      <ToastContainer position={"top-left"}>
+        {toasts
+          .filter((each) => each.position === "top-left")
+          .map((each) => (
+            <Toast removeToast={removeToast} data={each} key={each.id} />
+          ))}
+      </ToastContainer>
+
+      <ToastContainer position={"top-right"}>
+        {toasts
+          .filter((each) => each.position === "top-right")
+          .map((each) => (
+            <Toast removeToast={removeToast} data={each} key={each.id} />
+          ))}
+      </ToastContainer>
     </ToastContext.Provider>
   );
 };

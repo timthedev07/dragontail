@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import { ToastProvider } from "../components";
 
 export type DragontailThemeType = "light" | "dark";
 
@@ -8,34 +7,34 @@ export interface ThemeContext {
   theme: DragontailThemeType;
 }
 
-const DragontailContext = React.createContext<ThemeContext>({
+const ThemeContext = React.createContext<ThemeContext>({
   theme: "light",
   disableButtonFocusRing: false,
 });
 
-export const useDragontail = () => {
-  return useContext(DragontailContext);
+export const useTheme = () => {
+  return useContext(ThemeContext);
 };
 
-interface ProviderProps {
+export interface ProviderProps {
   theme?: DragontailThemeType;
   disableButtonFocusRing?: boolean;
   children?: React.ReactNode;
 }
 
-export const DragontailProvider: React.FC<ProviderProps> = ({
+export const ThemeProvider: React.FC<ProviderProps> = ({
   children,
   theme = "light",
   disableButtonFocusRing = false,
 }) => {
   return (
-    <DragontailContext.Provider
+    <ThemeContext.Provider
       value={{
         theme,
         disableButtonFocusRing,
       }}
     >
-      <ToastProvider>{children}</ToastProvider>
-    </DragontailContext.Provider>
+      {children}
+    </ThemeContext.Provider>
   );
 };

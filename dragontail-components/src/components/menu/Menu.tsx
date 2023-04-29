@@ -6,7 +6,7 @@ import React, {
   useRef,
   useState,
 } from "react";
-import { DragontailThemeType, useDragontail } from "../../context/ThemeContext";
+import { DragontailThemeType, useTheme } from "../../context/ThemeContext";
 import { MaybeRenderProp, runIfFn } from "../../types/Children";
 import { forwardRef } from "../../utils/forwardRef";
 import { useClickOutside } from "../../utils/hooks";
@@ -90,7 +90,7 @@ export const Menu = forwardRef<HTMLDivElement, MenuContextProps>(
   ) => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [menuDirection] = useState<MenuDirection>("downward");
-    const { theme: appTheme } = useDragontail();
+    const { theme: appTheme } = useTheme();
     const menuRef = useRef<HTMLDivElement | null>(ref as any);
 
     const [currSearch, setCurrSearch] = useState<SearchCharInfo>({});
