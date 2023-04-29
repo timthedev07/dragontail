@@ -29,8 +29,8 @@ import {
   Select,
   Switch,
   Textarea,
-  ToastProvider,
-  useToast,
+  ToastProvider // automatically wrapped within `DragontailProvider`,
+  useToast, // this is called in a functional component to show a toast message
 } from "dragontail-experimental";
 ```
 
@@ -38,7 +38,7 @@ import {
 
 ### Next.js
 
-```typescript
+```jsx
 // pages/_app.tsx
 import type { AppProps } from "next/app";
 import { DragontailProvider } from "dragontail-experimental";
