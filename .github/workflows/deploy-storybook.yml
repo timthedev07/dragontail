@@ -2,7 +2,7 @@ name: Deploy Storybook Demo Site
 on:
   push:
     paths:
-      - src/**
+      - dragontail-components/src/**
     branches:
       - staging
 
@@ -13,13 +13,17 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - uses: actions/setup-node@v3
+        working-directory: ./dragontail-components
         with:
           node-version: "16.x"
       - name: Install Dependencies
+        working-directory: ./dragontail-components
         run: yarn && yarn add-no-save react react-dom
       - name: Build Storybook App
+        working-directory: ./dragontail-components
         run: yarn predeploy
       - name: Deploy to GitHub Pages
+        working-directory: ./dragontail-components
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}

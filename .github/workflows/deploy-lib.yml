@@ -2,8 +2,8 @@ name: Publish Package on NPM
 on:
   push:
     paths:
-      - src/**
-      - package.json
+      - dragontail-components/src/**
+      - dragontail-components/package.json
     branches:
       - staging
 
@@ -13,14 +13,18 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
+        working-directory: ./dragontail-components
         with:
           node-version: "16.x"
           registry-url: "https://registry.npmjs.org"
       - name: Install Dependencies
+        working-directory: ./dragontail-components
         run: yarn
       - name: Build Library
+        working-directory: ./dragontail-components
         run: yarn build:lib
       - name: Publish Library to NPM
+        working-directory: ./dragontail-components
         run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
