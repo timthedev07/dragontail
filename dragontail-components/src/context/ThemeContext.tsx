@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 
-export type ThemeType = "light" | "dark";
+export type ThemeType = "dark" | "light";
 
 export interface ThemeContextType {
   disableButtonFocusRing?: boolean;
