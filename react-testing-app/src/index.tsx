@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
-import { DragontailProvider } from "dragontail-experimental";
+import { DragontailProvider, ToastProvider } from "dragontail-experimental";
 import "dragontail-experimental/dist/build.css";
 
 const root = ReactDOM.createRoot(
@@ -10,8 +10,10 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <DragontailProvider>
-      <App />
+    <DragontailProvider theme="dark">
+      <ToastProvider>
+        <App />
+      </ToastProvider>
     </DragontailProvider>
   </React.StrictMode>
 );
