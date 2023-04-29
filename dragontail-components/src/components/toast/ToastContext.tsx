@@ -1,4 +1,4 @@
-import React, { useContext, ReactNode, useState } from "react";
+import React, { useContext, ReactNode, useState, useEffect } from "react";
 import { POSITION_STYLES, Toast } from "./Toast";
 
 interface ToastContextType {
@@ -51,7 +51,10 @@ export const ToastProvider: React.FC<{ children?: ReactNode }> = ({
 
   const addToast = (data: Omit<ToastData, "id">) => {
     setToasts((prev) => {
-      return [...prev, { id: prev.length, ...data }];
+      return [
+        ...prev,
+        { id: Math.random() * Math.random() * prev.length, ...data },
+      ];
     });
   };
 
@@ -60,6 +63,10 @@ export const ToastProvider: React.FC<{ children?: ReactNode }> = ({
       return prev.filter((each) => each.id !== id);
     });
   };
+
+  useEffect(() => {
+    console.log("Now: ", toasts);
+  }, [toasts]);
 
   const value: ToastContextType = { addToast, removeToast };
   return (
