@@ -4,13 +4,13 @@ import { ThemeType, useTheme } from "../../context/ThemeContext";
 import { forwardRef } from "../../utils/forwardRef";
 import { DangerSVG, InfoSVG, SuccessSVG, WarningSVG } from "./Icons";
 
-type Size = "large" | "normal" | "small";
+export type ToastSize = "large" | "normal" | "small";
 
 export interface ToastProps {
   data: ToastData;
   removeToast: (id: number) => void;
   theme?: ThemeType;
-  size?: Size;
+  size?: ToastSize;
 }
 
 const ICON_MAP: Record<ToastType, typeof DangerSVG> = {
@@ -40,13 +40,13 @@ export const genDefaultToastTitle = (toastType: ToastType) => {
   }
 };
 
-const SIZE: Record<Size, string> = {
+const SIZE: Record<ToastSize, string> = {
   large: "px-8 py-4 w-80",
   normal: "px-6 py-3 w-72",
   small: "px-4 py-2 w-56",
 };
 
-const TEXT: Record<Size, Record<"title" | "description", string>> = {
+const TEXT: Record<ToastSize, Record<"title" | "description", string>> = {
   large: {
     title: "text-lg",
     description: "text-sm",
@@ -61,7 +61,7 @@ const TEXT: Record<Size, Record<"title" | "description", string>> = {
   },
 };
 
-const ICON_SIZE: Record<Size, string> = {
+const ICON_SIZE: Record<ToastSize, string> = {
   small: "w-5 h-5",
   normal: "w-6 h-6",
   large: "w-9 h-9",

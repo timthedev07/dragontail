@@ -1,5 +1,5 @@
 import React, { useContext, ReactNode, useState, useEffect } from "react";
-import { POSITION_STYLES, Toast } from "./Toast";
+import { POSITION_STYLES, Toast, ToastSize } from "./Toast";
 
 interface ToastContextType {
   addToast: (data: Omit<ToastData, "id">) => void;
@@ -22,6 +22,7 @@ export interface ToastData {
   description?: string;
   duration: number; // duration in milliseconds
   position: ToastPosition;
+  size?: ToastSize;
 }
 
 const ToastContext = React.createContext<ToastContextType>({
