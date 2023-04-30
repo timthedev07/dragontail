@@ -118,7 +118,7 @@ export const Toast: FC<ToastProps> = forwardRef<HTMLDivElement, ToastProps>(
           theme === "dark" ? "hover:bg-slate-900/80" : "hover:bg-slate-50/80"
         } ${POSITION_STYLES[data.position]} ${
           shouldFade ? "animate-toast-fade" : animation
-        }`}
+        } relative`}
       >
         <div className="flex flex-col w-[85%]">
           <span className={`font-semibold ${TEXT[finalSize]["title"]}`}>

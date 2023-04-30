@@ -1,6 +1,6 @@
 {
   "name": "dragontail-experimental",
-  "version": "0.0.81",
+  "version": "0.0.82",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
