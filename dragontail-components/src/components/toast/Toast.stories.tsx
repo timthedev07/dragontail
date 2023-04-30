@@ -49,7 +49,7 @@ const Template: ComponentStory<typeof Toast> = ({ theme }) => {
     },
   ];
   return (
-    <div>
+    <div className="flex flex-col gap-8">
       {toasts.map((each) => (
         <Toast
           theme={theme}
@@ -72,7 +72,7 @@ const SizesTemplate: ComponentStory<typeof Toast> = ({ theme }) => {
   };
 
   return (
-    <div>
+    <div className="flex flex-col gap-8">
       {["small", "normal", "large"].map((each) => {
         return (
           <Toast
