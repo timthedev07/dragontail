@@ -100,7 +100,9 @@ export const Toast: FC<ToastProps> = forwardRef<HTMLDivElement, ToastProps>(
 
     return (
       <div
-        onClick={() => {
+        onClick={async () => {
+          setShouldFade(true);
+          await new Promise((res) => setTimeout(res, ANIMATION_DURATION));
           removeToast(data.id);
         }}
         ref={ref}
