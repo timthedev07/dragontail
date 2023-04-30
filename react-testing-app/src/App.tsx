@@ -20,6 +20,7 @@ function App() {
   const [count, setCount] = useState<number>(0);
   const [type, setType] = useState<ToastType>("info");
   const [position, setPosition] = useState<ToastPosition>("bottom-right");
+  const [size, setSize] = useState<string>("normal");
 
   return (
     <div
@@ -68,6 +69,19 @@ function App() {
             <option value="top-left">Top Left</option>
           </Select>
         </Container>
+        <Container>
+          <Select
+            defaultValue={"normal"}
+            onChange={(e) => {
+              setSize(e.target.value as any);
+              console.log(e.target.value);
+            }}
+          >
+            <option value="small">Small</option>
+            <option value="normal">Normal</option>
+            <option value="large">Large</option>
+          </Select>
+        </Container>
 
         <Button
           onClick={() => {
@@ -76,6 +90,7 @@ function App() {
               type,
               position,
               description: `Curr count: ${count}`,
+              size: size as any,
             });
             setCount((prev) => prev + 1);
           }}
