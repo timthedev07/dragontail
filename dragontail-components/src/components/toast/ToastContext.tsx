@@ -39,12 +39,27 @@ export const useToast = () => {
 const ToastContainer: React.FC<{
   children: ReactNode;
   position: ToastPosition;
-}> = ({ children, position }) => {
+  zIndex?: number;
+}> = ({ children, position, zIndex = 50 }) => {
   return (
-    <div className={`fixed flex flex-col gap-4 ${POSITION_STYLES[position]}`}>
+    <div
+      style={{ zIndex }}
+      className={`fixed flex flex-col gap-4 ${POSITION_STYLES[position]}`}
+    >
       {children}
     </div>
   );
+};
+
+const findMaxZIndex = (data: ToastData[]) => {
+  let max = 0;
+  for (const toast of data) {
+    const curr = toast.zIndex || 50;
+    if (curr > max) {
+      max = curr;
+    }
+  }
+  return max;
 };
 
 export const ToastProvider: React.FC<{ children?: ReactNode }> = ({
@@ -72,7 +87,7 @@ export const ToastProvider: React.FC<{ children?: ReactNode }> = ({
     <ToastContext.Provider value={value}>
       {children}
 
-      <ToastContainer position={"bottom-left"}>
+      <ToastContainer zIndex={findMaxZIndex(toasts)} position={"bottom-left"}>
         {toasts
           .filter((each) => each.position === "bottom-left")
           .map((each) => (
@@ -80,7 +95,7 @@ export const ToastProvider: React.FC<{ children?: ReactNode }> = ({
           ))}
       </ToastContainer>
 
-      <ToastContainer position={"bottom-right"}>
+      <ToastContainer zIndex={findMaxZIndex(toasts)} position={"bottom-right"}>
         {toasts
           .filter((each) => each.position === "bottom-right")
           .map((each) => (
@@ -88,7 +103,7 @@ export const ToastProvider: React.FC<{ children?: ReactNode }> = ({
           ))}
       </ToastContainer>
 
-      <ToastContainer position={"top-left"}>
+      <ToastContainer zIndex={findMaxZIndex(toasts)} position={"top-left"}>
         {toasts
           .filter((each) => each.position === "top-left")
           .map((each) => (
@@ -96,7 +111,7 @@ export const ToastProvider: React.FC<{ children?: ReactNode }> = ({
           ))}
       </ToastContainer>
 
-      <ToastContainer position={"top-right"}>
+      <ToastContainer zIndex={findMaxZIndex(toasts)} position={"top-right"}>
         {toasts
           .filter((each) => each.position === "top-right")
           .map((each) => (
