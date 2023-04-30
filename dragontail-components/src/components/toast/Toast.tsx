@@ -10,7 +10,6 @@ export interface ToastProps {
   data: ToastData;
   removeToast: (id: number) => void;
   theme?: ThemeType;
-  size?: ToastSize;
 }
 
 const ICON_MAP: Record<ToastType, typeof DangerSVG> = {
@@ -70,7 +69,7 @@ const ICON_SIZE: Record<ToastSize, string> = {
 const ANIMATION_DURATION = 500;
 
 export const Toast: FC<ToastProps> = forwardRef<HTMLDivElement, ToastProps>(
-  ({ data, theme: customTheme, removeToast, size = "normal" }, ref) => {
+  ({ data, theme: customTheme, removeToast }, ref) => {
     const { theme: appTheme } = useTheme();
     const [shouldFade, setShouldFade] = useState<boolean>(false);
     const theme = customTheme ? customTheme : appTheme;
@@ -81,6 +80,8 @@ export const Toast: FC<ToastProps> = forwardRef<HTMLDivElement, ToastProps>(
       data.position === "bottom-left" || data.position === "bottom-right"
         ? "animate-toast-up" // is at bottom
         : "animate-toast-down";
+
+    const finalSize = data.size ? data.size : "normal";
 
     useEffect(() => {
       const time1 = setTimeout(() => {
@@ -108,7 +109,7 @@ export const Toast: FC<ToastProps> = forwardRef<HTMLDivElement, ToastProps>(
             ? "toast-dark-base border-slate-600/50"
             : "toast-light-base border-slate-300/60"
         } toast-base border ${
-          SIZE[size]
+          SIZE[finalSize]
         } flex justify-between items-center cursor-pointer transition duration-200 ${
           theme === "dark" ? "hover:bg-slate-900/80" : "hover:bg-slate-50/80"
         } ${POSITION_STYLES[data.position]} ${
@@ -116,20 +117,20 @@ export const Toast: FC<ToastProps> = forwardRef<HTMLDivElement, ToastProps>(
         }`}
       >
         <div className="flex flex-col w-[85%]">
-          <span className={`font-semibold ${TEXT[size]["title"]}`}>
+          <span className={`font-semibold ${TEXT[finalSize]["title"]}`}>
             {finalTitle}
           </span>
           {data.description ? (
             <span
               className={`${
                 theme === "dark" ? "text-white/70" : "text-black/70"
-              } break-words ${TEXT[size]["description"]}`}
+              } break-words ${TEXT[finalSize]["description"]}`}
             >
               {data.description}
             </span>
           ) : null}
         </div>
-        <Icon className={ICON_SIZE[size]} />
+        <Icon className={ICON_SIZE[finalSize]} />
       </div>
     );
   }

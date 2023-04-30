@@ -77,9 +77,8 @@ const SizesTemplate: ComponentStory<typeof Toast> = ({ theme }) => {
         return (
           <Toast
             theme={theme}
-            data={toasts}
+            data={{ ...Toast, size: each as any } as any}
             removeToast={() => {}}
-            size={each as any}
           />
         );
       })}
