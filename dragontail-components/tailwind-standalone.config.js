@@ -1,5 +1,5 @@
 module.exports = {
-  content: [],
+  content: ["force-include.tsx"],
   theme: {
     extend: {
       fontSize: {
