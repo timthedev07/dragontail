@@ -82,6 +82,7 @@ export const Toast: FC<ToastProps> = forwardRef<HTMLDivElement, ToastProps>(
         : "animate-toast-down";
 
     const finalSize = data.size ? data.size : "normal";
+    const zIndex = data.zIndex ? data.zIndex : 1000;
 
     useEffect(() => {
       const time1 = setTimeout(() => {
@@ -106,6 +107,7 @@ export const Toast: FC<ToastProps> = forwardRef<HTMLDivElement, ToastProps>(
           removeToast(data.id);
         }}
         ref={ref}
+        style={{ zIndex }}
         className={`${
           theme === "dark"
             ? "toast-dark-base border-slate-600/50"

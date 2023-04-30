@@ -23,6 +23,8 @@ export interface ToastData {
   duration: number; // duration in milliseconds
   position: ToastPosition;
   size?: ToastSize;
+  // defaults to 1000
+  zIndex?: number;
 }
 
 const ToastContext = React.createContext<ToastContextType>({
