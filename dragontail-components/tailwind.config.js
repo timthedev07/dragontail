@@ -70,8 +70,6 @@ module.exports = {
   plugins: [
     plugin(({ addVariant }) => {
       addVariant("hocus", ["&:hover", "&:focus"]);
-      addVariant("child-list", "& ol", "& ul");
-      addVariant("child-code", "& pre");
     }),
   ],
 };
