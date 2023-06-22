@@ -99,7 +99,7 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
         disabled={isDisabled}
         {...rest}
         checked={checked}
-        defaultChecked={defaultChecked}
+        defaultChecked={checked !== undefined ? undefined : defaultChecked}
         onChange={(e) => {
           if (onChange) {
             onChange(e);
